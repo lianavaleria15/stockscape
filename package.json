@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "node src/db/seeds/index.js",
     "start": "node src/index.js"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/lianavaleria15/stockscape#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.12.0"
   }
