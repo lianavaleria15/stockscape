@@ -33,4 +33,4 @@ Company.init(
   }
 );
 
-module.exports = { Company };
+module.exports = Company;
