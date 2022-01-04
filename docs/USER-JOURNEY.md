@@ -38,7 +38,7 @@ THEN I am taken to their profile where I can see their username & portfolio
 
 ![example](/docs/img/graphexample.png)
 
-### Play Game
+### Play Game - Solo
 
 ```
 As a user
@@ -49,6 +49,43 @@ THEN I am presented with a option to play a game
 WHEN I click on play a game
 THEN I am presented an option to play solo or vs a friend
 
-WHEN I click on a username
-THEN I am taken to their profile where I can see their username & portfolio
+WHEN I opt to play solo
+THEN I can chose what stocks I want to invest $1,000,000 with Jan 2021 price
+
+WHEN I click 'Invest Current Portfolio'
+THEN I am presented with the value of my portfolio as of Dec 2021 and the value is logged in my solo highscore table
+```
+
+### Play Game - Head to Head
+
+```
+As a user
+
+WHEN I land on the homepage
+THEN I am presented with a option to play a game
+
+WHEN I click on play a game
+THEN I am presented an option to play solo or vs a friend
+
+WHEN I opt to play with a friend
+THEN I can chose what stocks I want to invest $1,000,000 with Jan 2021 price
+
+WHEN I click 'Invest Current Portfolio'
+THEN I am presented a list of players to compare against
+
+WHEN I click 'Compete vs ______'
+THEN I am presented with the value of my portfolio as of Dec 2021 and the value of my __________ as of Dec 2021 and a winner is declared
+```
+
+### User Profile
+
+```
+As a user
+
+WHEN I go to my profile
+THEN I am presented with my portfolio list
+
+WHEN I go to my profile
+THEN I am presented with my total Wins / Draws / Losses
+
 ```
