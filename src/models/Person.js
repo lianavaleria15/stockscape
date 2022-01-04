@@ -14,10 +14,25 @@ const schema = {
 
   first_name: { type: DataTypes.STRING, allowNull: false },
   last_name: { type: DataTypes.STRING, allowNull: false },
-  //come back to this and add validation for length
   password: { type: DataTypes.STRING, allowNull: false },
-  username: { type: DataTypes.STRING, allowNull: false, unique: true },
-  email: { type: DataTypes.STRING, validate: { isEmail: true }, unique: true },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      len: [8],
+    },
+  },
+  email: {
+    type: DataTypes.STRING,
+    validate: { isEmail: true },
+    unique: true,
+    validate: {
+      len: [8, 64],
+      // 8-64 characters; letters, numbers, special characters
+      is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/,
+    },
+  },
 };
 
 const options = {
