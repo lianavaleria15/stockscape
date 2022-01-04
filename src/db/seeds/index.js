@@ -1,7 +1,7 @@
-// const seedCategories = require("./category-seeds");
-// const seedProducts = require("./product-seeds");
-// const seedTags = require("./tag-seeds");
-// const seedProductTags = require("./product-tag-seeds");
+const seedUsers = require("./category-seeds");
+const seedCompanies = require("./product-seeds");
+const seedInvestmentProfiles = require("./tag-seeds");
+
 //user
 //investment
 //companies
