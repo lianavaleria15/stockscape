@@ -13,6 +13,14 @@ const schema = {
     allowNull: false,
   },
   name: { type: DataTypes.STRING, allowNull: false },
+  ticker: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isAlpha: true,
+      len: [2, 4],
+    },
+  },
   investment_profile_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
