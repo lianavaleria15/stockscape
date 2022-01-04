@@ -4,6 +4,7 @@ const sequelize = require("../config/connection.js");
 
 class Company extends Model {}
 
+// WHAT OTHER FIELDS DO WE WANT/NEED?
 const schema = {
   id: {
     type: DataTypes.INTEGER,
@@ -11,9 +12,7 @@ const schema = {
     autoIncrement: true,
     allowNull: false,
   },
-
   name: { type: DataTypes.STRING, allowNull: false },
-
   investment_profile_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
