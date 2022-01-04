@@ -24,8 +24,8 @@ const seedAll = async () => {
   await seedCompanies();
   console.log("\n----- Companies seeded -----\n".success);
 
-  // await seedInvestmentProfiles();
-  // console.log("\n----- Investments seeded -----\n".success);
+  await seedInvestmentProfiles();
+  console.log("\n----- Investments seeded -----\n".success);
 
   process.exit(0);
 };
