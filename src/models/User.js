@@ -14,24 +14,27 @@ const schema = {
 
   first_name: { type: DataTypes.STRING, allowNull: false },
   last_name: { type: DataTypes.STRING, allowNull: false },
-  password: { type: DataTypes.STRING, allowNull: false },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: [8, 64],
+      // 8-64 characters; requires letters, numbers, special characters
+      is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/,
+    },
+  },
   username: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
     validate: {
-      len: [8],
+      len: [8, 30],
     },
   },
   email: {
     type: DataTypes.STRING,
     validate: { isEmail: true },
     unique: true,
-    validate: {
-      len: [8, 64],
-      // 8-64 characters; letters, numbers, special characters
-      is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/,
-    },
   },
 };
 
