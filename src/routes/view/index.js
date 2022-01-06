@@ -1,11 +1,12 @@
 const { Router } = require("express");
 
-// const authRoutes = require("./auth");
-// const apiRoutes = require("./api");
-const viewRoutes = require("./view");
+const publicRoutes = require("./publicRoutes");
+const privateRoutes = require("./privateRoutes");
+const authUser = require("../../middlewares/auth");
 
 const router = Router();
 
-// ADD ROUTES HERE
+router.use(publicRoutes);
+router.use(authUser, privateRoutes);
 
 module.exports = router;
