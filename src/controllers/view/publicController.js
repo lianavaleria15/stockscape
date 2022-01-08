@@ -42,9 +42,21 @@ const renderAboutUs = (req, res) => {
   }
 };
 
+const renderCompanies = (req, res) => {
+  try {
+    res.render("about-us");
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json(`ERR: ${error.message} - failed to render Log In`);
+  }
+};
+
 module.exports = {
   renderSignUp,
   renderLogin,
   renderHomepage,
   renderAboutUs,
+  renderCompanies,
 };
