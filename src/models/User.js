@@ -37,7 +37,7 @@ const schema = {
     unique: true,
   },
   score: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DECIMAL,
     allowNull: false,
   },
   bio: {
@@ -62,6 +62,13 @@ const schema = {
     },
   },
 };
+
+class User extends Model {
+  async checkPassword(userPassword) {
+    const isValid = await bcrypt.compare(userPassword, this.password);
+    return isValid;
+  }
+}
 
 const options = {
   sequelize,
