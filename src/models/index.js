@@ -3,7 +3,7 @@ const Company = require("./Company");
 const InvestmentProfile = require("./InvestmentProfile");
 
 // User has many investment profiles
-User.hasMany(InvestmentProfile, { foreignKey: "user_id" });
+User.hasOne(InvestmentProfile, { foreignKey: "user_id" });
 
 // Investment profile belongs to user
 InvestmentProfile.belongsTo(User, { foreignKey: "user_id" });
