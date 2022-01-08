@@ -12,7 +12,6 @@ const {
 const router = Router();
 
 router.get("/dashboard", renderDashboard);
-router.get("/user/:id", renderUserProfile);
 router.get("/create-profile", renderCreateMyProfile);
 router.get("/edit-profile/:id", renderEditMyProfile);
 router.get("/create-portfolio", renderCreateMyPortfolio);

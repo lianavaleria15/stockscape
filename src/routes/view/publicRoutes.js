@@ -6,11 +6,13 @@ const {
   renderHomepage,
   renderAboutUs,
   renderCompanies,
+  renderUserProfile,
 } = require("../../controllers/view/publicController");
 
 const router = Router();
 
 router.get("/sign-up", renderSignUp);
+router.get("/user/:id", renderUserProfile);
 router.get("/login", renderLogin);
 router.get("/", renderHomepage);
 router.get("/about-us", renderAboutUs);

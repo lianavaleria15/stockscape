@@ -42,20 +42,10 @@ const renderCreateMyPortfolio = async (req, res) => {
   }
 };
 
-const renderUserProfile = async (req, res) => {
-  try {
-    return res.send("renderMyPortfolio");
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ error: "Failed to render" });
-  }
-};
-
 module.exports = {
   renderDashboard,
   renderCreateMyPortfolio,
   renderEditMyPortfolio,
   renderCreateMyProfile,
   renderEditMyProfile,
-  renderUserProfile,
 };
