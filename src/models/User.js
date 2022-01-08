@@ -36,6 +36,31 @@ const schema = {
     validate: { isEmail: true },
     unique: true,
   },
+  score: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  bio: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  investor_type: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  favourite_company: {
+    type: DataTypes.STRING,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+  },
+  investment_profile_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "investmentprofile",
+      key: "id",
+    },
+  },
 };
 
 const options = {
