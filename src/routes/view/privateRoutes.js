@@ -6,7 +6,6 @@ const {
   renderEditMyPortfolio,
   renderCreateMyProfile,
   renderEditMyProfile,
-  renderUserProfile,
 } = require("../../controllers/view/privateController");
 
 const router = Router();
