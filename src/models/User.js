@@ -57,7 +57,7 @@ const schema = {
   investment_profile_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "investmentprofile",
+      model: "investmentProfile",
       key: "id",
     },
   },

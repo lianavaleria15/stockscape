@@ -12,22 +12,15 @@ const schema = {
     autoIncrement: true,
     allowNull: false,
   },
-  name: { type: DataTypes.STRING, allowNull: false },
 
-  // WHAT WILL THIS LOOK LIKE?
-  time_period: { type: DataTypes.INTEGER, allowNull: false },
-
-  initial_investment: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-
-  //  currency codes reference: https://www.iban.com/currency-codes
-  currency_code: {
+  company_id: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      isAlpha: true,
-      len: [3],
-    },
+    references: { model: "company", key: "id" },
   },
+
+  units: { type: DataTypes.INTEGER, allowNull: false },
+
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
