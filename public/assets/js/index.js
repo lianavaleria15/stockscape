@@ -5,13 +5,13 @@ const loginForm = $("#login-form");
 const logoutBtn = $("#logout-btn");
 
 const handleLogin = async (event) => {
+  //   prevent form default
   event.preventDefault();
 
   // get post body from form fields
   const email = $("#email").val();
   const password = $("#password").val();
 
-  console.log(email);
   // make POST request to /auth/login
   const response = await fetch("/auth/login", {
     method: "POST",
@@ -23,11 +23,9 @@ const handleLogin = async (event) => {
 
   const data = await response.json();
 
-  console.log(data);
-
-  // direct to dashboard
   if (data.success) {
     console.log("Logged in");
+    // direct to dashboard
     window.location.replace("/dashboard");
   }
 };
