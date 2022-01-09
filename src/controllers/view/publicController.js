@@ -57,7 +57,7 @@ const renderCompanies = async (req, res) => {
       return company.get({ plain: true });
     });
 
-    res.render("about-us");
+    res.render("companies", { companies });
   } catch (error) {
     logError("Render companies", error.message);
     return res
@@ -68,6 +68,9 @@ const renderCompanies = async (req, res) => {
 
 const renderUserProfile = async (req, res) => {
   try {
+    // check if user is logged in (to render private/public navbar)
+    // check if user is same as logged in user
+
     // get user, portfolio, and company info from db
     const userProfileData = await User.findByPk(req.params.id, {
       include: [{ model: InvestmentProfile, include: Company }],
@@ -81,6 +84,7 @@ const renderUserProfile = async (req, res) => {
 
     const userProfile = userProfileData.get({ plain: true });
 
+    // check sending whole req here
     return res.render("user-profile", { userProfile, req });
   } catch (error) {
     logError("Render user-profile", error.message);

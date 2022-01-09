@@ -27,17 +27,6 @@ const renderEditMyProfile = async (req, res) => {
   }
 };
 
-const renderCreateMyProfile = async (req, res) => {
-  try {
-    // get data from db
-
-    return res.render("create-profile");
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ error: "Failed to render create profile" });
-  }
-};
-
 const renderEditMyPortfolio = async (req, res) => {
   try {
     // get data from db
@@ -66,6 +55,5 @@ module.exports = {
   renderDashboard,
   renderCreateMyPortfolio,
   renderEditMyPortfolio,
-  renderCreateMyProfile,
   renderEditMyProfile,
 };
