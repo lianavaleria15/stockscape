@@ -2,29 +2,14 @@ const { Company } = require("../../models");
 
 const companyData = [
   {
-    name: "International Consolidated Airlines Group",
-    ticker: "IAG",
+    name: "Apple Inc.",
+    symbol: "AAPL",
     investment_profile_id: 1,
-  },
-  {
-    name: "BP PLC",
-    ticker: "BP",
-    investment_profile_id: 2,
-  },
-  {
-    name: "Barclays",
-    ticker: "BARC",
-    investment_profile_id: 2,
-  },
-  {
-    name: "Royal Mail PLC ORD",
-    ticker: "RMG",
-    investment_profile_id: 3,
-  },
-  {
-    name: "Whitbread PLC ORD",
-    ticker: "WTB",
-    investment_profile_id: 3,
+    janPrice: 129.41,
+    decPrice: 177.57,
+    gainLoss: ,
+    sector:,
+    companySummary:"",
   },
 ];
 
