@@ -8,6 +8,6 @@ const router = Router();
 
 router.post("/sign-up", renderSignUp);
 router.post("/login", renderLogin);
-// router.post("/logout", logout);
+router.post("/logout", logout);
 
 module.exports = router;
