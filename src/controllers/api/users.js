@@ -29,7 +29,7 @@ const updateUser = async (req, res) => {
           last_name: lastName,
           bio,
           investor_type: investorType,
-          fave_company: faveCompany,
+          favourite_company: faveCompany,
         },
         {
           where: {
