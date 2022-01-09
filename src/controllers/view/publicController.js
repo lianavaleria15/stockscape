@@ -68,8 +68,9 @@ const renderCompanies = async (req, res) => {
 
 const renderUserProfile = async (req, res) => {
   try {
-    // check if user is logged in (to render private/public navbar)
-    // check if user is same as logged in user
+    const userSessionInfo = req.session;
+
+    // check if logged in user is viewing own profile, pass to handlebars to render relevant buttons (delete/edit if viewing own profile)
 
     // get user, portfolio, and company info from db
     const userProfileData = await User.findByPk(req.params.id, {
@@ -84,8 +85,7 @@ const renderUserProfile = async (req, res) => {
 
     const userProfile = userProfileData.get({ plain: true });
 
-    // check sending whole req here
-    return res.render("user-profile", { userProfile, req });
+    return res.render("user-profile", { userProfile, userSessionInfo });
   } catch (error) {
     logError("Render user-profile", error.message);
     return res
