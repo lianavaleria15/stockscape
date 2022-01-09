@@ -69,7 +69,7 @@ const renderCompanies = async (req, res) => {
 const renderUserProfile = async (req, res) => {
   try {
     // get user, portfolio, and company info from db
-    const userProfileData = await User.findOne(req.params.id, {
+    const userProfileData = await User.findByPk(req.params.id, {
       include: [{ model: InvestmentProfile, include: Company }],
     });
 
