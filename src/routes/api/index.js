@@ -5,7 +5,7 @@ const portfolioRoutes = require("./portfolioRoutes");
 
 const router = Router();
 
-//  '/api' endpoints
+//  /api routes
 router.use("/users", userRoutes);
 router.use("/portfolios", portfolioRoutes);
 

@@ -10,6 +10,7 @@ const {
 
 const router = Router();
 
+// Private / endpoints
 router.get("/dashboard", renderDashboard);
 router.get("/create-profile", renderCreateMyProfile);
 router.get("/edit-profile/:id", renderEditMyProfile);

@@ -1,11 +1,14 @@
+const { User, InvestmentProfile, Company } = require("../../models");
+const logError = require("../../helpers/utils");
+
 const renderSignUp = (req, res) => {
   try {
     res.render("sign-up");
   } catch (error) {
-    console.log(error.message);
+    logError("Render sign-up", error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Sign Up`);
+      .json({ success: false, error: "Failed to render sign-up." });
   }
 };
 
@@ -13,21 +16,23 @@ const renderLogin = (req, res) => {
   try {
     res.render("login");
   } catch (error) {
-    console.log(error.message);
+    logError("Render login", error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Log In`);
+      .json({ success: false, error: "Failed to render login." });
   }
 };
 
-const renderHomepage = async (req, res) => {
+const renderHomepage = (req, res) => {
   try {
+    // pull data from db?
+
     res.render("homepage");
   } catch (error) {
-    console.log(error.message);
+    logError("Render homepage", error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Homepage`);
+      .json({ success: false, error: "Failed to render homepage." });
   }
 };
 
@@ -35,30 +40,53 @@ const renderAboutUs = (req, res) => {
   try {
     res.render("about-us");
   } catch (error) {
-    console.log(error.message);
+    logError("Render about-us", error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Log In`);
+      .json({ success: false, error: "Failed to render about-us." });
   }
 };
 
-const renderCompanies = (req, res) => {
+const renderCompanies = async (req, res) => {
   try {
+    // get companies from db
+    const companyData = await Company.findAll();
+
+    // map through companies to get plain data
+    const companies = companyData.map((company) => {
+      return company.get({ plain: true });
+    });
+
     res.render("about-us");
   } catch (error) {
-    console.log(error.message);
+    logError("Render companies", error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Log In`);
+      .json({ success: false, error: "Failed to render companies." });
   }
 };
 
 const renderUserProfile = async (req, res) => {
   try {
-    return res.send("renderMyPortfolio");
+    // get user, portfolio, and company info from db
+    const userProfileData = await User.findOne(req.params.id, {
+      include: [{ model: InvestmentProfile, include: Company }],
+    });
+
+    if (!userProfileData) {
+      return res
+        .status(404)
+        .json({ message: `No user with id ${req.params.id}.` });
+    }
+
+    const userProfile = userProfileData.get({ plain: true });
+
+    return res.render("user-profile", { userProfile, req });
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ error: "Failed to render" });
+    logError("Render user-profile", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to render user-profile." });
   }
 };
 

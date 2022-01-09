@@ -4,7 +4,7 @@ const {
   getPayloadWithValidFieldsOnly,
 } = require("../../helpers/utils");
 
-// /auth/ endpoints
+// /auth/
 const signup = (req, res) => {
   try {
     // get payload

@@ -4,6 +4,9 @@ const signupForm = $("#signup-form");
 const loginForm = $("#login-form");
 const logoutBtn = $("#logout-btn");
 
+// For USER interactions
+// For PORTFOLIO interactions
+
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
