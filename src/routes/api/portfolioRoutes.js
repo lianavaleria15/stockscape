@@ -1,14 +1,20 @@
 const { Router } = require("express");
 
-const {} = require("../../controllers/api/users");
+const {
+  getAllPortfolios,
+  getPortfolioById,
+  addPortfolio,
+  updatePortfolio,
+  deletePortfolio,
+} = require("../../controllers/api/portfolios");
 
 const router = Router();
 
-// /api/users endpoints
-router.get("/", getAllUsers);
-router.get("/:id", getUserById);
-router.post("/", addUser);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+// /api/portfolios endpoints
+router.get("/", getAllPortfolios);
+router.get("/:id", getPortfolioById);
+router.post("/", addPortfolio);
+router.put("/:id", updatePortfolio);
+router.delete("/:id", deletePortfolio);
 
 module.exports = router;

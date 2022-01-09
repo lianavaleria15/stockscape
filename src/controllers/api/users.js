@@ -1,5 +1,5 @@
 // IMPORTS
-const { User } = require("../../models");
+const { User, InvestmentProfile } = require("../../models");
 const logError = require("../../helpers");
 
 const getAllUsers = (req, res) => {};
