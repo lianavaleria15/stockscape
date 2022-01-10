@@ -35,24 +35,23 @@ const schema = {
     type: DataTypes.STRING,
     validate: { isEmail: true },
     unique: true,
+    allowNull: false,
   },
   score: {
     type: DataTypes.DECIMAL,
-    allowNull: false,
+    allowNull: true,
   },
   bio: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   investor_type: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   favourite_company: {
     type: DataTypes.STRING,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
+    allowNull: true,
   },
   investment_profile_id: {
     type: DataTypes.INTEGER,
