@@ -2,8 +2,6 @@ const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection.js");
 
-class User extends Model {}
-
 const schema = {
   id: {
     type: DataTypes.INTEGER,
@@ -35,8 +33,32 @@ const schema = {
     type: DataTypes.STRING,
     validate: { isEmail: true },
     unique: true,
+    allowNull: false,
+  },
+  score: {
+    type: DataTypes.DECIMAL,
+    allowNull: true,
+  },
+  bio: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  investor_type: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  favourite_company: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 };
+
+class User extends Model {
+  async checkPassword(userPassword) {
+    const isValid = await bcrypt.compare(userPassword, this.password);
+    return isValid;
+  }
+}
 
 const options = {
   sequelize,

@@ -13,7 +13,7 @@ const schema = {
     allowNull: false,
   },
   name: { type: DataTypes.STRING, allowNull: false },
-  ticker: {
+  symbol: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
@@ -21,13 +21,25 @@ const schema = {
       len: [2, 4],
     },
   },
-  investment_profile_id: {
-    type: DataTypes.INTEGER,
+  janPrice: {
+    type: DataTypes.DECIMAL,
     allowNull: false,
-    references: {
-      model: "investmentProfile",
-      key: "id",
-    },
+  },
+  decPrice: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  },
+  gainLoss: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  },
+  sector: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  company_summary: {
+    type: DataTypes.STRING(2000),
+    allowNull: false,
   },
 };
 

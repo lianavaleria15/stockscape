@@ -2,28 +2,16 @@ const { InvestmentProfile } = require("../../models");
 
 const investmentProfileData = [
   {
-    name: "My 2022 Investments",
-    time_period: "12",
-    initial_investment: 10000,
-    currency_code: "GBP",
+    units: 10000,
   },
   {
-    name: "Get Rich Plan",
-    time_period: "12",
-    initial_investment: 270000,
-    currency_code: "GBP",
+    units: 270000,
   },
   {
-    name: "Risky Investments",
-    time_period: "6",
-    initial_investment: 1000,
-    currency_code: "GBP",
+    units: 1000,
   },
   {
-    name: "Conservative Investments",
-    time_period: "12",
-    initial_investment: 13000,
-    currency_code: "GBP",
+    units: 13000,
   },
 ];
 
