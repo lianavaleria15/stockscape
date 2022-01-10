@@ -1,11 +1,11 @@
-const colors = require("colors");
+// const colors = require("colors");
 
-colors.setTheme({
-  success: ["bgGreen", "black"],
-  warning: ["bgBrightYellow", "black", "bold"],
-  fail: ["bgRed", "white", "bold"],
-  message: ["bgWhite", "black"],
-});
+// colors.setTheme({
+//   success: ["bgGreen", "black"],
+//   warning: ["bgBrightYellow", "black", "bold"],
+//   fail: ["bgRed", "white", "bold"],
+//   message: ["bgWhite", "black"],
+// });
 
 const logError = (type = "Server Error", message = "Something went wrong") => {
   console.error(`[ERROR]: ${type} | ${message}`.fail);

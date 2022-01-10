@@ -5,7 +5,7 @@ const {
 } = require("../../helpers/utils");
 
 // /auth/
-const signup = (req, res) => {
+const signup = async (req, res) => {
   try {
     // get payload
     const payload = getPayloadWithValidFieldsOnly(
@@ -32,7 +32,7 @@ const signup = (req, res) => {
   }
 };
 
-const login = (req, res) => {
+const login = async (req, res) => {
   try {
     // get payload
     const payload = getPayloadWithValidFieldsOnly(

@@ -1,5 +1,5 @@
 const { User, InvestmentProfile, Company } = require("../../models");
-const logError = require("../../helpers/utils");
+const { logError } = require("../../helpers/utils");
 
 const renderSignUp = (req, res) => {
   try {
@@ -26,7 +26,6 @@ const renderLogin = (req, res) => {
 const renderHomepage = (req, res) => {
   try {
     // pull data from db?
-
     res.render("homepage");
   } catch (error) {
     logError("Render homepage", error.message);
