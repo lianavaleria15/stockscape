@@ -38,15 +38,8 @@ const schema = {
     allowNull: false,
   },
   company_summary: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(2000),
     allowNull: false,
-  },
-  investment_profile_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "investmentProfile",
-      key: "id",
-    },
   },
 };
 

@@ -51,13 +51,6 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  investment_profile_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "investmentProfile",
-      key: "id",
-    },
-  },
 };
 
 class User extends Model {
