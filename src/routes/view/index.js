@@ -6,7 +6,8 @@ const authUser = require("../../middlewares/auth");
 
 const router = Router();
 
-router.use(publicRoutes);
+// / routes
 router.use(authUser, privateRoutes);
+router.use(publicRoutes);
 
 module.exports = router;
