@@ -43,17 +43,6 @@ const companyData = [
     gainLoss: 332.49,
     sector: "Auto Manufacturing",
     companySummary:
-      "Microsoft Corporation is a technology company. The Company develops and supports a range of software products, services, devices, and solutions. The Company's segments include Productivity and Business Processes, Intelligent Cloud, and More Personal Computing.",
-  },
-  {
-    name: "Tesla, Inc.",
-    symbol: "TSLA",
-    investment_profile_id: 1,
-    janPrice: 755.98,
-    decPrice: 1088.47,
-    gainLoss: 332.49,
-    sector: "Auto Manufacturing",
-    companySummary:
       "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive, and Energy Generation and Storage. The Automotive segment offers electric vehicles, as well as sells automotive regulatory credits.",
   },
   {
