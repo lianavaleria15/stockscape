@@ -1,6 +1,7 @@
 // TARGET UI ELEMENTS
 // For AUTH interactions
 const signupForm = $("#signup-form");
+const alreadyExistsModal = $("#already-exists-modal");
 // const loginForm = $("#login-form");
 // const logoutBtn = $("#logout-btn");
 
@@ -33,6 +34,73 @@ const signupForm = $("#signup-form");
 //   }
 // };
 
+const getErrorsSignUp = ({
+  email,
+  password,
+  confirmPassword,
+  firstName,
+  lastName,
+}) => {
+  const errors = {};
+
+  if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    const error = (errors.email = "Invalid email address");
+    console.log(error);
+  }
+
+  if (
+    !password ||
+    !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/.test(
+      password
+    )
+  ) {
+    const error = (errors.password = "Invalid password");
+    console.log(error);
+  }
+
+  if (!confirmPassword || password !== confirmPassword) {
+    const error = (errors.confirmPassword = "Passwords do not match");
+    console.log(error);
+  }
+
+  if (!username) {
+    const error = (errors.username = "Username is required");
+    console.log(error);
+  }
+
+  if (!firstName) {
+    const error = (errors.firstName = "First name is required");
+    console.log(error);
+  }
+
+  if (!lastName) {
+    const error = (errors.lastName = "Last name is required");
+    console.log(error);
+  }
+
+  return errors;
+};
+
+const renderErrorMessages = (errors) => {
+  const fields = [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "username",
+    "confirmPassword",
+  ];
+  fields.forEach((field) => {
+    const errorDiv = $(`#${field}-error`);
+
+    if (errors[field]) {
+      errorDiv.text(errors[field]);
+    } else {
+      errorDiv.text("");
+    }
+  });
+};
+
 const handleSignup = async (event) => {
   //   prevent form default
   event.preventDefault();
@@ -46,6 +114,16 @@ const handleSignup = async (event) => {
   const confirmPassword = $("#confirmPassword").val();
 
   // CODE ERROR MESSAGES FOR EMPTY FIELDS
+  const errors = getErrorsSignUp({
+    email,
+    username,
+    password,
+    confirmPassword,
+    firstName,
+    lastName,
+  });
+
+  renderErrorMessages(errors);
 
   // confirm passwords match
   if (password !== confirmPassword) {
@@ -70,8 +148,13 @@ const handleSignup = async (event) => {
 
   const data = await response.json();
 
-  //   if success response, direct to login page
+  if (data.error === "User Already Exists") {
+    console.log("to do - render user already exists modal");
+    alreadyExistsModal.modal("show");
+  }
+
   if (data.success) {
+    //   if success response, direct to login page
     window.location.replace("/login");
   }
 };
