@@ -41,6 +41,13 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  investment_profile_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "investmentProfile",
+      key: "id",
+    },
+  },
 };
 
 const options = {
