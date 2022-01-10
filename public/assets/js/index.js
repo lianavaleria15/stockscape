@@ -2,37 +2,51 @@
 // For AUTH interactions
 const signupForm = $("#signup-form");
 const alreadyExistsModal = $("#already-exists-modal");
-// const loginForm = $("#login-form");
+const loginForm = $("#login-form");
+const doesntExistModal = $("doesnt-exist-modal");
 // const logoutBtn = $("#logout-btn");
 
 // For USER interactions
 // For PORTFOLIO interactions
 
-// const handleLogin = async (event) => {
-//   //   prevent form default
-//   event.preventDefault();
+const handleLogin = async (event) => {
+  //   prevent form default
+  event.preventDefault();
 
-//   // get post body from form fields
-//   const email = $("#email").val();
-//   const password = $("#password").val();
+  // get post body from form fields
+  const username = $("#username").val();
+  const password = $("#password").val();
 
-//   // make POST request to /auth/login
-//   const response = await fetch("/auth/login", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ email, password }),
-//   });
+  // CODE ERROR MESSAGES FOR EMPTY FIELDS
+  const errors = getErrorsLogIn({
+    username,
+    password,
+  });
 
-//   const data = await response.json();
+  renderErrorMessages(errors);
 
-//   if (data.success) {
-//     console.log("Logged in");
-//     // direct to dashboard
-//     window.location.replace("/dashboard");
-//   }
-// };
+  // make POST request to /auth/login
+  const response = await fetch("/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username, password }),
+  });
+
+  const data = await response.json();
+
+  if (data.error === "Username does not exist") {
+    console.log("USER DOES NOT EXIST");
+    doesntExistModal.modal("show");
+  }
+
+  if (data.success) {
+    console.log("Logged in");
+    // direct to dashboard
+    window.location.replace("/homepage");
+  }
+};
 
 const getErrorsSignUp = ({
   email,
@@ -75,6 +89,22 @@ const getErrorsSignUp = ({
 
   if (!lastName) {
     const error = (errors.lastName = "Last name is required");
+    console.log(error);
+  }
+
+  return errors;
+};
+
+const getErrorsLogIn = ({ username, password }) => {
+  const errors = {};
+
+  if (!password) {
+    const error = (errors.password = "Invalid password");
+    console.log(error);
+  }
+
+  if (!username) {
+    const error = (errors.username = "Username is required");
     console.log(error);
   }
 
@@ -177,5 +207,5 @@ const handleLogout = async () => {
 
 // EVENT LISTENERS
 signupForm.on("submit", handleSignup);
-// loginForm.on("click", handleLogin);
+loginForm.on("submit", handleLogin);
 // logoutBtn.on("click", handleLogout);
