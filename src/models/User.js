@@ -1,4 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+const { hashPassword } = require("../hooks/hooks");
 
 const sequelize = require("../config/connection.js");
 
@@ -10,8 +12,8 @@ const schema = {
     allowNull: false,
   },
 
-  first_name: { type: DataTypes.STRING, allowNull: false },
-  last_name: { type: DataTypes.STRING, allowNull: false },
+  firstName: { type: DataTypes.STRING, allowNull: false },
+  lastName: { type: DataTypes.STRING, allowNull: false },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -66,6 +68,7 @@ const options = {
   freezeTableName: true,
   underscored: true,
   modelName: "user",
+  hooks: { beforeCreate: hashPassword },
 };
 
 User.init(schema, options);

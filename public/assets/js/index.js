@@ -1,37 +1,37 @@
 // TARGET UI ELEMENTS
 // For AUTH interactions
 const signupForm = $("#signup-form");
-const loginForm = $("#login-form");
-const logoutBtn = $("#logout-btn");
+// const loginForm = $("#login-form");
+// const logoutBtn = $("#logout-btn");
 
 // For USER interactions
 // For PORTFOLIO interactions
 
-const handleLogin = async (event) => {
-  //   prevent form default
-  event.preventDefault();
+// const handleLogin = async (event) => {
+//   //   prevent form default
+//   event.preventDefault();
 
-  // get post body from form fields
-  const email = $("#email").val();
-  const password = $("#password").val();
+//   // get post body from form fields
+//   const email = $("#email").val();
+//   const password = $("#password").val();
 
-  // make POST request to /auth/login
-  const response = await fetch("/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
+//   // make POST request to /auth/login
+//   const response = await fetch("/auth/login", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ email, password }),
+//   });
 
-  const data = await response.json();
+//   const data = await response.json();
 
-  if (data.success) {
-    console.log("Logged in");
-    // direct to dashboard
-    window.location.replace("/dashboard");
-  }
-};
+//   if (data.success) {
+//     console.log("Logged in");
+//     // direct to dashboard
+//     window.location.replace("/dashboard");
+//   }
+// };
 
 const handleSignup = async (event) => {
   //   prevent form default
@@ -50,7 +50,7 @@ const handleSignup = async (event) => {
   // confirm passwords match
   if (password !== confirmPassword) {
     //  DISPLAY ERROR MESSAGE
-    // console.log("passwords don't match");
+    console.log("passwords don't match");
   }
 
   // make post request to /auth/signup
@@ -93,6 +93,6 @@ const handleLogout = async () => {
 };
 
 // EVENT LISTENERS
-signupForm.on("click", handleSignup);
-loginForm.on("click", handleLogin);
-logoutBtn.on("click", handleLogout);
+signupForm.on("submit", handleSignup);
+// loginForm.on("click", handleLogin);
+// logoutBtn.on("click", handleLogout);
