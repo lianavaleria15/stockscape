@@ -5,10 +5,19 @@
   --darkest: #241e4eff;
   --subtle-accent: #758173ff;
   --bold-accent: #cb904dff;
+  --blood-red: #f4442e;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--darkest);
+}
+
+.error {
+  color: var(--blood-red);
 }
 
 .btn-primary {
@@ -20,9 +29,6 @@ body {
   background-color: var(--darkest);
 }
 
-.card-body {
-  background-color: var(--darkest);
-}
 /* .sign-up-form {
   background-color: ;
 } */

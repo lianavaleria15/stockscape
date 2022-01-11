@@ -20,6 +20,17 @@ const signup = async (req, res) => {
         .json({ success: false, error: "Please provide the valid fields." });
     }
 
+    // check if a user already exists in the database
+    const user = await User.findOne({
+      where: { email: payload.email },
+    });
+
+    if (user) {
+      return res
+        .status(400)
+        .json({ success: false, error: "User Already Exists" });
+    }
+
     // create new user record w/ payload
     await User.create(payload);
 
@@ -36,7 +47,7 @@ const login = async (req, res) => {
   try {
     // get payload
     const payload = getPayloadWithValidFieldsOnly(
-      ["password", "email"],
+      ["username", "password"],
       req.body
     );
 
@@ -48,13 +59,13 @@ const login = async (req, res) => {
     }
 
     // check if user exists in db
-    const user = await User.findOne({ where: { email: payload.email } });
+    const user = await User.findOne({ where: { username: payload.username } });
 
     // if user doesn't exist, throw error
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: `User with email ${payload.email} does not exist.`,
+        error: "Username does not exist",
       });
     }
 
