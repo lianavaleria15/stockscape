@@ -155,37 +155,33 @@ const handleSignup = async (event) => {
 
   renderErrorMessages(errors);
 
-  // confirm passwords match
-  if (password !== confirmPassword) {
-    //  DISPLAY ERROR MESSAGE
-    console.log("passwords don't match");
-  }
+  if (password === confirmPassword) {
+    // make post request to /auth/signup
+    const response = await fetch("/auth/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        username,
+        password,
+      }),
+    });
 
-  // make post request to /auth/signup
-  const response = await fetch("/auth/sign-up", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      firstName,
-      lastName,
-      email,
-      username,
-      password,
-    }),
-  });
+    const data = await response.json();
 
-  const data = await response.json();
+    if (data.error === "User Already Exists") {
+      console.log("to do - render user already exists modal");
+      alreadyExistsModal.modal("show");
+    }
 
-  if (data.error === "User Already Exists") {
-    console.log("to do - render user already exists modal");
-    alreadyExistsModal.modal("show");
-  }
-
-  if (data.success) {
-    //   if success response, direct to login page
-    window.location.replace("/login");
+    if (data.success) {
+      //   if success response, direct to login page
+      window.location.replace("/login");
+    }
   }
 };
 
