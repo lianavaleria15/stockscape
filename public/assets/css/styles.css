@@ -20,6 +20,9 @@ body {
   background-color: var(--darkest);
 }
 
+.card-body {
+  background-color: var(--darkest);
+}
 /* .sign-up-form {
   background-color: ;
 } */
