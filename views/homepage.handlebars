@@ -1,1 +1,17 @@
-<h1>homepage</h1>
+<header>
+   {{#if req.session.loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<div class="card mx-auto mt-5 " style="min-width: 18rem; max-width: 75%">
+  <div class="card-body bg-light">
+    <h1 class="card-title text-center">Stockscape</h5>
+    <p class="card-text text-center" >BRIEF INTRO TEXT</p>
+    <div class="d-flex justify-content-center">
+        <a href="/about-us" class="btn btn-primary mx-1">About</a>
+    <a href="/sign-up" class="btn btn-primary mx-1">Sign Up</a>
+    </div>
+  </div>
+</div>
