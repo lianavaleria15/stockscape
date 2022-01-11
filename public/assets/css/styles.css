@@ -1,0 +1,13 @@
+:root {
+  --dark-black: #010001;
+  --blood-red: #f4442e;
+  --sunset-yellow: #efc808;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.error {
+  color: var(--blood-red);
+}
