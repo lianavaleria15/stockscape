@@ -31,6 +31,9 @@ const userData = [
   },
 ];
 
-const seedUsers = () => User.bulkCreate(userData);
+const seedUsers = async () => {
+  const promises = userData.map((user) => User.create(user));
+  await Promise.all(promises);
+};
 
 module.exports = seedUsers;
