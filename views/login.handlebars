@@ -1,1 +1,16 @@
-<h1>login</h1>
+<form id="login-form">
+
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" />
+    <div id="username-error" class="form-text error"></div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" />
+    <div id="password-error" class="form-text error"></div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+{{> doesnt-exist-modal}}
+</form>
