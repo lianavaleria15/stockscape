@@ -3,6 +3,9 @@
   style="background-color: #241e4eff;"
 >
   <div class="container-fluid">
+    <span
+      class="w-100 d-lg-none d-block"
+    ><!-- hidden spacer to center brand on mobile --></span>
     <a class="navbar-brand" href="/">
       <img
         src="https://via.placeholder.com/30x24"
@@ -12,35 +15,41 @@
       />
     </a>
     <a class="navbar-brand" href="/">Stockscape</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+    <div class="w-100 text-right">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div
+      class="collapse navbar-collapse flex-grow text-right"
+      id="navbarSupportedContent"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0 flex-nowrap">
         <li class="nav-item mx-1">
           <a
             class="nav-link ps-2"
             aria-current="page"
+            style="color: white;"
             href="/about-us"
           >About</a>
         </li>
         <li class="nav-item mx-1">
-          <a class="nav-link ps-2" href="/login">Login</a>
+          <a class="nav-link ps-2" style="color: white;" href="/login">Login</a>
         </li>
         <li class="nav-item mx-1">
           <a
             class="nav-link active signup-link ps-2 py-1 mt-1"
             style="color: white;"
             href="/sign-up"
-          >Sign Up</a>
+          >SignUp</a>
         </li>
       </ul>
     </div>

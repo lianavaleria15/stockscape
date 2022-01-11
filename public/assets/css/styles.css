@@ -11,11 +11,30 @@ body {
   background-color: var(--darkest);
 }
 
+.btn-primary {
+  background-color: var(--bold-accent);
+  border-color: var(--bold-accent);
+}
+
 .bg-dark {
   background-color: var(--darkest);
 }
 
+/* .sign-up-form {
+  background-color: ;
+} */
+
 .signup-link {
   border-radius: 5px;
   background-color: var(--dark);
+}
+
+@media (min-width: 768px) {
+  .navbar-brand.abs {
+    position: absolute;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
 }
