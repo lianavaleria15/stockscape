@@ -7,6 +7,7 @@ const doesntExistModal = $("#doesnt-exist-modal");
 // const logoutBtn = $("#logout-btn");
 
 // For USER interactions
+
 // For PORTFOLIO interactions
 
 const handleLogin = async (event) => {
