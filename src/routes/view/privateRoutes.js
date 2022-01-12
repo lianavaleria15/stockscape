@@ -17,6 +17,5 @@ router.get("/:id/profile/edit", renderEditMyProfile);
 router.get("/:id/portfolio/create", renderCreateMyPortfolio);
 
 router.get("/portfolio/:id/edit/", renderEditMyPortfolio);
-// OR router.get("/:id/portfolio/:id/edit/", renderEditMyPortfolio);
 
 module.exports = router;
