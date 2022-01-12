@@ -4,7 +4,7 @@ const signupForm = $("#signup-form");
 const alreadyExistsModal = $("#already-exists-modal");
 const loginForm = $("#login-form");
 const doesntExistModal = $("#doesnt-exist-modal");
-// const logoutBtn = $("#logout-btn");
+const logoutBtn = $("#logout-btn");
 
 // For USER interactions
 // For PORTFOLIO interactions
