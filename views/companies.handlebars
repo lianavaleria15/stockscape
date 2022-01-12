@@ -1,1 +1,4 @@
-<div>{{> company-card}}</div>
+<div id="companies-container">
+  {{#each companies}}
+  {{> company-card parent=../this}}
+  {{/each}}</div>

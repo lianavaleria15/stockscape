@@ -47,6 +47,8 @@ const renderAboutUs = (req, res) => {
 
 const renderCompanies = async (req, res) => {
   try {
+    const { loggedIn } = req.session;
+
     // get companies from db
     const companyData = await Company.findAll();
 
@@ -54,8 +56,8 @@ const renderCompanies = async (req, res) => {
     const companies = companyData.map((company) => {
       return company.get({ plain: true });
     });
-
-    res.render("companies", { companies });
+    console.log({ companies, loggedIn });
+    res.render("companies", { companies, loggedIn: "foo bar" });
   } catch (error) {
     logError("Render companies", error.message);
     return res
