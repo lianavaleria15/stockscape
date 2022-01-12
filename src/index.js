@@ -18,7 +18,7 @@ const sessionOptions = {
     maxAge: 86400 * 1000,
   },
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: new SequelizeStore({
     db: connection,
   }),

@@ -17,6 +17,6 @@ router.get("/user/:id", renderUserProfile);
 router.get("/login", renderLogin);
 router.get("/about-us", renderAboutUs);
 router.get("/companies", renderCompanies);
-router.get("/*", renderHomepage);
+router.get("/", renderHomepage);
 
 module.exports = router;

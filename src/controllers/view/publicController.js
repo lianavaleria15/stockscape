@@ -25,8 +25,7 @@ const renderLogin = (req, res) => {
 
 const renderHomepage = (req, res) => {
   try {
-    // pull data from db?
-    res.render("homepage");
+    res.render("homepage", { loggedIn: req.session.loggedIn });
   } catch (error) {
     logError("Render homepage", error.message);
     return res

@@ -14,7 +14,7 @@ const editProfileBtn = $("[name=edit-profile-btn");
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
-
+  console.log("TEST");
   // get post body from form fields
   const username = $("#username").val();
   const password = $("#password").val();
@@ -37,6 +37,7 @@ const handleLogin = async (event) => {
   });
 
   const data = await response.json();
+  console.log(data);
 
   if (data.error === "Username does not exist") {
     console.log("USER DOES NOT EXIST");

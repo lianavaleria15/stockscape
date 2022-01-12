@@ -4,16 +4,18 @@ const { logError } = require("../../helpers/utils");
 const renderDashboard = async (req, res) => {
   try {
     // get logged in user's id
-    const userId = req.session.user.id;
+    // const userId = req.session.user.id;
 
-    // get user, portfolio, and company info from db
-    const userDashboardData = await User.findByPk(userId);
+    // console.log(req.session);
 
-    const userDashboard = userDashboardData.get({ plain: true });
+    // // get user, portfolio, and company info from db
+    // const userDashboardData = await User.findByPk(userId);
 
-    return res.render("dashboard", { userDashboard });
+    // const userDashboard = userDashboardData.get({ plain: true });
 
-    // return res.render("dashboard");
+    // return res.render("dashboard", { userDashboard });
+
+    return res.render("dashboard");
   } catch (error) {
     logError("Render dashboard", error.message);
     return res
