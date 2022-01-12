@@ -34,6 +34,10 @@ body {
   background-color: var(--dark);
 }
 
+.portfolio-container {
+  background-color: white;
+}
+
 @media (min-width: 768px) {
   .navbar-brand.abs {
     position: absolute;
