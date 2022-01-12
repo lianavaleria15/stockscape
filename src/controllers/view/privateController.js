@@ -26,7 +26,18 @@ const renderDashboard = async (req, res) => {
 
 const renderEditMyProfile = async (req, res) => {
   try {
-    return res.render("edit-profile");
+    // get logged in user's id
+    const userId = req.session.user.id;
+
+    // get user, portfolio, and company info from db
+    const userProfile = await User.findByPk(userId);
+
+    const userProfileData = userProfile.get({ plain: true });
+
+    console.log(userProfileData);
+
+    // return res.render("dashboard", { userDashboard });
+    return res.render("edit-profile", { userProfileData });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ error: "Failed to render edit profile." });
