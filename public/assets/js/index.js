@@ -216,5 +216,6 @@ const viewEditProfile = (event) => {
 // EVENT LISTENERS
 signupForm.on("submit", handleSignup);
 loginForm.on("submit", handleLogin);
+
 logoutBtn.on("click", handleLogout);
 editProfileBtn.on("click", viewEditProfile);
