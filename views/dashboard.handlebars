@@ -1,1 +1,43 @@
-<h1>dashboard</h1>
+<header>
+    {{>private-navbar}}
+</header>
+<main>
+    <div class="dash-cards-container d-flex flex-wrap justify-content-center">
+        <div class="card m-4" style="width: 45rem;">
+            <div class="card-header h4">
+                Account Info
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Does this section display all user info or just a selection?</h5>
+                <p class="card-text">Link to edit user info?</p>
+                <button id="{{id}}" name="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+            </div>
+        </div>
+        <div class="card m-4" style="width: 45rem;">
+            <div class="card-header h4">
+                Current Top Portfolios
+            </div>
+            <div class="card-body">
+                {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+                <p class="card-text">LEADERBOARD CHART HERE. Is this using chart.js or simply a text list?</p>
+                <a href="#" id="view-leaderboard-btn" class="btn btn-primary">View More</a>
+            </div>
+        </div>
+        <div class="card m-4" style="width: 45rem;">
+            <div class="card-header h4">
+                Lifetime Portfolio Value
+            </div>
+            <div class="card-body">
+                <p class="card-text">PAST PORTFOLIO VALUES GRAPH HERE w/ chart.js. We need to store all user scores in a db table in order to pull this data.</p>
+            </div>
+        </div>
+        <div class="card m-4" style="width: 45rem;">
+            <div class="card-header h4">
+                Top 10 Lifetime Portfolios
+            </div>
+            <div class="card-body">
+                <p class="card-text">Top 20 lifetime portfolios. List of names, sorted by score/value? </p>
+            </div>
+        </div>
+    </div>
+</main>

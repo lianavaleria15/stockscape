@@ -1,13 +1,45 @@
 :root {
-  --dark-black: #010001;
+  --light-accent: #95f9e3ff;
+  --mid-accent: #69ebd0ff;
+  --dark: #5e47f7;
+  --darkest: #241e4eff;
+  --subtle-accent: #758173ff;
+  --bold-accent: #cb904dff;
   --blood-red: #f4442e;
-  --sunset-yellow: #efc808;
 }
 
 * {
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--darkest);
+}
+
 .error {
   color: var(--blood-red);
+}
+
+.btn-primary {
+  background-color: var(--bold-accent);
+  border-color: var(--bold-accent);
+}
+
+.bg-dark {
+  background-color: var(--darkest);
+}
+
+.signup-link {
+  border-radius: 5px;
+  background-color: var(--dark);
+}
+
+@media (min-width: 768px) {
+  .navbar-brand.abs {
+    position: absolute;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
 }

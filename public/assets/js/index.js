@@ -7,12 +7,16 @@ const loginForm = $("#login-form");
 const doesntExistModal = $("#doesnt-exist-modal");
 
 // jQuery Logout Elements
-// const logoutBtn = $("#logout-btn");
+const logoutBtn = $("#logout-btn");
 
+// For USER interactions
+const editProfileBtn = $("[name=edit-profile-btn");
+
+// For PORTFOLIO interactions
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
-
+  console.log("TEST");
   // get post body from form fields
   const username = $("#username").val();
   const password = $("#password").val();
@@ -35,6 +39,7 @@ const handleLogin = async (event) => {
   });
 
   const data = await response.json();
+  console.log(data);
 
   if (data.error === "Username does not exist") {
     console.log("USER DOES NOT EXIST");
@@ -44,7 +49,7 @@ const handleLogin = async (event) => {
   if (data.success) {
     console.log("Logged in");
     // direct to dashboard
-    window.location.replace("/homepage");
+    window.location.replace("/dashboard");
   }
 };
 
@@ -201,7 +206,19 @@ const handleLogout = async () => {
   }
 };
 
+const viewEditProfile = (event) => {
+  event.preventDefault();
+
+  // get user id from session
+  const userId = event.currentTarget.id;
+
+  // redirect to edit profile path with user id
+  window.location.replace(`/${userId}/profile/edit`);
+};
+
 // EVENT LISTENERS
 signupForm.on("submit", handleSignup);
 loginForm.on("submit", handleLogin);
-// logoutBtn.on("click", handleLogout);
+
+logoutBtn.on("click", handleLogout);
+editProfileBtn.on("click", viewEditProfile);
