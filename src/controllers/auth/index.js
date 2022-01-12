@@ -45,6 +45,8 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log("login controller");
+
     // get payload
     const payload = getPayloadWithValidFieldsOnly(
       ["username", "password"],
