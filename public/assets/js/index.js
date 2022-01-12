@@ -10,7 +10,6 @@ const logoutBtn = $("#logout-btn");
 const editProfileBtn = $("[name=edit-profile-btn");
 
 // For PORTFOLIO interactions
-
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
