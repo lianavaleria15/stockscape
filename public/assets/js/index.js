@@ -7,6 +7,8 @@ const doesntExistModal = $("#doesnt-exist-modal");
 const logoutBtn = $("#logout-btn");
 
 // For USER interactions
+const editProfileBtn = $("[name=edit-profile-btn");
+
 // For PORTFOLIO interactions
 
 const handleLogin = async (event) => {
@@ -44,7 +46,7 @@ const handleLogin = async (event) => {
   if (data.success) {
     console.log("Logged in");
     // direct to dashboard
-    window.location.replace("/homepage");
+    window.location.replace("/dashboard");
   }
 };
 
@@ -201,7 +203,18 @@ const handleLogout = async () => {
   }
 };
 
+const viewEditProfile = (event) => {
+  event.preventDefault();
+
+  // get user id from session
+  const userId = event.currentTarget.id;
+
+  // redirect to edit profile path with user id
+  window.location.replace(`/${userId}/profile/edit`);
+};
+
 // EVENT LISTENERS
 signupForm.on("submit", handleSignup);
 loginForm.on("submit", handleLogin);
-// logoutBtn.on("click", handleLogout);
+logoutBtn.on("click", handleLogout);
+editProfileBtn.on("click", viewEditProfile);
