@@ -15,7 +15,7 @@ const renderDashboard = async (req, res) => {
 
     // return res.render("dashboard", { userDashboard });
 
-    return res.render("dashboard");
+    return res.render("dashboard", { id: req.session.user.id });
   } catch (error) {
     logError("Render dashboard", error.message);
     return res
