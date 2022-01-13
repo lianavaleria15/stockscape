@@ -51,9 +51,19 @@ const renderCreateMyPortfolio = async (req, res) => {
   }
 };
 
+const renderStockBasket = async (req, res) => {
+  try {
+    return res.render("stockbasket");
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ error: "Failed to render stock basket." });
+  }
+};
+
 module.exports = {
   renderDashboard,
   renderCreateMyPortfolio,
   renderEditMyPortfolio,
   renderEditMyProfile,
+  renderStockBasket,
 };

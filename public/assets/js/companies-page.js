@@ -1,6 +1,9 @@
 //get view more btn
 const companiesContainer = $("#companies-container");
 
+//get company modal
+const companyModal = $("#company-card-modal");
+
 const renderStockInfoModal = (event) => {
   const target = event.target;
 
@@ -11,3 +14,5 @@ const renderStockInfoModal = (event) => {
 };
 
 companiesContainer.on("click", renderStockInfoModal);
+
+//event listener on company modal
