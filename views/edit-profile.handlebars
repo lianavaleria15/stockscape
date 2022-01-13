@@ -34,13 +34,13 @@
           >Favourite Company</label
         >
         <select class="form-control" id="favourite-company">
-           {{#defaultSelectedOption user.favourite_company}}
+           {{!-- {{#defaultSelectedOption user.favourite_company}} --}}
           <option value="$TSLA">$TSLA</option>
           <option value="$GOOGL">$GOOGL</option>
           <option value="$AMZN">$AMZN</option>
-          <option value="$GME">$GME</option>
+          <option value="$GME" selected>$GME</option>
           <option value="$JPM">$JPM</option>
-          {{/defaultSelectedOption}}
+          {{!-- {{/defaultSelectedOption}} --}}
         </select>
       </div>
       <div class="form-group mb-4">
