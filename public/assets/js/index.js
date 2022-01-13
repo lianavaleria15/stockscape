@@ -10,7 +10,6 @@ const logoutBtn = $("#logout-btn");
 const editProfileBtn = $("[name=edit-profile-btn");
 
 // For PORTFOLIO interactions
-
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
@@ -217,5 +216,6 @@ const viewEditProfile = (event) => {
 // EVENT LISTENERS
 signupForm.on("submit", handleSignup);
 loginForm.on("submit", handleLogin);
+
 logoutBtn.on("click", handleLogout);
 editProfileBtn.on("click", viewEditProfile);
