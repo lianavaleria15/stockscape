@@ -229,7 +229,9 @@ const updateProfile = async (event) => {
   const faveCompany = $("#favourite-company").val();
   const bio = $("#user-bio").val();
 
-  // ERROR FUNCTION FOR EMPTY USERNAME
+  console.log(username);
+
+  // ERROR FUNCTION FOR EMPTY AND/OR INVALID USERNAME
 
   // make PUT request to /api/users
   const response = await fetch(`/api/users/${userId}`, {
@@ -246,6 +248,8 @@ const updateProfile = async (event) => {
   });
 
   const data = await response.json();
+
+  console.log("Data:" + data);
   if (data.success) {
     console.log("changes saved");
     window.location.replace(`/${userId}/profile/edit`);
