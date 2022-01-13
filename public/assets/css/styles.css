@@ -29,10 +29,6 @@ body {
   background-color: var(--darkest);
 }
 
-/* .sign-up-form {
-  background-color: ;
-} */
-
 .signup-link {
   border-radius: 5px;
   background-color: var(--dark);

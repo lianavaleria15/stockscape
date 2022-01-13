@@ -1,15 +1,21 @@
-const { User, InvestmentProfile } = require("../../models");
+const { User, InvestmentProfile, Company } = require("../../models");
+const { logError } = require("../../helpers/utils");
 
 const renderDashboard = async (req, res) => {
   try {
-    // get user, portfolio, and company info from db
-    const userDashboardData = await User.findByPk(req.params.id, {
-      include: [{ model: InvestmentProfile, include: Company }],
-    });
+    // get logged in user's id
+    // const userId = req.session.user.id;
 
-    const userDashboard = userDashboardData.get({ plain: true });
+    // console.log(req.session);
 
-    return res.render("dashboard", { userDashboard });
+    // // get user, portfolio, and company info from db
+    // const userDashboardData = await User.findByPk(userId);
+
+    // const userDashboard = userDashboardData.get({ plain: true });
+
+    // return res.render("dashboard", { userDashboard });
+
+    return res.render("dashboard", { id: req.session.user.id });
   } catch (error) {
     logError("Render dashboard", error.message);
     return res

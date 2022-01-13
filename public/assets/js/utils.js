@@ -18,27 +18,28 @@ const getErrorsSignUp = ({
       password
     )
   ) {
-    const error = (errors.password = "Invalid password");
+    const error = (errors.password =
+      "Password must be 8-64 characters, and include letters, numbers, and special characters.");
     console.log(error);
   }
 
   if (!confirmPassword || password !== confirmPassword) {
-    const error = (errors.confirmPassword = "Passwords do not match");
+    const error = (errors.confirmPassword = "Passwords do not match.");
     console.log(error);
   }
 
   if (!username) {
-    const error = (errors.username = "Username is required");
+    const error = (errors.username = "Username is required.");
     console.log(error);
   }
 
   if (!firstName) {
-    const error = (errors.firstName = "First name is required");
+    const error = (errors.firstName = "First name is required.");
     console.log(error);
   }
 
   if (!lastName) {
-    const error = (errors.lastName = "Last name is required");
+    const error = (errors.lastName = "Last name is required.");
     console.log(error);
   }
 

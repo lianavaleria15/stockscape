@@ -1,18 +1,9 @@
-// const colors = require("colors");
-
-// colors.setTheme({
-//   success: ["bgGreen", "black"],
-//   warning: ["bgBrightYellow", "black", "bold"],
-//   fail: ["bgRed", "white", "bold"],
-//   message: ["bgWhite", "black"],
-// });
-
 const logError = (type = "Server Error", message = "Something went wrong") => {
-  console.error(`[ERROR]: ${type} | ${message}`.fail);
+  console.error(`[ERROR]: ${type} | ${message}`);
 };
 
 const logInfo = (type, message) => {
-  console.log(`[INFO]: ${type} | ${message}`.message);
+  console.log(`[INFO]: ${type} | ${message}`);
 };
 
 const getPayloadWithValidFieldsOnly = (validFields, payload) =>
