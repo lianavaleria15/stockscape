@@ -10,8 +10,8 @@ const doesntExistModal = $("#doesnt-exist-modal");
 const logoutBtn = $("#logout-btn");
 
 // For USER interactions
-const editProfileBtn = $("[name=edit-profile-btn");
-const saveProfileEditsBtn = $("[name=save-profile-changes-btn]");
+const editProfileBtn = $("[name='edit-profile-btn']");
+const saveProfileEditsBtn = $("[name='save-profile-changes-btn']");
 
 // For PORTFOLIO interactions
 
@@ -247,6 +247,7 @@ const updateProfile = async (event) => {
 
   const data = await response.json();
   if (data.success) {
+    console.log("changes saved");
     window.location.replace(`/${userId}/profile/edit`);
   }
 };
@@ -257,4 +258,4 @@ loginForm.on("submit", handleLogin);
 
 logoutBtn.on("click", handleLogout);
 editProfileBtn.on("click", viewEditProfile);
-saveProfileEditsBtn.on("submit", updateProfile);
+saveProfileEditsBtn.on("click", updateProfile);
