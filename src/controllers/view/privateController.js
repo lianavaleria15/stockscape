@@ -36,8 +36,7 @@ const renderEditMyProfile = async (req, res) => {
 
     console.log(userProfileData);
 
-    // return res.render("dashboard", { userDashboard });
-    return res.render("edit-profile", { userProfileData });
+    return res.render("edit-profile", { user: userProfileData });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ error: "Failed to render edit profile." });

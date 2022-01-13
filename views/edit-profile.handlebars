@@ -12,7 +12,7 @@
           class="form-control"
           id="username"
           placeholder="bitCoinBoi69"
-        />{{username}}</p>
+        />{{user.username}}</p>
       </div>
       <div class="form-group">
         <label for="investor-type" class="text-white">Investor Type</label>
@@ -38,7 +38,7 @@
       </div>
       <div class="form-group">
         <label for="user-bio" class="text-white">About Me</label>
-        <textarea class="form-control" id="user-bio" rows="3">{{bio}}</textarea>
+        <textarea class="form-control" id="user-bio" rows="3">{{user.bio}}</textarea>
       </div>
     </form>
   </div>
@@ -46,7 +46,7 @@
   <div id="portfolio-container" class="d-flex flex-wrap text-center portfolio-container">
       <div id="portfolio-header" class="text-center">
           <h2 class="">Investment Portfolio</h2>
-          <h3 class="">Returns: ${{score}}</h3>
+          <h3 class="">Returns: ${{user.score}}</h3>
       </div>
 
       <div id="company-card-container" class="d-flex flex-wrap align-content-center">
@@ -113,7 +113,7 @@
       </div>
 
       <div>
-          <button type="button" class="btn btn-warning">Edit Portfilio</button>
+          <button type="button" class="btn btn-warning">Edit Portfolio</button>
       </div>
   </div>
 </main>

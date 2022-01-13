@@ -57,7 +57,6 @@ const renderCompanies = async (req, res) => {
       return company.get({ plain: true });
     });
 
-    console.log({ companies, loggedIn });
     res.render("companies", { companies, loggedIn });
   } catch (error) {
     logError("Render companies", error.message);
