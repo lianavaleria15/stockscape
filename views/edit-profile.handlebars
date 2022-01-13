@@ -5,10 +5,12 @@
 <main>
  <div id="profile-portfolio-container" class="d-flex">
     {{!-- Edit Profile Section --}}
-  <div id="profile-form-container" class="form-container m-3" style="min-width: 48rem">
+  <div id="profile-form-container" class="form-container m-3" style="min-width: 18rem">
+    
     <form id="user-profile-form" class="bg-light my-1 mx-3 p-3 rounded">
+      <h2 class="mb-3">Profile</h2>
       <div class="form-group mb-4">
-        <label for="username">Username</label>
+        <label for="username" class="mb-1">Username</label>
         <input
           type="text"
           class="form-control"
@@ -17,7 +19,7 @@
         /></input>
       </div>
       <div class="form-group mb-4">
-        <label for="investor-type">Investor Type</label>
+        <label for="investor-type" class="mb-1">Investor Type</label>
         <select class="form-control" id="investor-type">
           <option>Yolo Life Savings</option>
           <option>Weekend Investor</option>
@@ -27,7 +29,7 @@
         </select>
       </div>
       <div class="form-group mb-4">
-        <label for="favourite-company"
+        <label for="favourite-company" class="mb-1"
           >Favourite Company</label
         >
         <select multiple class="form-control" id="favourite-company">
@@ -39,7 +41,7 @@
         </select>
       </div>
       <div class="form-group mb-4">
-        <label for="user-bio">About Me</label>
+        <label for="user-bio" class="mb-1">About Me</label>
         <textarea class="form-control" id="user-bio" rows="3">{{user.bio}}</textarea>
       </div>
     <div>
@@ -49,14 +51,14 @@
   </div>
 
 {{!-- Portfolio Section --}}
-  <div id="portfolio-container" class="rounded d-flex flex-wrap text-center portfolio-container">
-      <div id="portfolio-header" class="text-center">
+  <div id="portfolio-container" class="m-3 rounded d-flex flex-wrap portfolio-container bg-light">
+      <div id="portfolio-header" class="mx-4 my-3">
           <h2 class="">Investment Portfolio</h2>
-          <h3 class="">Returns: ${{user.score}}</h3>
+          <h3 class=""> Returns: ${{user.score}}</h3>
       </div>
 
       <div id="company-card-container" class="d-flex flex-wrap align-content-center">
-          <div class="card m-3" style="width: 18rem;">
+          <div class="card ms-4 m-3" style="width: 18rem;">
             <div class="card-body">
             <h5 class="card-title">Apple Inc.</h5>
             <h6>APPL</h6>
