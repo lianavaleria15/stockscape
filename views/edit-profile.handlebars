@@ -3,19 +3,21 @@
 </header>
 
 <main>
-  <div id="form-container" class="form-container">
-    <form id="user-bio-form">
-      <div class="form-group">
-        <label for="username" class="text-white">Username</label>
-        <p
-          type="username"
+ <div id="profile-portfolio-container" class="d-flex">
+    {{!-- Edit Profile Section --}}
+  <div id="profile-form-container" class="form-container m-3" style="min-width: 48rem">
+    <form id="user-profile-form" class="bg-light my-1 mx-3 p-3 rounded">
+      <div class="form-group mb-4">
+        <label for="username">Username</label>
+        <input
+          type="text"
           class="form-control"
           id="username"
-          placeholder="bitCoinBoi69"
-        />{{user.username}}</p>
+          value={{user.username}}
+        /></input>
       </div>
-      <div class="form-group">
-        <label for="investor-type" class="text-white">Investor Type</label>
+      <div class="form-group mb-4">
+        <label for="investor-type">Investor Type</label>
         <select class="form-control" id="investor-type">
           <option>Yolo Life Savings</option>
           <option>Weekend Investor</option>
@@ -24,8 +26,8 @@
           <option>Jamie Dimonhands</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="favourite-company" class="text-white"
+      <div class="form-group mb-4">
+        <label for="favourite-company"
           >Favourite Company</label
         >
         <select multiple class="form-control" id="favourite-company">
@@ -36,14 +38,18 @@
           <option>$JPM</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="user-bio" class="text-white">About Me</label>
+      <div class="form-group mb-4">
+        <label for="user-bio">About Me</label>
         <textarea class="form-control" id="user-bio" rows="3">{{user.bio}}</textarea>
+      </div>
+    <div>
+          <button type="button" class="btn btn-primary">Save Changes</button>
       </div>
     </form>
   </div>
 
-  <div id="portfolio-container" class="d-flex flex-wrap text-center portfolio-container">
+{{!-- Portfolio Section --}}
+  <div id="portfolio-container" class="rounded d-flex flex-wrap text-center portfolio-container">
       <div id="portfolio-header" class="text-center">
           <h2 class="">Investment Portfolio</h2>
           <h3 class="">Returns: ${{user.score}}</h3>
@@ -113,8 +119,9 @@
       </div>
 
       <div>
-          <button type="button" class="btn btn-warning">Edit Portfolio</button>
+          <button type="button" class="btn btn-primary">Edit Portfolio</button>
       </div>
   </div>
+ </div>
 </main>
 

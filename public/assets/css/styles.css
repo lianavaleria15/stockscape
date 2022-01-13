@@ -5,7 +5,7 @@
   --darkest: #241e4eff;
   --subtle-accent: #758173ff;
   --bold-accent: #cb904dff;
-  --blood-red: #f4442e;
+  --error-red: #f4442e;
 }
 
 * {
@@ -17,7 +17,7 @@ body {
 }
 
 .error {
-  color: var(--blood-red);
+  color: var(--error-red);
 }
 
 .btn-primary {
