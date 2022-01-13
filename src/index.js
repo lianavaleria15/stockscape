@@ -24,8 +24,8 @@ const sessionOptions = {
   }),
 };
 
-const handlebarsOptions = { handlebarshelpers };
-const hbs = expressHandlebars.create(handlebarsOptions);
+// const handlebarsOptions = { handlebarshelpers };
+const hbs = expressHandlebars.create({ helpers: handlebarshelpers });
 const app = express();
 
 app.engine("handlebars", hbs.engine);

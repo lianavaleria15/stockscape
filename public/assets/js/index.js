@@ -11,7 +11,6 @@ const logoutBtn = $("#logout-btn");
 
 // For USER interactions
 const editProfileBtn = $("[name='edit-profile-btn']");
-const saveProfileEditsBtn = $("[name='save-profile-changes-btn']");
 
 // For PORTFOLIO interactions
 
@@ -218,49 +217,9 @@ const viewEditProfile = (event) => {
   window.location.replace(`/${userId}/profile/edit`);
 };
 
-const updateProfile = async (event) => {
-  event.preventDefault();
-  console.log("save changes clicked");
-  const userId = event.currentTarget.id;
-
-  // get payload from form fields
-  const username = $("#username").val();
-  const investorType = $("#investor-type").val();
-  const faveCompany = $("#favourite-company").val();
-  const bio = $("#user-bio").val();
-
-  console.log(username, investorType, faveCompany);
-
-  // ERROR FUNCTION FOR EMPTY AND/OR INVALID USERNAME
-
-  // make PUT request to /api/users
-  const response = await fetch(`/api/users/${userId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username,
-      investor_type: investorType,
-      favourite_company: faveCompany,
-      bio,
-    }),
-  });
-  console.log(investorType, faveCompany);
-  const data = await response.json();
-
-  console.log("Data:" + { data });
-
-  if (data.success) {
-    console.log("changes saved");
-    window.location.replace(`/${userId}/profile/edit`);
-  }
-};
-
 // EVENT LISTENERS
 signupForm.on("submit", handleSignup);
 loginForm.on("submit", handleLogin);
 
 logoutBtn.on("click", handleLogout);
 editProfileBtn.on("click", viewEditProfile);
-saveProfileEditsBtn.on("click", updateProfile);
