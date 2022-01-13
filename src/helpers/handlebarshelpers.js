@@ -1,9 +1,5 @@
 module.exports = {
-  defaultSelectedOption: (value, options) => {
-    var el = $("<select />").html(options.fn(this));
-
-    el.find('[value="' + value + '"]').attr({ selected: "selected" });
-
-    return el.html();
+  eq: (val1, val2) => {
+    return val1 === val2;
   },
 };

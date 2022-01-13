@@ -50,7 +50,11 @@ const schema = {
     allowNull: true,
   },
   favourite_company: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
+    references: {
+      model: "company",
+      key: "id",
+    },
     allowNull: true,
   },
 };

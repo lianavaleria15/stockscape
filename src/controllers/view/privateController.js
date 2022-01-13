@@ -31,14 +31,19 @@ const renderEditMyProfile = async (req, res) => {
 
     // get user, portfolio, and company info from db
     const userProfile = await User.findByPk(profileId);
+    const companiesFromDB = await Company.findAll();
 
     const userProfileData = userProfile.get({ plain: true });
+    const companies = companiesFromDB.map((company) =>
+      company.get({ plain: true })
+    );
 
     console.log(userProfileData);
 
     return res.render("edit-profile", {
       user: userProfileData,
       loggedIn: req.session.user.loggedIn,
+      companies,
     });
   } catch (error) {
     console.log(error.message);
