@@ -5,9 +5,9 @@
 <main>
  <div id="profile-portfolio-container" class="d-flex">
     {{!-- Edit Profile Section --}}
-  <div id="profile-form-container" class="form-container m-3" style="min-width: 18rem">
+  <div id="profile-form-container" class="mx-4 my-5 form-container" style="min-width: 18rem">
     
-    <form id="user-profile-form" class="bg-light my-1 mx-3 p-3 rounded">
+    <form id="user-profile-form" class="p-3 bg-light rounded">
       <h2 class="mb-3">Profile</h2>
       <div class="form-group mb-4">
         <label for="username" class="mb-1">Username</label>
@@ -51,14 +51,14 @@
   </div>
 
 {{!-- Portfolio Section --}}
-  <div id="portfolio-container" class="m-3 me-4 rounded d-flex flex-wrap portfolio-container bg-light">
-      <div id="portfolio-header" class="mx-4 my-3">
+  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded d-flex flex-wrap portfolio-container bg-light">
+      <div id="portfolio-header" class="">
           <h2 class="">Investment Portfolio</h2>
           <h3 class="">Returns: ${{user.score}}</h3>
       </div>
 
       <div id="company-card-container" class="d-flex flex-wrap align-content-center">
-          <div class="card ms-4 m-3" style="width: 18rem;">
+          <div class="card m-3" style="width: 18rem;">
             <div class="card-body">
             <h5 class="card-title">Apple Inc.</h5>
             <h6>APPL</h6>

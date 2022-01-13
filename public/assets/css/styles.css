@@ -44,8 +44,14 @@ body {
   }
 }
 
+/* Tablet size and smaller */
 @media screen and (max-width: 768px) {
   #profile-portfolio-container {
     flex-direction: column;
   }
+
+  /* #profile-form-container,
+  #portfolio-container {
+    margin-bottom: 1rem;
+  } */
 }
