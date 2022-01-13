@@ -6,30 +6,33 @@ const updateUser = async (req, res) => {
   try {
     // get payload and user id
     const {
-      email,
-      password,
+      // email,
+      // password,
       username,
-      firstName,
-      lastName,
+      // firstName,
+      // lastName,
       bio,
-      investorType,
-      faveCompany,
+      investor_type,
+      favourite_company,
     } = req.body;
+
     const { id } = req.session.user;
+
+    console.log(favourite_company, investor_type);
 
     // check fo user in db
     const userId = await User.findByPk(id);
     if (userId) {
       await User.update(
         {
-          email,
-          password,
+          // email,
+          // password,
           username,
-          first_name: firstName,
-          last_name: lastName,
+          // first_name: firstName,
+          // last_name: lastName,
           bio,
-          investor_type: investorType,
-          favourite_company: faveCompany,
+          investor_type,
+          favourite_company,
         },
         {
           where: {

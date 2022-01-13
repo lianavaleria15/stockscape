@@ -229,7 +229,7 @@ const updateProfile = async (event) => {
   const faveCompany = $("#favourite-company").val();
   const bio = $("#user-bio").val();
 
-  console.log(username);
+  console.log(username, investorType, faveCompany);
 
   // ERROR FUNCTION FOR EMPTY AND/OR INVALID USERNAME
 
@@ -246,10 +246,11 @@ const updateProfile = async (event) => {
       bio,
     }),
   });
-
+  console.log(investorType, faveCompany);
   const data = await response.json();
 
-  console.log("Data:" + data);
+  console.log("Data:" + { data });
+
   if (data.success) {
     console.log("changes saved");
     window.location.replace(`/${userId}/profile/edit`);
