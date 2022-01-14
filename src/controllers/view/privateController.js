@@ -38,8 +38,6 @@ const renderEditMyProfile = async (req, res) => {
       company.get({ plain: true })
     );
 
-    console.log(userProfileData);
-
     return res.render("edit-profile", {
       user: userProfileData,
       loggedIn: req.session.user.loggedIn,
