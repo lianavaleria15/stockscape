@@ -1,4 +1,5 @@
 const ctx = document.getElementById("user-allocation").getContext("2d");
+const chartChoiceDiv = $("#button-div");
 
 // Chart.defaults.global.defaultFontFamily = "Lato";
 // Chart.defaults.global.defaultFontSize = 18;
@@ -29,3 +30,15 @@ const allocationPieChart = new Chart(ctx, {
     },
   },
 });
+
+const handleChartTypeSelection = (event) => {
+  const target = event.target;
+
+  if ($(target).is("button")) {
+    const data = $(target).attr("data-type");
+    console.log(data);
+    return data;
+  }
+};
+
+chartChoiceDiv.on("click", handleChartTypeSelection);
