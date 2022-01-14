@@ -45,8 +45,6 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    console.log("login controller");
-
     // get payload
     const payload = getPayloadWithValidFieldsOnly(
       ["username", "password"],
@@ -67,7 +65,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: "Username does not exist",
+        error: "Username does not exist.",
       });
     }
 
