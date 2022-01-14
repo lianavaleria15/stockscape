@@ -34,7 +34,8 @@ const getErrorsSignUp = ({
   }
 
   if (!username) {
-    const error = (errors.username = "Username is required.");
+    const error = (errors.username =
+      "Username is required. Must be 8-30 characters.");
     console.log(error);
   }
 
