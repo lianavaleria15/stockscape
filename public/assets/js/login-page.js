@@ -1,3 +1,4 @@
+// TARGET UI ELEMENTS
 const loginForm = $("#login-form");
 const doesntExistModal = $("#doesnt-exist-modal");
 
@@ -56,7 +57,7 @@ const handleLogin = async (event) => {
   if (data.success) {
     console.log("Logged in");
     // direct to dashboard
-    window.location.replace("/homepage");
+    window.location.replace("/dashboard");
   }
 };
 
