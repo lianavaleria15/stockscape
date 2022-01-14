@@ -25,7 +25,9 @@ const renderLogin = (req, res) => {
 
 const renderHomepage = (req, res) => {
   try {
-    res.render("homepage", { loggedIn: req.session.loggedIn });
+    const { loggedIn } = req.session;
+    // pass loggedIn to render private/public navbar
+    res.render("homepage", { loggedIn });
   } catch (error) {
     logError("Render homepage", error.message);
     return res
@@ -36,8 +38,9 @@ const renderHomepage = (req, res) => {
 
 const renderAboutUs = (req, res) => {
   try {
-  
-    res.render("about-us");
+    const { loggedIn } = req.session;
+    // pass loggedIn to render private/public navbar
+    res.render("about-us", { loggedIn });
   } catch (error) {
     logError("Render about-us", error.message);
     return res
@@ -50,14 +53,13 @@ const renderCompanies = async (req, res) => {
   try {
     const { loggedIn } = req.session;
 
-    // get companies from db
     const companyData = await Company.findAll();
 
-    // map through companies to get plain data
     const companies = companyData.map((company) => {
       return company.get({ plain: true });
     });
 
+    // pass companies data & loggedIn to render private/public navbar
     res.render("companies", { companies, loggedIn });
   } catch (error) {
     logError("Render companies", error.message);
