@@ -1,4 +1,5 @@
 const saveProfileEditsBtn = $("[name='save-profile-changes-btn']");
+const editPortfolioBtn = $("edit-portfolio-btn");
 
 const getErrorsEditProfile = ({ username, bio }) => {
   const errors = {};
@@ -70,4 +71,15 @@ const updateProfile = async (event) => {
   }
 };
 
+const viewEditPortfolio = (event) => {
+  event.preventDefault();
+
+  // get user id from session - CK14/10: LEAVING BLANK FOR NOW UNTIL MODELS COMPLETE
+  // const userId = event.currentTarget.id;
+
+  // redirect to edit portfolio path with user id
+  window.location.replace(`/portfolio/1/edit/`);
+};
+
 saveProfileEditsBtn.on("click", updateProfile);
+editPortfolioBtn.on("click", viewEditPortfolio);
