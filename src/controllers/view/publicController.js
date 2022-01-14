@@ -56,8 +56,8 @@ const renderCompanies = async (req, res) => {
     const companies = companyData.map((company) => {
       return company.get({ plain: true });
     });
-    console.log({ companies, loggedIn });
-    res.render("companies", { companies, loggedIn: "foo bar" });
+
+    res.render("companies", { companies, loggedIn });
   } catch (error) {
     logError("Render companies", error.message);
     return res

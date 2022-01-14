@@ -5,7 +5,7 @@
   --darkest: #241e4eff;
   --subtle-accent: #758173ff;
   --bold-accent: #cb904dff;
-  --blood-red: #f4442e;
+  --error-red: #f4442e;
 }
 
 * {
@@ -17,7 +17,7 @@ body {
 }
 
 .error {
-  color: var(--blood-red);
+  color: var(--error-red);
 }
 
 .btn-primary {
@@ -34,7 +34,7 @@ body {
   background-color: var(--dark);
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .navbar-brand.abs {
     position: absolute;
     width: auto;
@@ -42,4 +42,16 @@ body {
     transform: translateX(-50%);
     text-align: center;
   }
+}
+
+/* Tablet size and smaller */
+@media screen and (max-width: 768px) {
+  #profile-portfolio-container {
+    flex-direction: column;
+  }
+
+  /* #profile-form-container,
+  #portfolio-container {
+    margin-bottom: 1rem;
+  } */
 }

@@ -1,15 +1,19 @@
-// TARGET UI ELEMENTS
-// For AUTH interactions
+// jQuery Sign Up Elements
 const signupForm = $("#signup-form");
 const alreadyExistsModal = $("#already-exists-modal");
+
+// jQuery Login Elements
 const loginForm = $("#login-form");
 const doesntExistModal = $("#doesnt-exist-modal");
+
+// jQuery Logout Elements
 const logoutBtn = $("#logout-btn");
 
 // For USER interactions
-const editProfileBtn = $("[name=edit-profile-btn");
+const editProfileBtn = $("[name='edit-profile-btn']");
 
 // For PORTFOLIO interactions
+
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
