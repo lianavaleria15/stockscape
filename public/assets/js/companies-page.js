@@ -6,6 +6,7 @@ const renderStockInfoModal = (event) => {
 
   if ($(target).is("button")) {
     const id = $(target).attr("id");
+
     $(`[data-id=${id}]`).modal("show");
   }
 };

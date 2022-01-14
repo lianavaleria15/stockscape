@@ -33,9 +33,9 @@ const getErrorsSignUp = ({
     console.log(error);
   }
 
-  if (!username) {
+  if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
     const error = (errors.username =
-      "Username is required. Must be 8-30 characters.");
+      "Inalid username. Must be 8-30 alphanumeric characters.");
     console.log(error);
   }
 
