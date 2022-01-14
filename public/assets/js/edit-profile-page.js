@@ -1,23 +1,21 @@
 const saveProfileEditsBtn = $("[name='save-profile-changes-btn']");
 const editPortfolioBtn = $("edit-portfolio-btn");
 
-const getErrorsEditProfile = ({ username, bio }) => {
+const getErrorsEditProfile = ({ username }) => {
   const errors = {};
 
   if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
-    const error = (errors.email = "Invalid email address");
-    console.log(error);
+    errors.username = "Invalid Username";
   }
 
   if (!username) {
-    const error = (errors.username = "Username is required");
-    console.log(error);
+    errors.username = "Username is required";
   }
 
   return errors;
 };
 
-const renderErrorMessages = (errors) => {
+const renderProfileErrorMessages = (errors) => {
   const fields = ["username"];
   fields.forEach((field) => {
     const errorDiv = $(`#${field}-error`);
@@ -32,7 +30,6 @@ const renderErrorMessages = (errors) => {
 
 const updateProfile = async (event) => {
   event.preventDefault();
-  console.log("save changes clicked");
   const userId = event.currentTarget.id;
 
   // get payload from form fields
@@ -41,15 +38,13 @@ const updateProfile = async (event) => {
   const faveCompany = $("#favourite-company").val();
   const bio = $("#user-bio").val();
 
-  console.log(username, investorType, faveCompany);
-
   // ERROR FUNCTION FOR EMPTY AND/OR INVALID USERNAME
   // CODE ERROR MESSAGES FOR EMPTY FIELDS
   const errors = getErrorsEditProfile({
     username,
   });
 
-  renderErrorMessages(errors);
+  renderProfileErrorMessages(errors);
 
   // make PUT request to /api/users
   const response = await fetch(`/api/users/${userId}`, {
@@ -64,10 +59,7 @@ const updateProfile = async (event) => {
       bio,
     }),
   });
-  console.log(investorType, faveCompany);
   const data = await response.json();
-
-  console.log("Data:" + { data });
 
   if (data.success) {
     console.log("changes saved");
