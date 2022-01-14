@@ -49,9 +49,4 @@ body {
   #profile-portfolio-container {
     flex-direction: column;
   }
-
-  /* #profile-form-container,
-  #portfolio-container {
-    margin-bottom: 1rem;
-  } */
 }
