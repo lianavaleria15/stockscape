@@ -1,18 +1,8 @@
-// Internal imports
+// IMPORTS
 const seedUsers = require("./user-seeds");
 const seedCompanies = require("./company-seeds");
 const seedInvestmentProfiles = require("./investment-profile-seeds");
 const sequelize = require("../../config/connection");
-
-// external imports
-// const colors = require("colors");
-
-// colors.setTheme({
-//   success: ["bgGreen", "black"],
-//   warning: ["bgBrightYellow", "black", "bold"],
-//   fail: ["bgRed", "white", "bold"],
-//   message: ["bgWhite", "black"],
-// });
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });

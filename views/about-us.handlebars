@@ -1,1 +1,10 @@
-<h1>about us</h1>
+<header>
+   {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<main>
+    <h1>About Us</h1>
+</main>

@@ -1,4 +1,4 @@
-const logError = (type = "Server Error", message = "Something went wrong") => {
+const logError = (type = "Server Error", message = "Something went wrong.") => {
   console.error(`[ERROR]: ${type} | ${message}`);
 };
 

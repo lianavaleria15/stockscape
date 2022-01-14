@@ -1,4 +1,16 @@
-<div id="companies-container">
+<header>
+   {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<main>
+  <h1 class="h1 text-center mb-2" style="color: white;">Company Stocks</h1>
+  <div id="companies-container" class="d-flex flex-wrap justify-content-center mx-4 mt-3 mb-5">
   {{#each companies}}
   {{> company-card parent=../this}}
-  {{/each}}</div>
+  {{/each}}
+  </div>
+</main>
+

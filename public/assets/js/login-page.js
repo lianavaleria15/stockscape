@@ -30,7 +30,7 @@ const handleLogin = async (event) => {
   const username = $("#username").val();
   const password = $("#password").val();
 
-  // CODE ERROR MESSAGES FOR EMPTY FIELDS
+  // display form field errors
   const errors = getErrorsLogIn({
     username,
     password,
@@ -49,14 +49,11 @@ const handleLogin = async (event) => {
 
   const data = await response.json();
 
-  if (data.error === "Username does not exist") {
-    console.log("USER DOES NOT EXIST");
+  if (data.error === "Username does not exist.") {
     doesntExistModal.modal("show");
   }
 
   if (data.success) {
-    console.log("Logged in");
-    // direct to dashboard
     window.location.replace("/dashboard");
   }
 };
@@ -65,12 +62,12 @@ const getErrorsLogIn = ({ username, password }) => {
   const errors = {};
 
   if (!password) {
-    const error = (errors.password = "Invalid password");
+    const error = (errors.password = "Invalid password.");
     console.log(error);
   }
 
   if (!username) {
-    const error = (errors.username = "Username is required");
+    const error = (errors.username = "Invalid username.");
     console.log(error);
   }
 
