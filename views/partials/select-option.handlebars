@@ -1,1 +1,2 @@
+{{!-- check user's fave company id matches id of the company in list, mark as selected --}}
 <option value="{{id}}" {{#if (eq parent.user.favourite_company id)}}selected{{/if}}>{{name}} | {{symbol}}</option>
