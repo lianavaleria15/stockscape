@@ -1,4 +1,5 @@
-// get sign up form
+// TARGET UI ELEMENTS
+// sign up form submit button
 const signupForm = $("#signup-form");
 const alreadyExistsModal = $("#already-exists-modal");
 
@@ -12,7 +13,7 @@ const getErrorsSignUp = ({
   const errors = {};
 
   if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    const error = (errors.email = "Invalid email address");
+    const error = (errors.email = "Invalid email address.");
     console.log(error);
   }
 
@@ -22,27 +23,28 @@ const getErrorsSignUp = ({
       password
     )
   ) {
-    const error = (errors.password = "Invalid password");
+    const error = (errors.password =
+      "Invalid password. Must be 8-64 characters and include at least one letter, number, and special character.");
     console.log(error);
   }
 
   if (!confirmPassword || password !== confirmPassword) {
-    const error = (errors.confirmPassword = "Passwords do not match");
+    const error = (errors.confirmPassword = "Passwords do not match.");
     console.log(error);
   }
 
   if (!username) {
-    const error = (errors.username = "Username is required");
+    const error = (errors.username = "Username is required.");
     console.log(error);
   }
 
   if (!firstName) {
-    const error = (errors.firstName = "First name is required");
+    const error = (errors.firstName = "First name is required.");
     console.log(error);
   }
 
   if (!lastName) {
-    const error = (errors.lastName = "Last name is required");
+    const error = (errors.lastName = "Last name is required.");
     console.log(error);
   }
 
@@ -50,7 +52,6 @@ const getErrorsSignUp = ({
 };
 
 const handleSignup = async (event) => {
-  //   prevent form default
   event.preventDefault();
 
   // get post body from form fields
@@ -61,7 +62,7 @@ const handleSignup = async (event) => {
   const password = $("#password").val();
   const confirmPassword = $("#confirmPassword").val();
 
-  // CODE ERROR MESSAGES FOR EMPTY FIELDS
+  // error handling for form fields
   const errors = getErrorsSignUp({
     email,
     username,
@@ -74,7 +75,7 @@ const handleSignup = async (event) => {
   renderErrorMessages(errors);
 
   if (password === confirmPassword) {
-    // make post request to /auth/signup
+    // make post request to /auth/sign-up
     const response = await fetch("/auth/sign-up", {
       method: "POST",
       headers: {
@@ -91,13 +92,12 @@ const handleSignup = async (event) => {
 
     const data = await response.json();
 
-    if (data.error === "User Already Exists") {
-      console.log("to do - render user already exists modal");
+    // display 'User already exists' modal
+    if (data.error === "User already exists.") {
       alreadyExistsModal.modal("show");
     }
 
     if (data.success) {
-      //   if success response, direct to login page
       window.location.replace("/login");
     }
   }

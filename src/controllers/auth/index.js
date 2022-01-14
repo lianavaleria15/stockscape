@@ -28,7 +28,7 @@ const signup = async (req, res) => {
     if (user) {
       return res
         .status(400)
-        .json({ success: false, error: "User Already Exists" });
+        .json({ success: false, error: "User already exists." });
     }
 
     // create new user record w/ payload
