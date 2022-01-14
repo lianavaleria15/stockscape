@@ -4,32 +4,17 @@ const { logError } = require("../../helpers/utils");
 
 const updateUser = async (req, res) => {
   try {
-    // get payload and user id
-    const {
-      // email,
-      // password,
-      username,
-      // firstName,
-      // lastName,
-      bio,
-      investor_type,
-      favourite_company,
-    } = req.body;
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
+    const { username, bio, investor_type, favourite_company } = req.body;
 
     const { id } = req.session.user;
 
-    console.log(favourite_company, investor_type);
-
-    // check fo user in db
+    // check for user in db
     const userId = await User.findByPk(id);
     if (userId) {
       await User.update(
         {
-          // email,
-          // password,
           username,
-          // first_name: firstName,
-          // last_name: lastName,
           bio,
           investor_type,
           favourite_company,

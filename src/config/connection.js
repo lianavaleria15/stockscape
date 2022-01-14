@@ -13,7 +13,7 @@ const dbOptions = {
   logging: false,
 };
 
-//fix jaws db cofig
+//fix jaws db config
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, dbOptions);
 
 module.exports = sequelize;
