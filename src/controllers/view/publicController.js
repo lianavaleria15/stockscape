@@ -1,6 +1,7 @@
 const { User, InvestmentProfile, Company } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+// /sign-up
 const renderSignUp = (req, res) => {
   try {
     res.render("sign-up");
@@ -12,6 +13,7 @@ const renderSignUp = (req, res) => {
   }
 };
 
+// /login
 const renderLogin = (req, res) => {
   try {
     res.render("login");
@@ -23,6 +25,7 @@ const renderLogin = (req, res) => {
   }
 };
 
+// /*
 const renderHomepage = (req, res) => {
   try {
     const { loggedIn } = req.session;
@@ -36,6 +39,7 @@ const renderHomepage = (req, res) => {
   }
 };
 
+// /about-us
 const renderAboutUs = (req, res) => {
   try {
     const { loggedIn } = req.session;
@@ -49,6 +53,7 @@ const renderAboutUs = (req, res) => {
   }
 };
 
+// /companies
 const renderCompanies = async (req, res) => {
   try {
     const { loggedIn } = req.session;
@@ -69,6 +74,7 @@ const renderCompanies = async (req, res) => {
   }
 };
 
+// /user/:id
 const renderUserProfile = async (req, res) => {
   try {
     const userSessionInfo = req.session;

@@ -2,6 +2,7 @@
 const { User, InvestmentProfile } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+// /api/users/:id
 const updateUser = async (req, res) => {
   try {
     // get payload: USE getPayloadWithValidFieldsOnly HERE
@@ -42,6 +43,7 @@ const updateUser = async (req, res) => {
   }
 };
 
+// /api/users/:id
 const deleteUser = async (req, res) => {
   try {
     await User.destroy({

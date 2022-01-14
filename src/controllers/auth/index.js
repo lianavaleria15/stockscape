@@ -4,7 +4,7 @@ const {
   getPayloadWithValidFieldsOnly,
 } = require("../../helpers/utils");
 
-// /auth/
+// /auth/sign-up
 const signup = async (req, res) => {
   try {
     // get payload
@@ -43,6 +43,7 @@ const signup = async (req, res) => {
   }
 };
 
+// /auth/login
 const login = async (req, res) => {
   try {
     // get payload
@@ -100,6 +101,7 @@ const login = async (req, res) => {
   }
 };
 
+// /auth/logout
 const logout = (req, res) => {
   // if user is logged in, destroy session
   if (req.session.loggedIn) {

@@ -9,6 +9,5 @@ const router = Router();
 // / routes
 router.use(publicRoutes);
 router.use(authUser, privateRoutes);
-// router.use(privateRoutes);
 
 module.exports = router;

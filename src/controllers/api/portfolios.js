@@ -2,7 +2,7 @@
 const { User, InvestmentProfile } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
-// /api/portfolio
+// /api/portfolios
 const addPortfolio = async (req, res) => {
   try {
     const { company, units } = req.body;
@@ -34,6 +34,7 @@ const addPortfolio = async (req, res) => {
   }
 };
 
+// /api/portfolios/:id
 const updatePortfolio = async (req, res) => {
   try {
     // get payload: USE getPayloadWithValidFieldsOnly HERE
@@ -69,6 +70,7 @@ const updatePortfolio = async (req, res) => {
   }
 };
 
+// /api/portfolios/:id
 const deletePortfolio = async (req, res) => {
   try {
     // delete portfolio by id
