@@ -75,3 +75,5 @@ const getErrorsLogIn = ({ username, password }) => {
 
   return errors;
 };
+
+loginForm.on("submit", handleLogin);

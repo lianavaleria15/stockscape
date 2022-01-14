@@ -1,3 +1,4 @@
+// get sign up form
 const signupForm = $("#signup-form");
 const alreadyExistsModal = $("#already-exists-modal");
 
@@ -101,3 +102,5 @@ const handleSignup = async (event) => {
     }
   }
 };
+
+signupForm.on("submit", handleSignup);
