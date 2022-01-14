@@ -2,34 +2,37 @@
 const { User, InvestmentProfile } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+const checkIfUserExists = async (username, req, res) => {
+  // Get all users in the database
+  // const usernamesInDB = await User.findAll();
+  // sort all usernames into an array
+  // const usernameArray = [usernamesInDB.dataValues.username];
+  // console.log("USERNAME IN DB", usernameArray);
+  // throw error if username already exists
+  // if (usernameArray.includes(username) &&  id =! req.session.user.username) {
+  //   return res.json({
+  //     success: false,
+  //     data: `${username} already exists.`,
+  //   });
+  // }
+};
+
 const updateUser = async (req, res) => {
   try {
     // get payload and user id
-    const {
-      // email,
-      // password,
-      username,
-      // firstName,
-      // lastName,
-      bio,
-      investor_type,
-      favourite_company,
-    } = req.body;
+    const { username, bio, investor_type, favourite_company } = req.body;
 
     const { id } = req.session.user;
 
-    console.log(favourite_company, investor_type);
+    // checkIfUserExists(username);
 
     // check fo user in db
     const userId = await User.findByPk(id);
+
     if (userId) {
       await User.update(
         {
-          // email,
-          // password,
           username,
-          // first_name: firstName,
-          // last_name: lastName,
           bio,
           investor_type,
           favourite_company,

@@ -4,9 +4,9 @@ const editPortfolioBtn = $("edit-portfolio-btn");
 const getErrorsEditProfile = ({ username }) => {
   const errors = {};
 
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
-    errors.username = "Invalid Username";
-  }
+  // if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
+  //   errors.username = "Invalid Username";
+  // }
 
   if (!username) {
     errors.username = "Username is required";
@@ -34,6 +34,7 @@ const updateProfile = async (event) => {
 
   // get payload from form fields
   const username = $("#username").val();
+  console.log(username);
   const investorType = $("#investor-type").val();
   const faveCompany = $("#favourite-company").val();
   const bio = $("#user-bio").val();
