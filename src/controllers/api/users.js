@@ -7,7 +7,7 @@ const isUsernameUnique = (username) => {
     if (count != 0) {
       return "Username already exists";
     }
-    return true;
+    return true && "username does not exist";
   });
 };
 
@@ -19,7 +19,8 @@ const updateUser = async (req, res) => {
     const { id } = req.session.user;
 
     // function to check if the username exists
-    // const usernameCheck = await isUsernameUnique(username);
+    const usernameCheck = await isUsernameUnique(username);
+    console.log(usernameCheck);
 
     // if the username attempted already exists and it does not match the id of req.session.user
     // then do not update the username
