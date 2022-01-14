@@ -9,27 +9,25 @@ const getErrorsEditProfile = ({ username, bio }) => {
     console.log(error);
   }
 
-  if (
-    !password ||
-    !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/.test(
-      password
-    )
-  ) {
-    const error = (errors.password = "Invalid password");
-    console.log(error);
-  }
-
-  if (!confirmPassword || password !== confirmPassword) {
-    const error = (errors.confirmPassword = "Passwords do not match");
-    console.log(error);
-  }
-
   if (!username) {
     const error = (errors.username = "Username is required");
     console.log(error);
   }
 
   return errors;
+};
+
+const renderErrorMessages = (errors) => {
+  const fields = ["username"];
+  fields.forEach((field) => {
+    const errorDiv = $(`#${field}-error`);
+
+    if (errors[field]) {
+      errorDiv.text(errors[field]);
+    } else {
+      errorDiv.text("");
+    }
+  });
 };
 
 const updateProfile = async (event) => {
@@ -46,6 +44,12 @@ const updateProfile = async (event) => {
   console.log(username, investorType, faveCompany);
 
   // ERROR FUNCTION FOR EMPTY AND/OR INVALID USERNAME
+  // CODE ERROR MESSAGES FOR EMPTY FIELDS
+  const errors = getErrorsEditProfile({
+    username,
+  });
+
+  renderErrorMessages(errors);
 
   // make PUT request to /api/users
   const response = await fetch(`/api/users/${userId}`, {
