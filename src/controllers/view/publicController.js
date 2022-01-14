@@ -36,6 +36,7 @@ const renderHomepage = (req, res) => {
 
 const renderAboutUs = (req, res) => {
   try {
+  
     res.render("about-us");
   } catch (error) {
     logError("Render about-us", error.message);

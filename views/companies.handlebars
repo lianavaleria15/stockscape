@@ -1,3 +1,10 @@
+<header>
+   {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
 <div id="companies-container">
   {{#each companies}}
   {{> company-card parent=../this}}
