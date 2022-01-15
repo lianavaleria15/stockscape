@@ -10,17 +10,17 @@ const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log("\n----- Database synced -----\n");
 
-  await seedInvestorTypes();
-  console.log("\n----- Investor Types seeded -----\n");
+  // await seedInvestorTypes();
+  // console.log("\n----- Investor Types seeded -----\n");
 
-  await seedCompanies();
-  console.log("\n----- Companies seeded -----\n");
+  // await seedCompanies();
+  // console.log("\n----- Companies seeded -----\n");
 
   await seedUsers();
   console.log("\n----- Users seeded -----\n");
 
-  await seedPortfolio();
-  console.log("\n----- Portfolios seeded -----\n");
+  // await seedPortfolio();
+  // console.log("\n----- Portfolios seeded -----\n");
 
   process.exit(0);
 };

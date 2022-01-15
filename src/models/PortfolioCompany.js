@@ -3,7 +3,7 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // Initialize Product model (table) by extending off Sequelize's Model class
-class Portfolio extends Model {}
+class PortfolioCompany extends Model {}
 
 const schema = {
   id: {
@@ -13,19 +13,22 @@ const schema = {
     allowNull: false,
   },
 
-  user_id: {
+  portfolio_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "user",
+      model: "portfolio",
       key: "id",
     },
     allowNull: true,
   },
-
-  units: { type: DataTypes.INTEGER, allowNull: false },
-
-  // hook required
-  stock_returns: { type: DataTypes.DECIMAL(20, 2), allowNull: true },
+  company_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "company",
+      key: "id",
+    },
+    allowNull: true,
+  },
 };
 
 const options = {
@@ -33,9 +36,9 @@ const options = {
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: "portfolio",
+  modelName: "portfolioCompany",
 };
 
-Portfolio.init(schema, options);
+PortfolioCompany.init(schema, options);
 
-module.exports = Portfolio;
+module.exports = PortfolioCompany;

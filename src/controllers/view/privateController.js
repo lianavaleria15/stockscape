@@ -26,18 +26,27 @@ const renderEditMyProfile = async (req, res) => {
     const { id } = req.session.user;
 
     // get user, portfolio, and company info from db
-    const userProfile = await User.findByPk(id);
+
     // for fave company list
     const companiesFromDB = await Company.findAll();
+    // get the user's portfolio
+    const userPortfolioData = await User.findByPk(id, {
+      include: [{ model: Portfolio }],
+    });
 
     // get plain data
-    const userProfileData = userProfile.get({ plain: true });
+    // const userProfileData = userProfile.get({ plain: true });
     const companies = companiesFromDB.map((company) =>
       company.get({ plain: true })
     );
+    // const userPortfolio = userPortfolioData.map((portfolio) =>
+    //   portfolio.get({ plain: true })
+    // );
+    const userPortfolio = userPortfolioData.get({ plain: true });
+    console.log("USER PORTFOLIO", userPortfolio);
 
     return res.render("edit-profile", {
-      user: userProfileData,
+      user: userPortfolio,
       loggedIn: req.session.user.loggedIn,
       companies,
     });
@@ -53,6 +62,7 @@ const renderEditMyPortfolio = async (req, res) => {
   try {
     // get user's investment portfolio data from db
     // get plain data object
+    // get logged in user's id
 
     // pass data to handlebars template
     return res.render("edit-portfolio");

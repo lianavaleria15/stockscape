@@ -49,14 +49,14 @@ const schema = {
       key: "id",
     },
   },
-  favourite_company: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "company",
-      key: "id",
-    },
-    allowNull: true,
-  },
+  // favourite_company: {
+  //   type: DataTypes.INTEGER,
+  //   references: {
+  //     model: "company",
+  //     key: "id",
+  //   },
+  //   allowNull: true,
+  // },
 };
 
 class User extends Model {
