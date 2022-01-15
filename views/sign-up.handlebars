@@ -1,5 +1,10 @@
-
-<form id="signup-form" class="sign-up-form bg-light">
+<header>
+  {{> public-navbar}}
+</header>
+<main>
+  <div id="signup-form-container" class="d-flex justify-content-center">
+    <form id="signup-form" class="mx-4 my-5 p-3 rounded bg-light" style="width:50%; min-width: 18rem;">
+      <h2 class="mb-3">Sign Up</h2>
   <div class="mb-3">
     <label for="first-name" class="form-label">First Name</label>
     <input type="text" class="form-control" id="first-name" />
@@ -44,3 +49,5 @@
   <button type="submit" class="btn btn-primary">Submit</button>
   {{> already-exists-modal}}
 </form>
+  </div>
+</main>

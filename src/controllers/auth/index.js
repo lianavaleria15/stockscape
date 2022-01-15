@@ -4,7 +4,7 @@ const {
   getPayloadWithValidFieldsOnly,
 } = require("../../helpers/utils");
 
-// /auth/
+// /auth/sign-up
 const signup = async (req, res) => {
   try {
     // get payload
@@ -43,10 +43,9 @@ const signup = async (req, res) => {
   }
 };
 
+// /auth/login
 const login = async (req, res) => {
   try {
-    console.log("login controller");
-
     // get payload
     const payload = getPayloadWithValidFieldsOnly(
       ["username", "password"],
@@ -67,7 +66,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: "Username does not exist",
+        error: "Username does not exist.",
       });
     }
 
@@ -102,6 +101,7 @@ const login = async (req, res) => {
   }
 };
 
+// /auth/logout
 const logout = (req, res) => {
   // if user is logged in, destroy session
   if (req.session.loggedIn) {

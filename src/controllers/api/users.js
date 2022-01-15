@@ -13,7 +13,7 @@ const isUsernameUnique = (username) => {
 
 const updateUser = async (req, res) => {
   try {
-    // get payload and user id
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
     const { username, bio, investor_type, favourite_company } = req.body;
 
     const { id } = req.session.user;
@@ -25,7 +25,7 @@ const updateUser = async (req, res) => {
     // if the username attempted already exists and it does not match the id of req.session.user
     // then do not update the username
 
-    // check fo user in db
+    // check for user in db
     const userId = await User.findByPk(id);
 
     if (userId) {
@@ -59,6 +59,7 @@ const updateUser = async (req, res) => {
   }
 };
 
+// /api/users/:id
 const deleteUser = async (req, res) => {
   try {
     await User.destroy({

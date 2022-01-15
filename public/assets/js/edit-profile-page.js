@@ -4,19 +4,22 @@ const editPortfolioBtn = $("edit-portfolio-btn");
 const getErrorsEditProfile = ({ username }) => {
   const errors = {};
 
-  // if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
-  //   errors.username = "Invalid Username";
-  // }
+  if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
+    const error = (errors.username =
+      "Invalid username. Must be 8-30 alphanumberic characters.");
+    console.log(error);
+  }
 
-  if (!username) {
-    errors.username = "Username is required";
+  if (bio.length > 2000) {
+    const error = (errors.bio = "Bio must be fewer than 2,000 characters.");
+    console.log(error);
   }
 
   return errors;
 };
 
 const renderProfileErrorMessages = (errors) => {
-  const fields = ["username"];
+  const fields = ["username", "bio"];
   fields.forEach((field) => {
     const errorDiv = $(`#${field}-error`);
 
@@ -30,22 +33,19 @@ const renderProfileErrorMessages = (errors) => {
 
 const updateProfile = async (event) => {
   event.preventDefault();
+
   const userId = event.currentTarget.id;
 
   // get payload from form fields
   const username = $("#username").val();
-  console.log(username);
   const investorType = $("#investor-type").val();
   const faveCompany = $("#favourite-company").val();
   const bio = $("#user-bio").val();
 
-  // ERROR FUNCTION FOR EMPTY AND/OR INVALID USERNAME
-  // CODE ERROR MESSAGES FOR EMPTY FIELDS
-  const errors = getErrorsEditProfile({
-    username,
-  });
+  // display form field errors
+  const errors = getErrorsEditProfile({ username, bio });
 
-  renderProfileErrorMessages(errors);
+  renderErrorMessages(errors);
 
   // make PUT request to /api/users
   const response = await fetch(`/api/users/${userId}`, {
@@ -60,10 +60,10 @@ const updateProfile = async (event) => {
       bio,
     }),
   });
+
   const data = await response.json();
 
   if (data.success) {
-    console.log("changes saved");
     window.location.replace(`/${userId}/profile/edit`);
   }
 };
