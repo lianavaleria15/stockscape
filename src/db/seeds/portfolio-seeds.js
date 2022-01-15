@@ -6,7 +6,7 @@ const portfolioData = [
     units: 10000,
     user_id: 1,
     // calculated by stock returns hook
-    stock_returns:
+    stock_returns: 200000,
   },
 ];
 
