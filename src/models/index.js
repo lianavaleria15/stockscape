@@ -1,6 +1,7 @@
 const User = require("./User");
 const Company = require("./Company");
 const Portfolio = require("./Portfolio");
+const InvestorType = require("./InvestorType");
 
 // User has many investment profiles
 // User.hasOne(Portfolio, { foreignKey: "user_id" });
@@ -16,4 +17,4 @@ const Portfolio = require("./Portfolio");
 //   foreignKey: "investment_profile_id",
 // });
 
-module.exports = { User, Company, Portfolio };
+module.exports = { User, Company, Portfolio, InvestorType };

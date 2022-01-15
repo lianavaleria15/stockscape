@@ -13,18 +13,28 @@ const schema = {
     allowNull: false,
   },
 
-  // company_id: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  //   autoIncrement: true,
-  // },
+  company_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "company",
+      key: "id",
+    },
+    allowNull: true,
+  },
 
   units: { type: DataTypes.INTEGER, allowNull: false },
 
-  // user_id: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  // },
+  user_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "user",
+      key: "id",
+    },
+    allowNull: false,
+  },
+
+  // hook required
+  stock_returns: { type: DataTypes.DECIMAL(20, 2), allowNull: true },
 };
 
 const options = {

@@ -37,10 +37,6 @@ const schema = {
     unique: true,
     allowNull: false,
   },
-  score: {
-    type: DataTypes.DECIMAL,
-    allowNull: true,
-  },
   bio: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -48,11 +44,23 @@ const schema = {
   investor_type: {
     type: DataTypes.STRING,
     allowNull: true,
+    references: {
+      model: "investortype",
+      key: "id",
+    },
   },
   favourite_company: {
     type: DataTypes.INTEGER,
     references: {
       model: "company",
+      key: "id",
+    },
+    allowNull: true,
+  },
+  portfolio_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "portfolio",
       key: "id",
     },
     allowNull: true,

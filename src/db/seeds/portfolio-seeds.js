@@ -2,16 +2,11 @@ const { Portfolio } = require("../../models");
 
 const portfolioData = [
   {
+    company_id: 1,
     units: 10000,
-  },
-  {
-    units: 270000,
-  },
-  {
-    units: 1000,
-  },
-  {
-    units: 13000,
+    user_id: 1,
+    // calculated by stock returns hook
+    stock_returns:
   },
 ];
 

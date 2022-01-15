@@ -1,7 +1,8 @@
 // IMPORTS
 const seedUsers = require("./user-seeds");
 const seedCompanies = require("./company-seeds");
-const seedPortfolio = require("./investment-profile-seeds");
+const seedPortfolio = require("./portfolio-seeds");
+const seedInvestorTypes = require("./investor-type-seeds");
 const sequelize = require("../../config/connection");
 
 // seed all models
