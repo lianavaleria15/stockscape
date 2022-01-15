@@ -1,4 +1,4 @@
-const { User, InvestmentProfile, Company } = require("../../models");
+const { User, Portfolio, Company } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
 // /sign-up
@@ -83,7 +83,7 @@ const renderUserProfile = async (req, res) => {
 
     // get user, portfolio, and company info from db
     const userProfileData = await User.findByPk(req.params.id, {
-      include: [{ model: InvestmentProfile, include: Company }],
+      include: [{ model: Portfolio, include: Company }],
     });
 
     if (!userProfileData) {

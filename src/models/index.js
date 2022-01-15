@@ -1,19 +1,28 @@
 const User = require("./User");
 const Company = require("./Company");
-const InvestmentProfile = require("./InvestmentProfile");
+const Portfolio = require("./Portfolio");
+const PortfolioCompany = require("./PortfolioCompany");
 
-// User has many investment profiles
-// User.hasOne(InvestmentProfile, { foreignKey: "user_id" });
+// A user has many portfolios
+User.hasMany(Portfolio, {
+  foreignKey: "user_id",
+});
 
-// Investment profile belongs to user
-// InvestmentProfile.belongsTo(User, { foreignKey: "user_id" });
+// A portfolio has one user
+Portfolio.belongsTo(User, {
+  foreignKey: "user_id",
+});
 
-// Investment profile has many companies
-// InvestmentProfile.hasMany(Company, { foreignKey: "investment_profile_id" });
+// A portfolio has many companies
+Portfolio.belongsToMany(Company, {
+  through: PortfolioCompany,
+  foreignKey: "portfolio_id",
+});
 
-// Company belongs to many investment profiles
-// Company.belongsToMany(InvestmentProfile, {
-//   foreignKey: "investment_profile_id",
-// });
+// A company has many portfolios
+Company.belongsToMany(Portfolio, {
+  through: PortfolioCompany,
+  foreignKey: "company_id",
+});
 
-module.exports = { User, Company, InvestmentProfile };
+module.exports = { User, Company, Portfolio, PortfolioCompany };
