@@ -1,5 +1,5 @@
 // IMPORTS
-const { User, InvestmentProfile } = require("../../models");
+const { User, Portfolio } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
 const isUsernameUnique = (username) => {

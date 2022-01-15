@@ -1,6 +1,6 @@
-const { InvestmentProfile } = require("../../models");
+const { Portfolio } = require("../../models");
 
-const investmentProfileData = [
+const portfolioData = [
   {
     units: 10000,
   },
@@ -15,7 +15,6 @@ const investmentProfileData = [
   },
 ];
 
-const seedInvestmentProfiles = () =>
-  InvestmentProfile.bulkCreate(investmentProfileData);
+const seedPortfolios = () => Portfolio.bulkCreate(portfolioData);
 
-module.exports = seedInvestmentProfiles;
+module.exports = seedPortfolios;

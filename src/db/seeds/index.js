@@ -1,7 +1,7 @@
 // IMPORTS
 const seedUsers = require("./user-seeds");
 const seedCompanies = require("./company-seeds");
-const seedInvestmentProfiles = require("./investment-profile-seeds");
+const seedPortfolio = require("./investment-profile-seeds");
 const sequelize = require("../../config/connection");
 
 // seed all models
@@ -15,7 +15,7 @@ const seedAll = async () => {
   await seedUsers();
   console.log("\n----- Users seeded -----\n");
 
-  await seedInvestmentProfiles();
+  await seedPortfolio();
   console.log("\n----- Investments seeded -----\n");
 
   process.exit(0);

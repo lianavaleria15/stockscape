@@ -1,4 +1,4 @@
-const { User, InvestmentProfile, Company } = require("../../models");
+const { User, Portfolio, Company } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
 const renderDashboard = async (req, res) => {

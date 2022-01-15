@@ -3,7 +3,7 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // Initialize Product model (table) by extending off Sequelize's Model class
-class InvestmentProfile extends Model {}
+class Portfolio extends Model {}
 
 const schema = {
   id: {
@@ -32,9 +32,9 @@ const options = {
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: "investmentProfile",
+  modelName: "portfolio",
 };
 
-InvestmentProfile.init(schema, options);
+Portfolio.init(schema, options);
 
-module.exports = InvestmentProfile;
+module.exports = Portfolio;
