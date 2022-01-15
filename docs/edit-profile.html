@@ -1,41 +1,34 @@
-<main>
-  <div id="form-container" class="form-container">
-    <form id="user-bio-form">
-      <div class="form-group">
-        <label for="username" class="text-white">Email address</label>
-        <input
-          type="username"
-          class="form-control"
-          id="username"
-          placeholder="bitCoinBoi69"
-        />
-      </div>
-      <div class="form-group">
-        <label for="investor-type" class="text-white">Investor Type</label>
-        <select class="form-control" id="investor-type">
-          <option>Yolo Life Savings</option>
-          <option>Weekend Investor</option>
-          <option>Play it safe</option>
-          <option>r/WallStreetBets Graduate</option>
-          <option>Jamie Dimonhands</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="favourite-company" class="text-white"
-          >Favourite Company</label
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <canvas id="user-allocation" width="400" height="400"> </canvas>
+        <div
+          id="button-div"
+          style="
+            border: 5px solid black;
+            display: flex;
+            justify-content: space-around;
+          "
         >
-        <select multiple class="form-control" id="favourite-company">
-          <option>$TSLA</option>
-          <option>$GOOGL</option>
-          <option>$AMZN</option>
-          <option>$GME</option>
-          <option>$JPM</option>
-        </select>
+          <button id="line" data-type="line">line</button>
+          <button id="pie" data-type="pie">pie</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="user-bio" class="text-white">About Me</label>
-        <textarea class="form-control" id="user-bio" rows="3"></textarea>
-      </div>
-    </form>
-  </div>
-</main>
+    </main>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./sample-data.js"></script>
+</html>

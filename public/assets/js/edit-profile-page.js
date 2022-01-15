@@ -1,27 +1,8 @@
 const saveProfileEditsBtn = $("[name='save-profile-changes-btn']");
+const editPortfolioBtn = $("edit-portfolio-btn");
 
 const getErrorsEditProfile = ({ username, bio }) => {
   const errors = {};
-
-  // if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-  //   const error = (errors.email = "Invalid email address.");
-  //   console.log(error);
-  // }
-
-  // if (
-  //   !password ||
-  //   !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/.test(
-  //     password
-  //   )
-  // ) {
-  //   const error = (errors.password = "Invalid password");
-  //   console.log(error);
-  // }
-
-  // if (!confirmPassword || password !== confirmPassword) {
-  //   const error = (errors.confirmPassword = "Passwords do not match");
-  //   console.log(error);
-  // }
 
   if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
     const error = (errors.username =
@@ -37,26 +18,18 @@ const getErrorsEditProfile = ({ username, bio }) => {
   return errors;
 };
 
-// ADJUST THIS FOR EDIT PROFILE PAGE
-// const renderErrorMessages = (errors) => {
-//   const fields = [
-//     "email",
-//     "password",
-//     "firstName",
-//     "lastName",
-//     "username",
-//     "confirmPassword",
-//   ];
-//   fields.forEach((field) => {
-//     const errorDiv = $(`#${field}-error`);
+const renderProfileErrorMessages = (errors) => {
+  const fields = ["username", "bio"];
+  fields.forEach((field) => {
+    const errorDiv = $(`#${field}-error`);
 
-//     if (errors[field]) {
-//       errorDiv.text(errors[field]);
-//     } else {
-//       errorDiv.text("");
-//     }
-//   });
-// };
+    if (errors[field]) {
+      errorDiv.text(errors[field]);
+    } else {
+      errorDiv.text("");
+    }
+  });
+};
 
 const updateProfile = async (event) => {
   event.preventDefault();
@@ -95,4 +68,15 @@ const updateProfile = async (event) => {
   }
 };
 
+const viewEditPortfolio = (event) => {
+  event.preventDefault();
+
+  // get user id from session - CK14/10: LEAVING BLANK FOR NOW UNTIL MODELS COMPLETE
+  // const userId = event.currentTarget.id;
+
+  // redirect to edit portfolio path with user id
+  window.location.replace(`/portfolio/1/edit/`);
+};
+
 saveProfileEditsBtn.on("click", updateProfile);
+editPortfolioBtn.on("click", viewEditPortfolio);
