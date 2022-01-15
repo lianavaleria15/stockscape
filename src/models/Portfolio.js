@@ -12,7 +12,6 @@ const schema = {
     autoIncrement: true,
     allowNull: false,
   },
-
   user_id: {
     type: DataTypes.INTEGER,
     references: {
@@ -21,9 +20,7 @@ const schema = {
     },
     allowNull: true,
   },
-
   units: { type: DataTypes.INTEGER, allowNull: false },
-
   // hook required
   stock_returns: { type: DataTypes.DECIMAL(20, 2), allowNull: true },
 };

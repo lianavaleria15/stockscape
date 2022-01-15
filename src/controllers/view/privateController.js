@@ -1,4 +1,4 @@
-const { User, Portfolio, Company } = require("../../models");
+const { User, Portfolio, Company, PortfolioCompany } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
 const renderDashboard = async (req, res) => {
@@ -10,6 +10,30 @@ const renderDashboard = async (req, res) => {
     // const userDashboardData = await User.findByPk(userId);
 
     // const userDashboard = userDashboardData.get({ plain: true });
+
+    const portfoliosFromDB = await Portfolio.findAll({
+      where: {
+        user_id: id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+        {
+          model: Company,
+          through: PortfolioCompany,
+        },
+      ],
+    });
+
+    const portfolios = portfoliosFromDB.map((portfolio) =>
+      portfolio.get({ plain: true })
+    );
+
+    console.log(portfolios);
 
     return res.render("dashboard", { id });
   } catch (error) {

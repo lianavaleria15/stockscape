@@ -12,7 +12,6 @@ const schema = {
     autoIncrement: true,
     allowNull: false,
   },
-
   portfolio_id: {
     type: DataTypes.INTEGER,
     references: {
