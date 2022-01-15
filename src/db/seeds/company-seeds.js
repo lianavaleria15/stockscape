@@ -4,7 +4,6 @@ const companyData = [
   {
     name: "Apple Inc.",
     symbol: "AAPL",
-    investment_profile_id: 1,
     janPrice: 129.41,
     decPrice: 177.57,
     gainLoss: 48.16,
@@ -15,7 +14,6 @@ const companyData = [
   {
     name: "Microsoft Corporation",
     symbol: "MSFT",
-    investment_profile_id: 1,
     janPrice: 212.25,
     decPrice: 341.25,
     gainLoss: 129.0,
@@ -26,7 +24,6 @@ const companyData = [
   {
     name: "Amazon.com Inc.",
     symbol: "AMZN",
-    investment_profile_id: 1,
     janPrice: 3138.38,
     decPrice: 3413.22,
     gainLoss: 274.84,
@@ -37,7 +34,6 @@ const companyData = [
   {
     name: "Tesla, Inc.",
     symbol: "TSLA",
-    investment_profile_id: 1,
     janPrice: 755.98,
     decPrice: 1088.47,
     gainLoss: 332.49,
@@ -48,7 +44,6 @@ const companyData = [
   {
     name: "Alphabet Inc. Class A",
     symbol: "GOOGL",
-    investment_profile_id: 1,
     janPrice: 1722.88,
     decPrice: 2399.74,
     gainLoss: 676.86,
@@ -59,7 +54,6 @@ const companyData = [
   {
     name: "Meta Platforms Inc. Class A",
     symbol: "FB",
-    investment_profile_id: 1,
     janPrice: 263.61,
     decPrice: 346.22,
     gainLoss: 82.61,
@@ -70,7 +64,6 @@ const companyData = [
   {
     name: "Alphabet Inc. Class C",
     symbol: "GOOG",
-    investment_profile_id: 1,
     janPrice: 1807.21,
     decPrice: 2930.39,
     gainLoss: 1123.18,
@@ -81,7 +74,6 @@ const companyData = [
   {
     name: "NVIDIA Corporation",
     symbol: "NVDA",
-    investment_profile_id: 1,
     janPrice: 126.14,
     decPrice: 276.04,
     gainLoss: 149.9,
@@ -92,7 +84,6 @@ const companyData = [
   {
     name: "Berkshire Hathaway Inc. Class B",
     symbol: "BRK.B",
-    investment_profile_id: 1,
     janPrice: 230.27,
     decPrice: 68.02,
     gainLoss: 149.9,
@@ -103,7 +94,6 @@ const companyData = [
   {
     name: "JPMorgan Chase & Co.",
     symbol: "JPM",
-    investment_profile_id: 1,
     janPrice: 131.55,
     decPrice: 158.64,
     gainLoss: 27.09,

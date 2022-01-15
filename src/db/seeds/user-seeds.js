@@ -7,7 +7,6 @@ const userData = [
     password: "Password123!",
     username: "lianavaleria15",
     email: "liana@email.com",
-    favourite_company: 3,
   },
   {
     firstName: "Kayle",

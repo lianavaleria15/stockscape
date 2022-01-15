@@ -42,7 +42,7 @@ const schema = {
     allowNull: true,
   },
   investor_type: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: true,
     references: {
       model: "investortype",
@@ -53,14 +53,6 @@ const schema = {
     type: DataTypes.INTEGER,
     references: {
       model: "company",
-      key: "id",
-    },
-    allowNull: true,
-  },
-  portfolio_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "portfolio",
       key: "id",
     },
     allowNull: true,
