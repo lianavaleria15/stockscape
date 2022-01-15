@@ -4,6 +4,7 @@ const seedCompanies = require("./company-seeds");
 const seedInvestmentProfiles = require("./investment-profile-seeds");
 const sequelize = require("../../config/connection");
 
+// seed all models
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log("\n----- Database synced -----\n");
