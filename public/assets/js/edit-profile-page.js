@@ -1,7 +1,7 @@
 const saveProfileEditsBtn = $("[name='save-profile-changes-btn']");
 const editPortfolioBtn = $("edit-portfolio-btn");
 
-const getErrorsEditProfile = ({ username }) => {
+const getErrorsEditProfile = ({ username, bio }) => {
   const errors = {};
 
   if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
