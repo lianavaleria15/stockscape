@@ -1,2 +1,2 @@
 {{!-- check user's fave company id matches id of the company in list, mark as selected --}}
-<input value="{{id}}" {{#if (eq parent.user.favourite_company id)}}selected readonly{{/if}}>{{name}} | {{symbol}}</input>
+<h2 value="{{id}}" {{#if (eq parent.user.favourite_company id)}}readonly{{/if}}>{{name}} | {{symbol}}</h2>

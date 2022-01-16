@@ -31,11 +31,7 @@
         <label for="favourite-company" class="mb-1"
           >Favourite Company</label
         >
-        <select class="form-control" id="favourite-company">
-          {{#each companies as | company |}}
-            {{> select-option parent=../this}}
-          {{/each}}
-        </select>
+      <input class="form-control input-disabled" id="investor-type" rows="3" value="{{favourite_company.name}} | {{favourite_company.symbol}}" readonly></input>
       </div>
 
       <div class="form-group mb-4">

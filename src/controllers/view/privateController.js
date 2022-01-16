@@ -86,17 +86,14 @@ const renderViewUserProfile = async (req, res) => {
   try {
     // get user id
     const userId = req.params.id;
-    console.log(userId);
 
     const userFromDB = await User.findByPk(userId);
-    const companiesFromDB = await Company.findAll();
+    const companyFromDB = await Company.findByPk(userFromDB.favourite_company);
 
     const user = userFromDB.get({ plain: true });
-    const companies = companiesFromDB.map((company) =>
-      company.get({ plain: true })
-    );
+    const favourite_company = companyFromDB.get({ plain: true });
 
-    return res.render("user-profile", { user, companies });
+    return res.render("user-profile", { user, favourite_company });
   } catch (error) {
     logError("Render edit profile", error.message);
     return res
