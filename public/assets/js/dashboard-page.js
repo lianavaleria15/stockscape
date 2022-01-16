@@ -1,4 +1,4 @@
-const Chart = require("chart.js");
+// const Chart = require("chart.js");
 
 // target chart element
 const chartCanvas = $(".stock-allocation-chart");
@@ -44,5 +44,5 @@ const allocationPieChart = new Chart(chartCanvas, {
   },
 });
 
-// $(window).on("load", console.log("window loaded"));
+$(document).ready(allocationPieChart);
 $(document).ready(console.log("window loaded"));

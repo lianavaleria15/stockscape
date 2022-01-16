@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <p class="card-text">Update your public profile. Create, view, and edit your current investment portfolios.</p>
-                <button id="{{id}}" name="edit-profile-btn" class="btn btn-primary">View Profile</button>
+                <button id="{{id}}" name="view-profile-btn" class="btn btn-primary">View Profile</button>
             </div>
         </div>
         <div class="card m-4" style="width: 45rem;">
@@ -29,11 +29,7 @@
             </div>
             <div class="card-body">
                 <p class="card-text">Pull user's portfolio data with associated companies through PortfolioCompany, render chart with highest return value</p>
-                <div class="stock-chart-container">
-                    <canvas class="stock-allocation-chart" width="400" height="400">
-
-                </canvas>
-                </div>
+                {{>allocation-chart}}
             </div>
         </div>
     </div>
