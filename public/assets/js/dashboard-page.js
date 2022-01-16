@@ -1,15 +1,9 @@
-// const Chart = require("chart.js");
-
-// target chart element
-const chartCanvas = $(".stock-allocation-chart");
-// const chartChoiceDiv = $("#button-div");
-
-// Chart.defaults.global.defaultFontFamily = "Helvetica";
-// Chart.defaults.global.defaultFontColor = "black";
-// Chart.defaults.global.defaultFontSize = 18;
+// target chart elements
+const stockAllocationCanvas = $(".stock-allocation-chart");
+const leaderboardCanvas = $(".leaderboard-graph");
 
 // render chart
-const allocationPieChart = new Chart(chartCanvas, {
+const allocationPieChart = new Chart(stockAllocationCanvas, {
   type: "pie",
   data: {
     // pull company symbols from user -> portfolio -> company in db
@@ -44,4 +38,38 @@ const allocationPieChart = new Chart(chartCanvas, {
   },
 });
 
+const leaderboardChart = new Chart(leaderboardCanvas, {
+  type: "bar",
+  data: {
+    // pull top 10 usernames from db by total portfolio return value, sort highest to lowest
+    labels: [
+      "My Portfolio, kayleriegerpatton",
+      "Retirement Investments, tigerbath",
+      "YOLO Savings, conorKELLY",
+      "Play it Safe Stocks, lianavaleria15",
+    ],
+    datasets: [
+      {
+        label: "Return Value",
+        // pull from user -> portfolio in db, sort highest to lowest
+        data: [20100.56, 40000.0, 53400.27, 100.89],
+        // set these to the theme colors
+        backgroundColor: ["#95f9e3ff", "#69ebd0ff", "#758173ff", "#cb904dff"],
+        borderWidth: 1,
+        borderColor: "#777",
+        hoverBorderWidth: 2,
+        // hoverBorderColor: "#000",
+      },
+    ],
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Stock Allocations",
+      fontSize: 25,
+    },
+  },
+});
+
 $(document).ready(allocationPieChart);
+$(document).ready(leaderboardChart);

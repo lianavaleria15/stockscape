@@ -14,24 +14,22 @@
         </div>
         <div class="card m-4" style="width: 36rem;">
             <div class="card-header h4">
-                Your Current Top Portfolio(pie)?
+                Your Current Top Portfolio
             </div>
             <div class="card-body">
-                <p class="card-text">Pull user's portfolio data with associated companies through PortfolioCompany, render chart with highest return value</p>
                 {{>allocation-chart}}
             </div>
         </div>
         <div class="card m-4" style="width: 36rem;">
             <div class="card-header h4">
-                Top Stockscape Portfolios (bar)
+                Top Stockscape Portfolios
             </div>
             <div class="card-body">
-                <p class="card-text">LEADERBOARD CHART HERE. Bar chart. Get </p>
-                <canvas>
-
-                </canvas>
+                <div class="leaderboard-chart-container">
+                    <canvas class="leaderboard-graph" width="300" height="300">
+                    </canvas>
+                </div>
             </div>
         </div>
-        
     </div>
 </main>
