@@ -34,11 +34,7 @@
         <label for="favourite-company" class="mb-1"
           >Favourite Company</label
         >
-        <select class="form-control" id="favourite-company">
-          {{#each companies as | company |}}
-            {{> select-option parent=../this}}
-          {{/each}}
-        </select>
+        <input class="form-control" id="favourite-company" value="{{> select-option parent=../this}}" readonly></input>
       </div>
       <div class="form-group mb-4">
         <label for="user-bio" class="mb-1">About Me</label>

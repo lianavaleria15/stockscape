@@ -24,14 +24,14 @@
 
       <div class="form-group mb-4">
         <label for="investor-type" class="mb-1">Investor Type</label>
-        <input class="form-control input-disabled" id="investor-type" readonly></input>
+        <input class="form-control input-disabled" id="investor-type" rows="3" value="{{user.investor_type}}" readonly></input>
       </div>
 
       <div class="form-group mb-4">
         <label for="favourite-company" class="mb-1"
           >Favourite Company</label
         >
-        <select class="form-control input-disabled" id="favourite-company" readonly>
+        <select class="form-control" id="favourite-company">
           {{#each companies as | company |}}
             {{> select-option parent=../this}}
           {{/each}}
