@@ -6,6 +6,7 @@ const {
   renderEditMyPortfolio,
   renderEditMyProfile,
   renderUserList,
+  renderViewUserProfile,
 } = require("../../controllers/view/privateController");
 
 const router = Router();
@@ -14,6 +15,8 @@ const router = Router();
 router.get("/dashboard", renderDashboard);
 
 router.get("/:id/profile/edit", renderEditMyProfile);
+
+router.get("/users/:id", renderViewUserProfile);
 
 router.get("/:id/portfolio/create", renderCreateMyPortfolio);
 

@@ -1,1 +1,124 @@
-<h1>user profile</h1>
+<header>
+    {{> private-navbar}}
+</header>
+
+<main>
+ <div id="profile-portfolio-container" class="d-flex">
+    {{!-- Edit Profile Section --}}
+  <div id="profile-form-container" class="mx-4 my-5 form-container" style="min-width: 18rem">
+    
+    <form id="user-profile-form" class="p-3 bg-light rounded">
+      <h2 class="mb-3">Profile</h2>
+      <div class="form-group mb-4">
+        <label for="username" class="mb-1">Username</label>
+        <input
+          type="text"
+          class="form-control input-disabled"
+          id="username"
+          value={{user.username}}
+          required
+          readonly
+        /></input>
+        <div id="username-error" class="form-text error"></div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="investor-type" class="mb-1">Investor Type</label>
+        <input class="form-control input-disabled" id="investor-type" readonly></input>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="favourite-company" class="mb-1"
+          >Favourite Company</label
+        >
+        <select class="form-control input-disabled" id="favourite-company" readonly>
+          {{#each companies as | company |}}
+            {{> select-option parent=../this}}
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="user-bio" class="mb-1">About Me</label>
+        <textarea class="form-control input-disabled" id="user-bio" rows="3" readonly>{{user.bio}}</textarea>
+      </div>
+    </form>
+  </div>
+
+{{!-- Portfolio Section --}}
+  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded d-flex flex-wrap portfolio-container bg-light">
+      <div id="portfolio-header" class="">
+          <h2 class="">Investment Portfolio</h2>
+          <h3 class="">Returns: ${{user.score}}</h3>
+      </div>
+
+      <div id="company-card-container" class="d-flex flex-wrap align-content-center">
+          <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Apple Inc.</h5>
+            <h6>APPL</h6>
+            <p>Jan 2021 Share Price: <span>$200.00</span></p>
+            <p>Units <span>123</span></p>
+            <p>Gain/Loss <span>323</span></p>
+             </div>
+            </div>
+
+            <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Apple Inc.</h5>
+            <h6>APPL</h6>
+            <p>Jan 2021 Share Price: <span>$200.00</span></p>
+            <p>Units <span>123</span></p>
+            <p>Gain/Loss <span>323</span></p>
+             </div>
+            </div>
+
+            <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Apple Inc.</h5>
+            <h6>APPL</h6>
+            <p>Jan 2021 Share Price: <span>$200.00</span></p>
+            <p>Units <span>123</span></p>
+            <p>Gain/Loss <span>323</span></p>
+             </div>
+            </div>
+
+            <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Apple Inc.</h5>
+            <h6>APPL</h6>
+            <p>Jan 2021 Share Price: <span>$200.00</span></p>
+            <p>Units <span>123</span></p>
+            <p>Gain/Loss <span>323</span></p>
+             </div>
+            </div>
+
+
+            <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Apple Inc.</h5>
+            <h6>APPL</h6>
+            <p>Jan 2021 Share Price: <span>$200.00</span></p>
+            <p>Units <span>123</span></p>
+            <p>Gain/Loss <span>323</span></p>
+             </div>
+            </div>
+
+            <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Apple Inc.</h5>
+            <h6>APPL</h6>
+            <p>Jan 2021 Share Price: <span>$200.00</span></p>
+            <p>Units <span>123</span></p>
+            <p>Gain/Loss <span>323</span></p>
+             </div>
+            </div>
+      </div>
+
+      <div>
+          <button id="edit-portfolio-btn" href="/edit-portfolio" type="button" class="btn btn-primary">Edit Portfolio</button>
+      </div>
+  </div>
+ </div>
+</main>
+

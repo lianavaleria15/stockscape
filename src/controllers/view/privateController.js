@@ -82,6 +82,28 @@ const renderEditMyProfile = async (req, res) => {
   }
 };
 
+const renderViewUserProfile = async (req, res) => {
+  try {
+    // get user id
+    const userId = req.params.id;
+    console.log(userId);
+
+    const userFromDB = await User.findByPk(userId, {
+      include: [{ model: Portfolio }],
+    });
+
+    const user = userFromDB.get({ plain: true });
+    console.log(user);
+
+    return res.render("user-profile", { user });
+  } catch (error) {
+    logError("Render edit profile", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to render user profile." });
+  }
+};
+
 const renderEditMyPortfolio = async (req, res) => {
   try {
     // get user's investment portfolio data from db
@@ -127,8 +149,6 @@ const renderUserList = async (req, res) => {
       company.get({ plain: true })
     );
 
-    console.log(companies);
-
     res.render("view-users", { users, companies });
   } catch (error) {
     logError("Render companies", error.message);
@@ -144,4 +164,5 @@ module.exports = {
   renderEditMyPortfolio,
   renderEditMyProfile,
   renderUserList,
+  renderViewUserProfile,
 };
