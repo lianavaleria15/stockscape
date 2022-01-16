@@ -109,9 +109,31 @@ const renderCreateMyPortfolio = async (req, res) => {
   }
 };
 
+const renderUserList = async (req, res) => {
+  try {
+    // get companies from db
+    const usersFromDB = await User.findAll();
+
+    // map through companies to get plain data
+    const users = usersFromDB.map((user) => {
+      return user.get({ plain: true });
+    });
+
+    console.log(users);
+
+    res.render("view-users", { users });
+  } catch (error) {
+    logError("Render companies", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to render companies." });
+  }
+};
+
 module.exports = {
   renderDashboard,
   renderCreateMyPortfolio,
   renderEditMyPortfolio,
   renderEditMyProfile,
+  renderUserList,
 };
