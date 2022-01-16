@@ -6,8 +6,8 @@ const renderDashboard = async (req, res) => {
     // get logged in user's id
     const { id } = req.session.user;
 
-    // get user and include portfolios and companies through Portfolio Company?
-    const userPortfoliosData = await Portfolio.findAll({
+    // get user and include portfolios and companies through PortfolioCompany
+    const userPortfoliosFromDB = await Portfolio.findAll({
       where: {
         user_id: id,
       },
@@ -19,15 +19,29 @@ const renderDashboard = async (req, res) => {
       ],
     });
 
-    const userPortfolios = userPortfoliosData.map((portfolio) =>
+    // map to get plain data
+    const userPortfoliosData = userPortfoliosFromDB.map((portfolio) =>
       portfolio.get({ plain: true })
     );
 
-    const portfoliosMap = portfolios.map((portfolio) => {
+    // map plain data to get new portfolios data object
+    const userPortfolios = userPortfoliosData.map((portfolio) => {
       return {
         portfolioName: portfolio.name,
         companies: portfolio.companies.map((company) => {
-          const stockReturn = company.decPrice * company.portfolioCompany.units;
+          // const initialInvestment =
+          //   company.janPrice * company.portfolioCompany.units;
+
+          // const decValue = initialInvestment * company.gainLoss;
+
+          // const stockReturn = decValue - initialInvestment;
+
+          // calculate company's year end return
+          const stockReturn =
+            company.janPrice *
+              company.portfolioCompany.units *
+              company.gainLoss -
+            company.janPrice * company.portfolioCompany.units;
 
           return {
             id: company.id,
@@ -39,7 +53,7 @@ const renderDashboard = async (req, res) => {
       };
     });
 
-    console.log(portfoliosMap[0].companies);
+    // console.log(userPortfolios[0].companies);
 
     return res.render("dashboard", { id, userPortfolios });
   } catch (error) {

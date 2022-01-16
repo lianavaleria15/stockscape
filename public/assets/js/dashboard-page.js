@@ -1,10 +1,12 @@
-// where to draw chart
-const chartCanvas = $("stock-allocation-chart");
+const Chart = require("chart.js");
+
+// target chart element
+const chartCanvas = $(".stock-allocation-chart");
 // const chartChoiceDiv = $("#button-div");
 
-Chart.defaults.global.defaultFontFamily = "Helvetica";
+// Chart.defaults.global.defaultFontFamily = "Helvetica";
+// Chart.defaults.global.defaultFontColor = "black";
 // Chart.defaults.global.defaultFontSize = 18;
-Chart.defaults.global.defaultFontColor = "black";
 
 // render chart
 const allocationPieChart = new Chart(chartCanvas, {
@@ -14,11 +16,18 @@ const allocationPieChart = new Chart(chartCanvas, {
     labels: ["$TSLA", "$GME", "$GOOGL", "$AMZN", "$FB", "$AMC"],
     datasets: [
       {
-        label: "Return Values",
+        label: "Return Value",
         // pull from user -> portfolio in db
         data: [200000, 100000, 400000, 50000, 200000, 50000],
         // set these to the theme colors
-        backgroundColor: ["green", "blue", "red", "yellow", "pink", "purple"],
+        backgroundColor: [
+          "#95f9e3ff",
+          "#69ebd0ff",
+          "#758173ff",
+          "#cb904dff",
+          "#69ebd0ff",
+          "#758173ff",
+        ],
         borderWidth: 1,
         borderColor: "#777",
         hoverBorderWidth: 2,
@@ -35,14 +44,5 @@ const allocationPieChart = new Chart(chartCanvas, {
   },
 });
 
-// const handleChartTypeSelection = (event) => {
-//   const target = event.target;
-
-//   if ($(target).is("button")) {
-//     const data = $(target).attr("data-type");
-//     console.log(data);
-//     return data;
-//   }
-// };
-
-// chartChoiceDiv.on("click", handleChartTypeSelection);
+// $(window).on("load", console.log("window loaded"));
+$(document).ready(console.log("window loaded"));
