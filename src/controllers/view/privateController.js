@@ -33,9 +33,9 @@ const renderDashboard = async (req, res) => {
       portfolio.get({ plain: true })
     );
 
-    console.log(portfolios);
+    // console.log(portfolios);
 
-    return res.render("dashboard", { id });
+    return res.render("dashboard", { id, portfolios });
   } catch (error) {
     logError("Render dashboard", error.message);
     return res
