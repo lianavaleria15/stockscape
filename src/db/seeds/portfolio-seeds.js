@@ -2,33 +2,29 @@ const { Portfolio } = require("../../models");
 
 const portfolioData = [
   {
-    units: 12430,
-    // calculated by stock returns hook
+    name: "My Portfolio 1",
+    user_id: 2,
+  },
 
-    user_id: 1,
+  {
+    name: "Yolo Savings ",
+    user_id: 2,
   },
   {
-    units: 1000,
-    // calculated by stock returns hook
-    // stock_returns: 200000,
-    user_id: 1,
-  },
-  {
-    units: 10000,
-    // calculated by stock returns hook
-    // stock_returns: 2000,
+    name: "My Portfolio 3",
     user_id: 3,
   },
+
   {
-    units: 1050,
-    // calculated by stock returns hook
-    // stock_returns: 20067800,
+    name: "Yolo Savings 456",
     user_id: 4,
   },
   {
-    units: 50,
-    // calculated by stock returns hook
-    // stock_returns: 7800,
+    name: "My portfolio 6",
+    user_id: 4,
+  },
+  {
+    name: "Retirement",
     user_id: 4,
   },
 ];

@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-// import our database connection from config.js
+
 const sequelize = require("../config/connection");
 
 class Portfolio extends Model {}
@@ -9,6 +9,10 @@ const schema = {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
+    allowNull: false,
+  },
+  name: {
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   user_id: {
