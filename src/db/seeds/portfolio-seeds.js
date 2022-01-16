@@ -4,25 +4,31 @@ const portfolioData = [
   {
     units: 12430,
     // calculated by stock returns hook
-    stock_returns: 256000,
+
     user_id: 1,
   },
   {
     units: 1000,
     // calculated by stock returns hook
-    stock_returns: 200000,
-    user_id: 2,
+    // stock_returns: 200000,
+    user_id: 1,
   },
   {
     units: 10000,
     // calculated by stock returns hook
-    stock_returns: 2000,
+    // stock_returns: 2000,
     user_id: 3,
   },
   {
     units: 1050,
     // calculated by stock returns hook
-    stock_returns: 20067800,
+    // stock_returns: 20067800,
+    user_id: 4,
+  },
+  {
+    units: 50,
+    // calculated by stock returns hook
+    // stock_returns: 7800,
     user_id: 4,
   },
 ];

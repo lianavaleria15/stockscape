@@ -33,4 +33,4 @@ const viewEditProfile = (event) => {
 // EVENT LISTENERS
 
 logoutBtn.on("click", handleLogout);
-editProfileBtn.on("click", viewEditProfile);
+viewProfileBtn.on("click", viewEditProfile);

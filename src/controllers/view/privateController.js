@@ -6,22 +6,12 @@ const renderDashboard = async (req, res) => {
     // get logged in user's id
     const { id } = req.session.user;
 
-    // // get user, portfolio, and company info from db
-    // const userDashboardData = await User.findByPk(userId);
-
-    // const userDashboard = userDashboardData.get({ plain: true });
-
-    const portfoliosFromDB = await Portfolio.findAll({
+    // get user and include portfolios and companies through Portfolio Company?
+    const userPortfoliosData = await Portfolio.findAll({
       where: {
         user_id: id,
       },
       include: [
-        {
-          model: User,
-          attributes: {
-            exclude: ["password"],
-          },
-        },
         {
           model: Company,
           through: PortfolioCompany,
@@ -29,13 +19,13 @@ const renderDashboard = async (req, res) => {
       ],
     });
 
-    const portfolios = portfoliosFromDB.map((portfolio) =>
+    const userPortfolios = userPortfoliosData.map((portfolio) =>
       portfolio.get({ plain: true })
     );
 
-    // console.log(portfolios);
+    console.log(userPortfolios);
 
-    return res.render("dashboard", { id, portfolios });
+    return res.render("dashboard", { id, userPortfolios });
   } catch (error) {
     logError("Render dashboard", error.message);
     return res
