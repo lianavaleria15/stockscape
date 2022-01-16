@@ -16,3 +16,13 @@ const renderStockInfoModal = (event) => {
 companiesContainer.on("click", renderStockInfoModal);
 
 //event listener on company modal
+const addCompanyToBasket = (event) => {
+  const target = event.target;
+
+  if ($(target).is("#added-to-basket")) {
+    //relocate to edit-portfolio page
+  }
+};
+
+//event on modal to add to stockbasket
+companyModal.on("click", addCompanyToBasket);
