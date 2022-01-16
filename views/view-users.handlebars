@@ -6,8 +6,17 @@
   {{/if}}
 </header>
 <main>
+  <div class="input-group d-flex flex-wrap mx-4 mt-3 mb-5">
   <h1 class="h1 text-center mb-2" style="color: white;">Users</h1>
-  <div id="companies-container" class="d-flex flex-wrap justify-content-center mx-4 mt-3 mb-5">
+  <div class="form-outline">
+    <input id="search-input" placeholder="Search Investor" type="search" id="form1" class="form-control" />
+    <label class="form-label"  for="form1">Search</label>
+  </div>
+  <button id="search-button" type="button" class="btn btn-primary">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+  <div id="users-container" class="d-flex flex-column flex-wrap justify-content-center mx-4 mt-3 mb-5">
   {{#each users}}
   {{> user-card}}
   {{/each}}
