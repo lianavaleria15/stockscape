@@ -7,6 +7,7 @@ const userData = [
     password: "Password123!",
     username: "lianavaleria15",
     email: "liana@email.com",
+    investor_type: 1,
     favourite_company: 3,
   },
   {
@@ -15,6 +16,7 @@ const userData = [
     password: "Password123!",
     username: "kayleriegerpatton",
     email: "kayle@email.com",
+    investor_type: 2,
     favourite_company: 5,
   },
   {
@@ -23,6 +25,7 @@ const userData = [
     password: "Password123!",
     username: "conorKELLY",
     email: "conor@email.com",
+    investor_type: 3,
     favourite_company: 7,
   },
   {
