@@ -3,7 +3,7 @@
 </header>
 <main>
     <div class="dash-cards-container d-flex flex-wrap justify-content-center">
-        <div class="card m-4" style="width: 45rem;">
+        <div class="card m-4" style="width: 36rem;">
             <div class="card-header h4">
                 Account Info
             </div>
@@ -12,7 +12,16 @@
                 <button id="{{id}}" name="view-profile-btn" class="btn btn-primary">View Profile</button>
             </div>
         </div>
-        <div class="card m-4" style="width: 45rem;">
+        <div class="card m-4" style="width: 36rem;">
+            <div class="card-header h4">
+                Your Current Top Portfolio(pie)?
+            </div>
+            <div class="card-body">
+                <p class="card-text">Pull user's portfolio data with associated companies through PortfolioCompany, render chart with highest return value</p>
+                {{>allocation-chart}}
+            </div>
+        </div>
+        <div class="card m-4" style="width: 36rem;">
             <div class="card-header h4">
                 Top Stockscape Portfolios (bar)
             </div>
@@ -23,14 +32,6 @@
                 </canvas>
             </div>
         </div>
-        <div class="card m-4" style="width: 45rem;">
-            <div class="card-header h4">
-                Your Current Top Portfolio(pie)?
-            </div>
-            <div class="card-body">
-                <p class="card-text">Pull user's portfolio data with associated companies through PortfolioCompany, render chart with highest return value</p>
-                {{>allocation-chart}}
-            </div>
-        </div>
+        
     </div>
 </main>

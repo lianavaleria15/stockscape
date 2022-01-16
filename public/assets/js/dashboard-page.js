@@ -45,4 +45,3 @@ const allocationPieChart = new Chart(chartCanvas, {
 });
 
 $(document).ready(allocationPieChart);
-$(document).ready(console.log("window loaded"));
