@@ -111,22 +111,30 @@ const renderCreateMyPortfolio = async (req, res) => {
 
 const renderUserList = async (req, res) => {
   try {
-    // get companies from db
+    // get logged in user's id
+
+    // get users & companies from db
     const usersFromDB = await User.findAll();
+    const companiesFromDB = await Company.findAll();
 
     // map through companies to get plain data
     const users = usersFromDB.map((user) => {
       return user.get({ plain: true });
     });
 
-    console.log(users);
+    // for fave company list
+    const companies = companiesFromDB.map((company) =>
+      company.get({ plain: true })
+    );
 
-    res.render("view-users", { users });
+    console.log(companies);
+
+    res.render("view-users", { users, companies });
   } catch (error) {
     logError("Render companies", error.message);
     return res
       .status(500)
-      .json({ success: false, error: "Failed to render companies." });
+      .json({ success: false, error: "Failed to user list companies." });
   }
 };
 
