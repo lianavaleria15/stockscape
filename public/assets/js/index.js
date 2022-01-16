@@ -2,7 +2,7 @@
 const logoutBtn = $("#logout-btn");
 
 // For USER interactions
-const editProfileBtn = $("[name='edit-profile-btn']");
+const viewProfileBtn = $("[name='view-profile-btn']");
 
 const handleLogout = async () => {
   const response = await fetch("/auth/logout", {
