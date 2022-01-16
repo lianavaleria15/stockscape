@@ -1,0 +1,15 @@
+<header>
+   {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<main>
+  <h1 class="h1 text-center mb-2" style="color: white;">Users</h1>
+  <div id="companies-container" class="d-flex flex-wrap justify-content-center mx-4 mt-3 mb-5">
+  {{#each users}}
+  {{> user-card}}
+  {{/each}}
+  </div>
+</main>
