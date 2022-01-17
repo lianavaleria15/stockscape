@@ -1,6 +1,10 @@
 const { User, Portfolio, Company, PortfolioCompany } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+// Sequelize is required to access operators
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 const renderDashboard = async (req, res) => {
   try {
     // get logged in user's id
@@ -141,7 +145,16 @@ const renderCreateMyPortfolio = async (req, res) => {
 
 const renderUserList = async (req, res) => {
   try {
-    const userFromDB = await User.findAll();
+    const { id } = req.session.user;
+    console.log(id);
+
+    const userFromDB = await User.findAll({
+      where: {
+        id: {
+          [Op.ne]: 2,
+        },
+      },
+    });
     const companiesFromDB = await Company.findAll();
 
     const user = userFromDB.map((user) => user.get({ plain: true }));
