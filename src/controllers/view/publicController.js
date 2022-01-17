@@ -1,6 +1,7 @@
-const { User, InvestmentProfile, Company } = require("../../models");
+const { User, Portfolio, Company } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+// /sign-up
 const renderSignUp = (req, res) => {
   try {
     res.render("sign-up");
@@ -12,6 +13,7 @@ const renderSignUp = (req, res) => {
   }
 };
 
+// /login
 const renderLogin = (req, res) => {
   try {
     res.render("login");
@@ -23,9 +25,12 @@ const renderLogin = (req, res) => {
   }
 };
 
+// /*
 const renderHomepage = (req, res) => {
   try {
-    res.render("homepage", { loggedIn: req.session.loggedIn });
+    const { loggedIn } = req.session;
+    // pass loggedIn to render private/public navbar
+    res.render("homepage", { loggedIn });
   } catch (error) {
     logError("Render homepage", error.message);
     return res
@@ -34,9 +39,12 @@ const renderHomepage = (req, res) => {
   }
 };
 
+// /about-us
 const renderAboutUs = (req, res) => {
   try {
-    res.render("about-us");
+    const { loggedIn } = req.session;
+    // pass loggedIn to render private/public navbar
+    res.render("about-us", { loggedIn });
   } catch (error) {
     logError("Render about-us", error.message);
     return res
@@ -45,19 +53,23 @@ const renderAboutUs = (req, res) => {
   }
 };
 
+// /companies
 const renderCompanies = async (req, res) => {
   try {
     const { loggedIn } = req.session;
 
-    // get companies from db
     const companyData = await Company.findAll();
 
-    // map through companies to get plain data
     const companies = companyData.map((company) => {
       return company.get({ plain: true });
     });
 
+<<<<<<< HEAD
     res.render("companies", { companies, loggedIn: "foo bar" });
+=======
+    // pass companies data & loggedIn to render private/public navbar
+    res.render("companies", { companies, loggedIn });
+>>>>>>> main
   } catch (error) {
     logError("Render companies", error.message);
     return res
@@ -66,6 +78,7 @@ const renderCompanies = async (req, res) => {
   }
 };
 
+// /user/:id
 const renderUserProfile = async (req, res) => {
   try {
     const userSessionInfo = req.session;
@@ -74,7 +87,7 @@ const renderUserProfile = async (req, res) => {
 
     // get user, portfolio, and company info from db
     const userProfileData = await User.findByPk(req.params.id, {
-      include: [{ model: InvestmentProfile, include: Company }],
+      include: [{ model: Portfolio, include: Company }],
     });
 
     if (!userProfileData) {

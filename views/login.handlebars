@@ -1,4 +1,10 @@
-<form id="login-form" class="bg-light" style="background-color: #f8f9fa;">
+<header>
+  {{> public-navbar}}
+</header>
+<main>
+  <div id="login-form-container" class="d-flex justify-content-center">
+    <form id="login-form" class="mx-4 my-5 p-3 rounded bg-light" style="min-width: 18rem;">
+    <h2 class="mb-3">Log In</h2>
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
     <input type="text" class="form-control" id="username" />
@@ -13,3 +19,5 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 {{> doesnt-exist-modal}}
 </form>
+  </div>
+</main>

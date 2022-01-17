@@ -1,14 +1,15 @@
 // IMPORTS
-const { User, InvestmentProfile } = require("../../models");
+const { User, Portfolio } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+// /api/portfolios
 const addPortfolio = async (req, res) => {
   try {
     const { company, units } = req.body;
 
-    // check request body contents
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
     if (company && units) {
-      await InvestmentProfile.create({
+      await Portfolio.create({
         company,
         units,
         user_id: req.session.user.id,
@@ -33,16 +34,17 @@ const addPortfolio = async (req, res) => {
   }
 };
 
+// /api/portfolios/:id
 const updatePortfolio = async (req, res) => {
   try {
-    // get payload
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
     const { company, units, id } = req.body;
     const { userId } = req.session.user;
 
     // check for portfolio in db
-    const investmentPortfolioId = await InvestmentProfile.findByPk(id);
+    const investmentPortfolioId = await Portfolio.findByPk(id);
     if (investmentPortfolioId) {
-      await InvestmentProfile.update(
+      await Portfolio.update(
         { company, units, user_id: userId },
         {
           where: {
@@ -68,10 +70,11 @@ const updatePortfolio = async (req, res) => {
   }
 };
 
+// /api/portfolios/:id
 const deletePortfolio = async (req, res) => {
   try {
-    // delete portfolio by its `id` value
-    await InvestmentProfile.destroy({
+    // delete portfolio by id
+    await Portfolio.destroy({
       where: {
         id: req.params.id,
       },

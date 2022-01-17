@@ -17,7 +17,8 @@ router.get("/:id/profile/edit", renderEditMyProfile);
 
 router.get("/:id/portfolio/create", renderCreateMyPortfolio);
 
-router.get("/portfolio/:id/edit/", renderEditMyPortfolio);
+// should this become '/:userid/portfolio/:portfolioid/edit' now that users can have more than 1 portfolio?
+router.get("/portfolio/:id/edit", renderEditMyPortfolio);
 
 //check with team if this is different to dashboard=leaderboard
 router.get("/stockbasket", renderStockBasket);

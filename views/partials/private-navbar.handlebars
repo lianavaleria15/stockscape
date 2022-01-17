@@ -3,14 +3,13 @@
   style="background-color: #241e4eff;"
 >
   <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-      <img
-        src="https://via.placeholder.com/30x24"
+    {{! LOGO }}
+    <a class="navbar-brand" href="/"><img
+        src="/assets/images/logo-dark.jpg"
         alt="Stockscape logo"
-        width="30"
-        height="24"
-      />
-    <a class="navbar-brand" href="/">Stockscape</a>
+        width="152.95"
+        height="52.25"
+      /></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -24,8 +23,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0 flex-nowrap">
- <li class="nav-item mx-1">
-          <a class="nav-link ps-1" style="color: white;" href="/about-us">About</a>
+        <li class="nav-item mx-1">
+          <a
+            class="nav-link ps-1"
+            style="color: white;"
+            href="/about-us"
+          >About</a>
+        </li>
+        <li class="nav-item mx-1">
+          <a
+            class="nav-link ps-2"
+            style="color: white;"
+            href="/companies"
+          >Stocks</a>
+        </li>
+        <li class="nav-item mx-1">
+          <a
+            class="nav-link ps-1"
+            style="color: white;"
+            href="/dashboard"
+          >Dashboard</a>
         </li>
         <li class="nav-item mx-1">
           <button
@@ -35,7 +52,7 @@
             style="color: white;"
           >Logout</button>
         </li>
-       
+
         <li class="nav-item mx-1">
           <a
             class="nav-link active signup-link ps-2 py-1 mt-1"

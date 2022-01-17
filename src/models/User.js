@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
-const { hashPassword } = require("../hooks/hooks");
 
+const { hashPassword } = require("../hooks/hooks");
 const sequelize = require("../config/connection.js");
 
 const schema = {
@@ -11,7 +11,6 @@ const schema = {
     autoIncrement: true,
     allowNull: false,
   },
-
   firstName: { type: DataTypes.STRING, allowNull: false },
   lastName: { type: DataTypes.STRING, allowNull: false },
   password: {
@@ -37,20 +36,25 @@ const schema = {
     unique: true,
     allowNull: false,
   },
-  score: {
-    type: DataTypes.DECIMAL,
-    allowNull: true,
-  },
   bio: {
     type: DataTypes.STRING,
     allowNull: true,
   },
   investor_type: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM({
+      values: [
+        "Yolo Life Savings",
+        "Weekend Investor",
+        "Play it safe",
+        "r/WallStreetBets Graduate",
+        "Jamie Dimonhands",
+      ],
+    }),
     allowNull: true,
+    defaultValue: "Yolo Life Savings",
   },
   favourite_company: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
 };

@@ -1,35 +1,40 @@
 // IMPORTS
-const { User, InvestmentProfile } = require("../../models");
+const { User, Portfolio } = require("../../models");
 const { logError } = require("../../helpers/utils");
+
+const isUsernameUnique = (username) => {
+  return User.count({ where: { username: username } }).then((count) => {
+    if (count != 0) {
+      return "Username already exists";
+    }
+    return true && "username does not exist";
+  });
+};
 
 const updateUser = async (req, res) => {
   try {
-    // get payload and user id
-    const {
-      email,
-      password,
-      username,
-      firstName,
-      lastName,
-      bio,
-      investorType,
-      faveCompany,
-    } = req.body;
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
+    const { username, bio, investor_type, favourite_company } = req.body;
+
     const { id } = req.session.user;
 
-    // check fo user in db
+    // function to check if the username exists
+    const usernameCheck = await isUsernameUnique(username);
+    console.log(usernameCheck);
+
+    // if the username attempted already exists and it does not match the id of req.session.user
+    // then do not update the username
+
+    // check for user in db
     const userId = await User.findByPk(id);
+
     if (userId) {
       await User.update(
         {
-          email,
-          password,
           username,
-          first_name: firstName,
-          last_name: lastName,
           bio,
-          investor_type: investorType,
-          favourite_company: faveCompany,
+          investor_type,
+          favourite_company,
         },
         {
           where: {
@@ -54,6 +59,7 @@ const updateUser = async (req, res) => {
   }
 };
 
+// /api/users/:id
 const deleteUser = async (req, res) => {
   try {
     await User.destroy({

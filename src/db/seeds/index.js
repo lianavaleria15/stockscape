@@ -1,31 +1,26 @@
-// Internal imports
+// IMPORTS
 const seedUsers = require("./user-seeds");
 const seedCompanies = require("./company-seeds");
-const seedInvestmentProfiles = require("./investment-profile-seeds");
+const seedPortfolio = require("./portfolio-seeds");
+const seedPortfolioCompany = require("./portfolio-company-seeds");
 const sequelize = require("../../config/connection");
 
-// external imports
-// const colors = require("colors");
-
-// colors.setTheme({
-//   success: ["bgGreen", "black"],
-//   warning: ["bgBrightYellow", "black", "bold"],
-//   fail: ["bgRed", "white", "bold"],
-//   message: ["bgWhite", "black"],
-// });
-
+// seed all models
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log("\n----- Database synced -----\n");
 
-  await seedUsers();
-  console.log("\n----- Users seeded -----\n");
-
   await seedCompanies();
   console.log("\n----- Companies seeded -----\n");
 
-  await seedInvestmentProfiles();
-  console.log("\n----- Investments seeded -----\n");
+  await seedUsers();
+  console.log("\n----- Users seeded -----\n");
+
+  await seedPortfolio();
+  console.log("\n----- Portfolios seeded -----\n");
+
+  await seedPortfolioCompany();
+  console.log("\n----- PortfolioCompany seeded -----\n");
 
   process.exit(0);
 };
