@@ -33,9 +33,25 @@ const renderDashboard = async (req, res) => {
       portfolio.get({ plain: true })
     );
 
-    console.log(portfolios);
+    const portfoliosMap = portfolios.map((portfolio) => {
+      return {
+        portfolioName: portfolio.name,
+        companies: portfolio.companies.map((company) => {
+          const stockReturn = company.decPrice * company.portfolioCompany.units;
 
-    return res.render("dashboard", { id });
+          return {
+            id: company.id,
+            name: company.name,
+            symbol: company.symbol,
+            stockReturn,
+          };
+        }),
+      };
+    });
+
+    console.log(portfoliosMap[0].companies);
+
+    return res.render("dashboard", { id, portfolios });
   } catch (error) {
     logError("Render dashboard", error.message);
     return res

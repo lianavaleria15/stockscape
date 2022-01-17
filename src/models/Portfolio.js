@@ -1,8 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
-// import our database connection from config.js
+
 const sequelize = require("../config/connection");
 
-// Initialize Product model (table) by extending off Sequelize's Model class
 class Portfolio extends Model {}
 
 const schema = {
@@ -10,6 +9,10 @@ const schema = {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
+    allowNull: false,
+  },
+  name: {
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   user_id: {
@@ -20,9 +23,6 @@ const schema = {
     },
     allowNull: true,
   },
-  units: { type: DataTypes.INTEGER, allowNull: false },
-  // hook required
-  stock_returns: { type: DataTypes.DECIMAL(20, 2), allowNull: true },
 };
 
 const options = {
