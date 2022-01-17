@@ -1,9 +1,6 @@
 //get view more btn
 const companiesContainer = $("#companies-container");
 
-//get company modal
-const companyModal = $("#company-card-modal");
-
 const renderStockInfoModal = (event) => {
   const target = event.target;
 
@@ -20,16 +17,26 @@ const renderPortfolioPage = () => {
 
 //event listener on company modal
 const addCompanyToBasket = (event) => {
-  const target = event.target;
+  event.preventDefault();
 
-  if ($(target).is("#added-to-basket")) {
-    //relocate to edit-portfolio page
-    renderPortfolioPage();
-  }
+  const numberShares = $("#number-shares").val();
+
+  const portfolioName = $("#portfolio-name option:selected").val();
+
+  const portfolioId = $("#portfolio-name option:selected").attr("id");
+
+  const companyName = $("#company-name").text();
+  console.log(companyName);
+
+  const basketData = { companyName, numberShares };
+
+  //initialise LS with portdfolioName
+  //add to ls
+  //portfolio name key to LS, value array of objects with (company name, nr shares)
 };
 
 //event on view more btn
 companiesContainer.on("click", renderStockInfoModal);
 
 //event on modal to add to stockbasket
-companyModal.on("click", addCompanyToBasket);
+$("#added-to-basket").on("submit", addCompanyToBasket);

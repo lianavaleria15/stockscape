@@ -8,7 +8,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-success text-white">
-        <h5 class="modal-title">{{name}}</h5>
+        <h5 class="modal-title" id="company-name">{{name}}</h5>
         <button
           type="button"
           class="btn-close"
@@ -22,7 +22,7 @@
         <p>January 2021 share price: <span>${{janPrice}}</span></p>
         <p>{{company_summary}}</p>
       </div>
-      <form action="" id="add-to-basket">
+      <form action="" id="added-to-basket">
         <div class="modal-footer d-flex justify-content-between">
           <div>
             <label for="number-shares"> Number of shares:</label>
@@ -33,15 +33,15 @@
 
             <select name="portfolio-name" id="portfolio-name">
               {{#each parent.portfolios}}
-                <option id={{id}} value={{name}}>{{name}}</option>
+                <option id={{id}} value="{{name}}">{{name}}</option>
               {{/each}}
 
             </select>
           </div>
           <div>
             <button
-              id="added-to-basket"
-              type="button"
+              id="basket-submit"
+              type="submit"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >Add to portfolio</button>
