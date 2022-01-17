@@ -146,7 +146,6 @@ const renderCreateMyPortfolio = async (req, res) => {
 const renderUserList = async (req, res) => {
   try {
     const { id } = req.session.user;
-    console.log(id);
 
     const userFromDB = await User.findAll({
       where: {
