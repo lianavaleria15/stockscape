@@ -22,20 +22,34 @@
         <p>January 2021 share price: <span>${{janPrice}}</span></p>
         <p>{{company_summary}}</p>
       </div>
-      <div class="modal-footer">
-        <button
-          id="close-modal"
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Close</button>
-        <button
-          id="added-to-basket"
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Add to basket</button>
-      </div>
+      <form action="" id="add-to-basket">
+        <div class="modal-footer d-flex justify-content-between">
+          <div>
+            <label for="number-shares"> Number of shares:</label>
+            <input type="text" name="" id="number-shares" />
+          </div>
+          <div>
+            <label for="portfolio-name">Select a portfolio:</label>
+
+            <select name="portfolio-name" id="portfolio-name">
+              {{#each parent.portfolios}}
+                <option id={{id}} value={{name}}>{{name}}</option>
+              {{/each}}
+
+            </select>
+          </div>
+          <div>
+            <button
+              id="added-to-basket"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >Add to portfolio</button>
+          </div>
+
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
