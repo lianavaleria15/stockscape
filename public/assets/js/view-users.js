@@ -1,16 +1,12 @@
 // For USER interactions
-console.log("Connected");
-const viewUserProfileBtn = $("[name='view-profile-btn']");
+const viewUserProfileBtn = $("[name='view-userprofile-btn']");
 const usernameSearchForm = $("#username-search-form");
 
 const viewUserProfile = (event) => {
   event.preventDefault();
-  console.log("click");
 
-  // get user id from session
+  // get user id from user card
   const userId = event.currentTarget.id;
-
-  console.log(userId);
 
   window.location.replace(`/users/${userId}`);
 };

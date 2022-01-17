@@ -155,14 +155,15 @@ const renderUserList = async (req, res) => {
       companies.get({ plain: true })
     );
 
-    let userFavCompany = user.map((user) => {
-      let favCompanyList = favourite_company.find(
-        (element) => element.id === user.favourite_company
-      );
-      return { ...user, ...favCompanyList };
-    });
+    // CK Issue = this is causing the userID to change to match the favourite ID instead of matching userID's favourite company with a company in the database
+    // const userFavCompany = user.map((user) => {
+    //   let favCompanyList = favourite_company.find(
+    //     (element) => element.id === user.favourite_company
+    //   );
+    //   return { ...user, ...favCompanyList };
+    // });
 
-    res.render("view-users", { userFavCompany });
+    res.render("view-users", { user, favourite_company });
   } catch (error) {
     logError("Render companies", error.message);
     return res
