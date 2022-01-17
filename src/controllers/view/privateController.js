@@ -10,11 +10,6 @@ const renderDashboard = async (req, res) => {
     // get logged in user's id
     const { id } = req.session.user;
 
-    // // get user, portfolio, and company info from db
-    // const userDashboardData = await User.findByPk(userId);
-
-    // const userDashboard = userDashboardData.get({ plain: true });
-
     const portfoliosFromDB = await Portfolio.findAll({
       where: {
         user_id: id,
@@ -76,7 +71,6 @@ const renderEditMyProfile = async (req, res) => {
       include: [{ model: Portfolio }],
     });
 
-    // const userProfileData = userProfile.get({ plain: true });
     const companies = companiesFromDB.map((company) =>
       company.get({ plain: true })
     );
@@ -150,7 +144,7 @@ const renderUserList = async (req, res) => {
     const userFromDB = await User.findAll({
       where: {
         id: {
-          [Op.ne]: 2,
+          [Op.ne]: id,
         },
       },
     });
@@ -167,8 +161,6 @@ const renderUserList = async (req, res) => {
       );
       return { ...user, ...favCompanyList };
     });
-
-    console.log(userFavCompany);
 
     res.render("view-users", { userFavCompany });
   } catch (error) {
