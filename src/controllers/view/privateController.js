@@ -65,8 +65,6 @@ const renderEditMyProfile = async (req, res) => {
     // get logged in user's id
     const { id } = req.session.user;
 
-    // get user, portfolio, and company info from db
-
     // for fave company list
     const companiesFromDB = await Company.findAll();
     // get the user's portfolio
@@ -74,16 +72,12 @@ const renderEditMyProfile = async (req, res) => {
       include: [{ model: Portfolio }],
     });
 
-    // get plain data
     // const userProfileData = userProfile.get({ plain: true });
     const companies = companiesFromDB.map((company) =>
       company.get({ plain: true })
     );
-    // const userPortfolio = userPortfolioData.map((portfolio) =>
-    //   portfolio.get({ plain: true })
-    // );
+
     const userPortfolio = userPortfolioData.get({ plain: true });
-    console.log("USER PORTFOLIO", userPortfolio);
 
     return res.render("edit-profile", {
       user: userPortfolio,
@@ -147,28 +141,29 @@ const renderCreateMyPortfolio = async (req, res) => {
 
 const renderUserList = async (req, res) => {
   try {
-    // get logged in user's id
-
-    // get users & companies from db
-    const usersFromDB = await User.findAll();
+    const userFromDB = await User.findAll();
     const companiesFromDB = await Company.findAll();
 
-    // map through companies to get plain data
-    const users = usersFromDB.map((user) => {
-      return user.get({ plain: true });
-    });
-
-    // for fave company list
-    const companies = companiesFromDB.map((company) =>
-      company.get({ plain: true })
+    const user = userFromDB.map((user) => user.get({ plain: true }));
+    const favourite_company = companiesFromDB.map((companies) =>
+      companies.get({ plain: true })
     );
 
-    res.render("view-users", { users, companies });
+    let userFavCompany = user.map((user) => {
+      let favCompanyList = favourite_company.find(
+        (element) => element.id === user.favourite_company
+      );
+      return { ...user, ...favCompanyList };
+    });
+
+    console.log(userFavCompany);
+
+    res.render("view-users", { userFavCompany });
   } catch (error) {
     logError("Render companies", error.message);
     return res
       .status(500)
-      .json({ success: false, error: "Failed to user list companies." });
+      .json({ success: false, error: "Failed to render all users." });
   }
 };
 
