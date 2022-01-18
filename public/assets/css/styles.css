@@ -40,10 +40,18 @@ body {
   padding: 10px;
 }
 
-.github-links {
-  background-color: var(--darkest);
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
 }
-
 @media screen and (min-width: 768px) {
   .navbar-brand.abs {
     position: absolute;
