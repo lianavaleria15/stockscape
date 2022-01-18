@@ -38,41 +38,37 @@ const allocationChartCard = $("[name='allocation-chart-card']");
 
 // const leaderboardChart = new Chart(leaderboardCanvas, leaderboardChartOptions);
 
-// // make POST request to our api in order to get the user portfolio data
-// const getAllocationChartData = async (event) => {
-//   event.preventDefault();
-
-//   // how do we get user id to pass to api request?
-//   // const userId = ;
-
-//   const userAllocationChartResponse = await fetch(
-//     `/api/users/${userId}/dashboard`,
-//     {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       // what do we pass in post body??
-//       body: JSON.stringify({}),
-//     }
-//   );
-
-//   const allocationChartData = await response.json();
-
-//   // IS THIS NEEDED? API is only called when user logins in to their account and hits /dashboard endpoint
-//   if (data.error === "User does not exist.") {
-//     // render some error if user id doesn't exist?
-//   }
-
-//   if (data.success) {
-//     renderAllocationChart(allocationChartData);
-//   }
-// };
-
-const renderAllocationChart = (event) => {
+// make POST request to our api in order to get the user portfolio data
+const getAllocationChartData = async (event) => {
   const id = event.currentTarget.id;
 
-  console.log(`renderAllocationChart fn hit with id ${id}`);
+  const userAllocationChartResponse = await fetch(
+    `/api/users/${id}/dashboard`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    }
+  );
+
+  const allocationChartData = await userAllocationChartResponse.json();
+
+  if (allocationChartData.error === "Failed to get user dashboard data.") {
+    // * render some error if user dashboard data doesn't return?
+  }
+
+  if (allocationChartData.success) {
+    console.log("data retrieved:", allocationChartData);
+
+    renderAllocationChart(allocationChartData);
+  }
+};
+
+// pass api data object to this function
+const renderAllocationChart = (data) => {
+  console.log("renderAllocationChart fn, data:", data);
 
   //    transform data pie chart options config
   const allocationChartOptions = {
@@ -110,5 +106,5 @@ const renderAllocationChart = (event) => {
   );
 };
 
-allocationChartCard.on("click", renderAllocationChart);
+allocationChartCard.on("click", getAllocationChartData);
 $(document).ready(console.log("window ready"));

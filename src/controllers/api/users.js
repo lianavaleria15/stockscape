@@ -1,6 +1,9 @@
 // IMPORTS
-const { User, Portfolio } = require("../../models");
-const { logError } = require("../../helpers/utils");
+const { User, Portfolio, Company, PortfolioCompany } = require("../../models");
+const {
+  logError,
+  getPayloadWithValidFieldsOnly,
+} = require("../../helpers/utils");
 
 const isUsernameUnique = (username) => {
   return User.count({ where: { username: username } }).then((count) => {
@@ -81,46 +84,70 @@ const deleteUser = async (req, res) => {
 };
 
 // /api/users/:id/dashboard
-const handleDashboardData = async () => {
-  // get user and include portfolios and companies through PortfolioCompany
-  const userPortfoliosFromDB = await Portfolio.findAll({
-    where: {
-      user_id: id,
-    },
-    include: [
-      {
-        model: Company,
-        through: PortfolioCompany,
+const handleDashboardData = async (req, res) => {
+  try {
+    // check for valid payload?
+    const payload = getPayloadWithValidFieldsOnly(["id"], req.body);
+
+    // if not all payload fields are present, throw error
+    if (Object.keys(payload).length !== 1) {
+      console.log("Didn't receive user id.");
+
+      return res
+        .status(400)
+        .json({ success: false, error: "Please provide the valid fields." });
+    }
+
+    // get user and include portfolios and companies through PortfolioCompany
+    const userPortfoliosFromDB = await Portfolio.findAll({
+      where: {
+        user_id: payload.id,
       },
-    ],
-  });
+      include: [
+        {
+          model: Company,
+          through: PortfolioCompany,
+        },
+      ],
+    });
 
-  // map to get plain data
-  const userPortfoliosData = userPortfoliosFromDB.map((portfolio) =>
-    portfolio.get({ plain: true })
-  );
+    // map to get plain data
+    const userPortfoliosData = userPortfoliosFromDB.map((portfolio) =>
+      portfolio.get({ plain: true })
+    );
 
-  // map plain data to get transformed portfolios data object
-  const userPortfolios = userPortfoliosData.map((portfolio) => {
-    return {
-      portfolioName: portfolio.name,
-      companies: portfolio.companies.map((company) => {
-        // calculate company's year end return
-        const stockReturn =
-          company.janPrice * company.portfolioCompany.units * company.gainLoss -
-          company.janPrice * company.portfolioCompany.units;
+    // map plain data to get transformed portfolios data object
+    const userPortfolios = userPortfoliosData.map((portfolio) => {
+      return {
+        portfolioName: portfolio.name,
+        companies: portfolio.companies.map((company) => {
+          // calculate company's year end return
+          const stockReturn =
+            company.janPrice *
+              company.portfolioCompany.units *
+              company.gainLoss -
+            company.janPrice * company.portfolioCompany.units;
 
-        return {
-          id: company.id,
-          name: company.name,
-          symbol: company.symbol,
-          stockReturn,
-        };
-      }),
-    };
-  });
+          return {
+            id: company.id,
+            name: company.name,
+            symbol: company.symbol,
+            stockReturn,
+          };
+        }),
+      };
+    });
 
-  console.log(userPortfolios[0].companies);
+    console.log("handleDashboardData:", userPortfolios);
+
+    return res.json({ success: true, data: userPortfolios });
+  } catch (error) {
+    logError("User portfolio dashboard data", error.message);
+    return res.status(500).json({
+      success: false,
+      error: "Failed to get user dashboard data.",
+    });
+  }
 };
 
 module.exports = { updateUser, deleteUser, handleDashboardData };
