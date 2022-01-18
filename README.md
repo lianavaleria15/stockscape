@@ -29,3 +29,17 @@
 - [Kayle Patton](httpls://github.com/)
 - [Matthew Palmer](https://github.com/tigerbath)
 - [Liana Laurentiu](https://github.com/)
+
+## About The Project
+
+### Technologies Used
+
+### Web APIs
+
+### User Flow
+
+### Wireframes
+
+## Plans For Improvement
+
+## Screenshots
