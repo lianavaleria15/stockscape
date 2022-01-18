@@ -15,9 +15,22 @@ const renderPortfolioPage = () => {
   console.log("hooray");
 };
 
+//initialize local storage
+const initializeLocalStorage = () => {
+  //get portfolios from LS
+  const basketPortfolios = JSON.parse(localStorage.getItem("portfolios")) ?? [];
+
+  //set portfolios to LS
+  localStorage.setItem("portfolios", JSON.stringify(basketPortfolios));
+
+  return basketPortfolios;
+};
+
 //event listener on company modal
-const addCompanyToBasket = (event) => {
+const addCompanyToPortfolio = (event) => {
   event.preventDefault();
+
+  initializeLocalStorage();
 
   const numberShares = $("#number-shares").val();
 
@@ -26,12 +39,15 @@ const addCompanyToBasket = (event) => {
   const portfolioId = $("#portfolio-name option:selected").attr("id");
 
   const companyName = $("#company-name").text();
-  console.log(companyName);
 
-  const basketData = { companyName, numberShares };
+  //store new portfolio data
+  const newPortfolioToBasket = { companyName, numberShares };
 
-  //initialise LS with portdfolioName
-  //add to ls
+  //push new portfolio data to portfolio array
+  basketPortfolios.push(newPortfolioToBasket);
+
+  //add to LS
+  localStorage.setItem("portfolios", JSON.stringify(basketPortfolios));
   //portfolio name key to LS, value array of objects with (company name, nr shares)
 };
 
@@ -39,4 +55,4 @@ const addCompanyToBasket = (event) => {
 companiesContainer.on("click", renderStockInfoModal);
 
 //event on modal to add to stockbasket
-$("#added-to-basket").on("submit", addCompanyToBasket);
+$("#added-to-basket").on("submit", addCompanyToPortfolio);

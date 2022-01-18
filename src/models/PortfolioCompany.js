@@ -28,6 +28,7 @@ const schema = {
     allowNull: true,
   },
   units: { type: DataTypes.INTEGER, allowNull: false },
+  unit_cost: { type: DataTypes.INTEGER, allowNull: false },
 };
 
 const options = {
