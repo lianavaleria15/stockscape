@@ -28,6 +28,7 @@ const schema = {
     allowNull: true,
   },
   units: { type: DataTypes.INTEGER, allowNull: false },
+  //this needs to be populated via the companies model (frontend)
   unit_cost: { type: DataTypes.INTEGER, allowNull: false },
 };
 
