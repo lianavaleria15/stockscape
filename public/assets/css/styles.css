@@ -52,6 +52,13 @@ body {
   transition: all 0.3s;
   font-size: 0.9rem;
 }
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
 @media screen and (min-width: 768px) {
   .navbar-brand.abs {
     position: absolute;
