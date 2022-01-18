@@ -68,7 +68,9 @@ const getAllocationChartData = async (event) => {
 const renderAllocationChart = (data) => {
   console.log("renderAllocationChart fn, data:", data);
 
-  // transform data pie chart options config
+  // transform data pie chart options config:
+  //   find portfolio with highest stockReturns value(maybe do this in controller instead)
+  // map through companies for symbol and stockReturns
 
   const allocationChartOptions = {
     type: "doughnut",
@@ -80,7 +82,7 @@ const renderAllocationChart = (data) => {
         "$GOOGL",
         "$AMZN",
         "$FB",
-        `${data.portfolioName}`,
+        `${data.data[0].portfolioName}`,
       ],
       datasets: [
         {
