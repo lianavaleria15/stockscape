@@ -39,8 +39,9 @@ const allocationChartCard = $("[name='allocation-chart-card']");
 // const leaderboardChart = new Chart(leaderboardCanvas, leaderboardChartOptions);
 
 // make POST request to our api in order to get the user portfolio data
-const getAllocationChartData = async (event) => {
-  const id = event.currentTarget.id;
+const getAllocationChartData = async () => {
+  //   console.log("User id:", allocationChartCard.attr('id'));
+  const id = allocationChartCard.attr("id");
 
   const userAllocationChartResponse = await fetch(
     `/api/users/${id}/dashboard`,
@@ -65,30 +66,37 @@ const getAllocationChartData = async (event) => {
 };
 
 // pass api data object to this function
-const renderAllocationChart = (data) => {
+const renderAllocationChart = ({ data }) => {
   console.log("renderAllocationChart fn, data:", data);
 
+  const portfolio = data[0];
+
   // transform data pie chart options config:
-  //   find portfolio with highest stockReturns value(maybe do this in controller instead)
-  // map through companies for symbol and stockReturns
+  //   find portfolio with highest summed stockReturns value(maybe do this in controller instead)
+  // map through portfolios; for each portfolio, return the sum of the items with specific index number within companies array and the stock symbol
+
+  const getCompanyNames = (companies) => {
+    return companies.map((company) => {
+      return company.name;
+    });
+  };
+
+  const getCompanyStockReturns = (companies) => {
+    return companies.map((company) => {
+      return company.stockReturn;
+    });
+  };
 
   const allocationChartOptions = {
     type: "doughnut",
     data: {
       // pull company symbols from user -> portfolio -> company in db
-      labels: [
-        "$TSLA",
-        "$GME",
-        "$GOOGL",
-        "$AMZN",
-        "$FB",
-        `${data.data[0].portfolioName}`,
-      ],
+      labels: getCompanyNames(portfolio.companies),
       datasets: [
         {
           label: "Return Value",
           // pull from user -> portfolio in db
-          data: [200000, 100000, 400000, 50000, 200000, 50000],
+          data: getCompanyStockReturns(portfolio.companies),
           // set these to the theme colors
           backgroundColor: [
             "#95f9e3ff",
@@ -109,7 +117,7 @@ const renderAllocationChart = (data) => {
       // TITLE IS NOT DISPLAYING
       title: {
         display: true,
-        text: `${data.portfolioName} Stock Allocations`,
+        text: `${portfolio.portfolioName} Stock Allocations`,
         fontSize: 25,
       },
     },
@@ -122,5 +130,6 @@ const renderAllocationChart = (data) => {
   );
 };
 
-allocationChartCard.on("click", getAllocationChartData);
-$(document).ready(console.log("window ready"));
+// allocationChartCard.on("click", getAllocationChartData);
+// $(document).load(getAllocationChartData);
+$(window).on("load", getAllocationChartData);

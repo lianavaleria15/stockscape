@@ -138,7 +138,9 @@ const handleDashboardData = async (req, res) => {
       };
     });
 
-    console.log("handleDashboardData:", userPortfolios);
+    console.log("handleDashboardData:", userPortfolios[0].companies);
+
+    // loop through array to total each portfolio's stockReturns values
 
     return res.json({ success: true, data: userPortfolios });
   } catch (error) {
