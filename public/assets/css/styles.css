@@ -59,6 +59,15 @@ body {
   text-decoration: none;
   color: #555;
 }
+
+.page-footer {
+  background-color: var(--darkest);
+}
+
+.fa-github {
+  color: rgb(255, 255, 255);
+}
+
 .input-disabled {
   background-color: #fff !important;
 }
