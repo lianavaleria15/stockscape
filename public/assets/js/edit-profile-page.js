@@ -45,7 +45,7 @@ const updateProfile = async (event) => {
   // display form field errors
   const errors = getErrorsEditProfile({ username, bio });
 
-  renderErrorMessages(errors);
+  renderProfileErrorMessages(errors);
 
   // make PUT request to /api/users
   const response = await fetch(`/api/users/${userId}`, {
