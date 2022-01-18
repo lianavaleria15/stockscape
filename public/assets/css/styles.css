@@ -40,6 +40,10 @@ body {
   padding: 10px;
 }
 
+.github-links {
+  background-color: var(--darkest);
+}
+
 @media screen and (min-width: 768px) {
   .navbar-brand.abs {
     position: absolute;
