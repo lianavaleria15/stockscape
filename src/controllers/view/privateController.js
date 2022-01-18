@@ -29,13 +29,6 @@ const renderDashboard = async (req, res) => {
       return {
         portfolioName: portfolio.name,
         companies: portfolio.companies.map((company) => {
-          // const initialInvestment =
-          //   company.janPrice * company.portfolioCompany.units;
-
-          // const decValue = initialInvestment * company.gainLoss;
-
-          // const stockReturn = decValue - initialInvestment;
-
           // calculate company's year end return
           const stockReturn =
             company.janPrice *
