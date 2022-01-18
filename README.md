@@ -12,3 +12,8 @@
   - [Wireframes](#wireframes)
 - [Plans For Improvement](#plans-for-improvement)
 - [Screenshots](#screenshots)
+
+## Project Link
+
+- [Click here to visit the Github repository](https://github.com/lianavaleria15/stockscape)
+- [Click here to visit deployed application]()
