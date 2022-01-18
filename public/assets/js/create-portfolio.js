@@ -1,6 +1,10 @@
 // TARGET UI ELEMENTS
 const portfolioForm = $("#portfolio-form");
 
+const successModal = $("#success-portfolio");
+
+const goToCompaniesBtn = $("#go-to-companies");
+
 const renderErrorMessages = (errors) => {
   const fields = ["portfolio"];
   fields.forEach((field) => {
@@ -20,7 +24,6 @@ const handleCreatePortfolio = async (event) => {
 
   // get post body from form fields
   const portfolioName = $("#portfolio-title").val();
-  console.log(portfolioName);
 
   // display form field errors
   const errors = getErrorsPortfolio({
@@ -41,7 +44,7 @@ const handleCreatePortfolio = async (event) => {
   const data = await response.json();
 
   if (data.success) {
-    console.log("hooray");
+    $("#success-portfolio").modal("show");
   }
 };
 
@@ -56,4 +59,12 @@ const getErrorsPortfolio = ({ portfolioName }) => {
   return errors;
 };
 
+const goToCompanies = (event) => {
+  event.preventDefault();
+
+  window.location.replace(`/companies`);
+};
+
 portfolioForm.on("submit", handleCreatePortfolio);
+
+goToCompaniesBtn.on("click", goToCompanies);
