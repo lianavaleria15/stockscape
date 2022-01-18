@@ -39,15 +39,10 @@ const handleCreatePortfolio = async (event) => {
   });
 
   const data = await response.json();
-  console.log(data);
 
-  // if (data.error === "Username does not exist.") {
-  //   doesntExistModal.modal("show");
-  // }
-
-  // if (data.success) {
-  //   window.location.replace("/dashboard");
-  // }
+  if (data.success) {
+    console.log("hooray");
+  }
 };
 
 const getErrorsPortfolio = ({ portfolioName }) => {
