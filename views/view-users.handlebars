@@ -1,15 +1,17 @@
 <header>
-   {{#if loggedIn}}
   {{> private-navbar}}
-  {{else}}
-  {{> public-navbar}}
-  {{/if}}
 </header>
 <main>
-  <h1 class="h1 text-center mb-2" style="color: white;">Company Stocks</h1>
-  <div id="companies-container" class="d-flex flex-wrap justify-content-center mx-4 mt-3 mb-5">
-  {{#each companies}}
-  {{> company-card parent=../this}}
+  <div class="input-group flex-column d-flex flex-wrap mx-4 mt-3 mb-5">
+  <h1 class="h1 text-center mb-2" style="color: white;">Users</h1>
+  <form class="d-flex" id="username-search-form">
+        <input class="form-control me-2" type="search" placeholder="Search" id="username" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit" id="username-search">Search</button>
+  </form>
+</div>
+  <div id="users-container" class="d-flex flex-column flex-wrap justify-content-center mx-4 mt-3 mb-5">
+  {{#each user}}
+  {{> user-card parent=../this}}
   {{/each}}
   </div>
 </main>
@@ -27,4 +29,4 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-<script src="/assets/js/companies-page.js"></script>
+<script src="/assets/js/view-users.js"></script>
