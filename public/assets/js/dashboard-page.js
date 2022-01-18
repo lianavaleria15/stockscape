@@ -82,7 +82,14 @@ const renderAllocationChart = (data) => {
           // pull from user -> portfolio in db
           data: [200000, 100000, 400000, 50000, 200000, 50000],
           // set these to the theme colors
-          backgroundColor: ["#95f9e3ff", "#69ebd0ff", "#758173ff", "#cb904dff"],
+          backgroundColor: [
+            "#95f9e3ff",
+            "#69ebd0ff",
+            "#758173ff",
+            "#cb904dff",
+            "#5e47f7",
+            "#241e4eff",
+          ],
           borderWidth: 1,
           borderColor: "#777",
           hoverBorderWidth: 2,
