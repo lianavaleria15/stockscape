@@ -60,8 +60,6 @@ const getAllocationChartData = async (event) => {
   }
 
   if (allocationChartData.success) {
-    console.log("data retrieved:", allocationChartData);
-
     renderAllocationChart(allocationChartData);
   }
 };
@@ -70,12 +68,20 @@ const getAllocationChartData = async (event) => {
 const renderAllocationChart = (data) => {
   console.log("renderAllocationChart fn, data:", data);
 
-  //    transform data pie chart options config
+  // transform data pie chart options config
+
   const allocationChartOptions = {
     type: "doughnut",
     data: {
       // pull company symbols from user -> portfolio -> company in db
-      labels: ["$TSLA", "$GME", "$GOOGL", "$AMZN", "$FB", "$AMC"],
+      labels: [
+        "$TSLA",
+        "$GME",
+        "$GOOGL",
+        "$AMZN",
+        "$FB",
+        `${data.portfolioName}`,
+      ],
       datasets: [
         {
           label: "Return Value",
@@ -98,9 +104,10 @@ const renderAllocationChart = (data) => {
       ],
     },
     options: {
+      // TITLE IS NOT DISPLAYING
       title: {
         display: true,
-        text: "Stock Allocations",
+        text: `${data.portfolioName} Stock Allocations`,
         fontSize: 25,
       },
     },
