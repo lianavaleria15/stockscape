@@ -80,4 +80,47 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { updateUser, deleteUser };
+// /api/users/:id/dashboard
+const handleDashboardData = async () => {
+  // get user and include portfolios and companies through PortfolioCompany
+  const userPortfoliosFromDB = await Portfolio.findAll({
+    where: {
+      user_id: id,
+    },
+    include: [
+      {
+        model: Company,
+        through: PortfolioCompany,
+      },
+    ],
+  });
+
+  // map to get plain data
+  const userPortfoliosData = userPortfoliosFromDB.map((portfolio) =>
+    portfolio.get({ plain: true })
+  );
+
+  // map plain data to get transformed portfolios data object
+  const userPortfolios = userPortfoliosData.map((portfolio) => {
+    return {
+      portfolioName: portfolio.name,
+      companies: portfolio.companies.map((company) => {
+        // calculate company's year end return
+        const stockReturn =
+          company.janPrice * company.portfolioCompany.units * company.gainLoss -
+          company.janPrice * company.portfolioCompany.units;
+
+        return {
+          id: company.id,
+          name: company.name,
+          symbol: company.symbol,
+          stockReturn,
+        };
+      }),
+    };
+  });
+
+  console.log(userPortfolios[0].companies);
+};
+
+module.exports = { updateUser, deleteUser, handleDashboardData };
