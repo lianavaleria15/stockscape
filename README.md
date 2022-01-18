@@ -17,3 +17,15 @@
 
 - [Click here to visit the Github repository](https://github.com/lianavaleria15/stockscape)
 - [Click here to visit deployed application]()
+
+## Getting Started
+
+- Clone the Github Project into your local machine
+- Navigate into the project
+
+## Contributors
+
+- [Conor Kelly](https://github.com/conorjkelly96)
+- [Kayle Patton](httpls://github.com/)
+- [Matthew Palmer](https://github.com/tigerbath)
+- [Liana Laurentiu](https://github.com/)
