@@ -1,47 +1,82 @@
 // target chart elements
 const stockAllocationCanvas = $(".stock-allocation-chart");
-const leaderboardCanvas = $(".leaderboard-graph");
-const allocationChartCard = $("[name='allocation-chart-card']");
+const leaderboardGraphCanvas = $("[name='leaderboard-graph-canvas']");
+const allocationChartCanvas = $("[name='allocation-chart-canvas']");
 
-// const leaderboardChartOptions = {
-//   type: "bar",
-//   data: {
-//     // pull top 10 usernames from db by total portfolio return value, sort highest to lowest
-//     labels: [
-//       "My Portfolio, kayleriegerpatton",
-//       "Retirement Investments, tigerbath",
-//       "YOLO Savings, conorKELLY",
-//       "Play it Safe Stocks, lianavaleria15",
-//     ],
-//     datasets: [
-//       {
-//         label: "Return Value",
-//         // pull from user -> portfolio in db, sort highest to lowest
-//         data: [20100.56, 40000.0, 53400.27, 100.89],
-//         // set these to the theme colors
-//         backgroundColor: ["#95f9e3ff", "#69ebd0ff", "#758173ff", "#cb904dff"],
-//         borderWidth: 1,
-//         borderColor: "#777",
-//         hoverBorderWidth: 2,
-//         // hoverBorderColor: "#000",
-//       },
-//     ],
-//   },
-//   options: {
-//     title: {
-//       display: true,
-//       text: "Stock Allocations",
-//       fontSize: 25,
-//     },
-//   },
-// };
+const getLeaderboardGraphData = async () => {
+  const leaderboardGraphResponse = await fetch("api/portfolios/leaderboard", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }),
+  });
+  const leaderboardGraphData = await leaderboardGraphResponse.json();
 
-// const leaderboardChart = new Chart(leaderboardCanvas, leaderboardChartOptions);
+  if (leaderboardGraphData.error === "Failed to get leaderboard data.") {
+    // * render some error if leaderboard data doesn't return?
+  }
+
+  if (leaderboardGraphData.success) {
+    renderLeaderboardGraph(leaderboardGraphData);
+  }
+};
+
+const renderLeaderboardGraph = ({ data }) => {
+  console.log("renderLeaderboardGraph fn, data:", data);
+
+  const leaderboardChartOptions = {
+    type: "bar",
+    data: {
+      // pull usernames owning the top 10 highest yearEndReturn companies, sort highest to lowest
+      labels: [
+        "My Portfolio, kayleriegerpatton",
+        "Retirement Investments, tigerbath",
+        "YOLO Savings, conorKELLY",
+        "Play it Safe Stocks, lianavaleria15",
+      ],
+      datasets: [
+        {
+          label: "Return Value",
+          // pull from user -> portfolio in db, sort highest to lowest
+          data: [20100.56, 40000.0, 53400.27, 100.89],
+
+          backgroundColor: [
+            "#95f9e3ff",
+            "#69ebd0ff",
+            "#758173ff",
+            "#cb904dff",
+            "#5e47f7",
+            "#241e4eff",
+          ],
+          borderWidth: 1,
+          borderColor: "#777",
+          hoverBorderWidth: 2,
+        },
+      ],
+    },
+    // options: {
+    //   plugins: {
+    //     title: {
+    //       display: true,
+    //       text: `${portfolio.portfolioName} Stock Allocations`,
+    //       font: {
+    //         size: 25,
+    //       },
+    //     },
+    //   },
+    // },
+  };
+
+  const leaderboardChart = new Chart(
+    leaderboardCanvas,
+    leaderboardChartOptions
+  );
+};
 
 // make POST request to our api in order to get the user portfolio data
 const getAllocationChartData = async () => {
-  //   console.log("User id:", allocationChartCard.attr('id'));
-  const id = allocationChartCard.attr("id");
+  const id = allocationChartCanvas.attr("id");
 
   const userAllocationChartResponse = await fetch(
     `/api/users/${id}/dashboard`,
@@ -69,11 +104,9 @@ const getAllocationChartData = async () => {
 const renderAllocationChart = ({ data }) => {
   console.log("renderAllocationChart fn, data:", data);
 
-  const portfolio = data[0];
+  //   find portfolio with highest summed stockReturns value(maybe do this in controller instead?)
 
-  // transform data pie chart options config:
-  //   find portfolio with highest summed stockReturns value(maybe do this in controller instead)
-  // map through portfolios; for each portfolio, return the sum of the items with specific index number within companies array and the stock symbol
+  const portfolio = data[0];
 
   const getCompanySymbols = (companies) => {
     return companies.map((company) => {
@@ -130,6 +163,5 @@ const renderAllocationChart = ({ data }) => {
   );
 };
 
-// allocationChartCard.on("click", getAllocationChartData);
-// $(document).load(getAllocationChartData);
 $(window).on("load", getAllocationChartData);
+$(window).on("load", renderLeaderboardGraph);

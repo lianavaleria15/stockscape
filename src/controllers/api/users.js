@@ -86,13 +86,10 @@ const deleteUser = async (req, res) => {
 // /api/users/:id/dashboard
 const handleDashboardData = async (req, res) => {
   try {
-    // check for valid payload?
     const payload = getPayloadWithValidFieldsOnly(["id"], req.body);
 
     // if not all payload fields are present, throw error
     if (Object.keys(payload).length !== 1) {
-      console.log("Didn't receive user id.");
-
       return res
         .status(400)
         .json({ success: false, error: "Please provide the valid fields." });

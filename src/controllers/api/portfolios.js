@@ -1,6 +1,9 @@
 // IMPORTS
-const { User, Portfolio } = require("../../models");
-const { logError } = require("../../helpers/utils");
+const { User, Portfolio, Company, PortfolioCompany } = require("../../models");
+const {
+  logError,
+  getPayloadWithValidFieldsOnly,
+} = require("../../helpers/utils");
 
 // /api/portfolios
 const addPortfolio = async (req, res) => {
@@ -92,8 +95,40 @@ const deletePortfolio = async (req, res) => {
   }
 };
 
+// /api/portfolios/leaderboard
+const handleLeaderBoardData = async (req, res) => {
+  try {
+    const payload = getPayloadWithValidFieldsOnly(["id"], req.body);
+
+    // if not all payload fields are present, throw error
+    if (Object.keys(payload).length !== 1) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Please provide the valid fields." });
+    }
+
+    // get all portfolios(for name) + company(for stockReturns) + users(for username)
+    const portfoliosFromDB = await Portfolio.findAll({
+      include: [{ model: Company, through: PortfolioCompany }, { model: User }],
+    });
+
+    console.log(portfoliosFromDB);
+
+    // map to get plain data
+
+    return res.json({ success: true, data: leaderboardData });
+  } catch (error) {
+    logError("Leaderboard data", error.message);
+    return res.status(500).json({
+      success: false,
+      error: "Failed to get leaderboard data.",
+    });
+  }
+};
+
 module.exports = {
   addPortfolio,
   updatePortfolio,
   deletePortfolio,
+  handleLeaderBoardData,
 };
