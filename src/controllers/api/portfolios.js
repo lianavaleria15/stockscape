@@ -10,7 +10,7 @@ const addPortfolio = async (req, res) => {
   try {
     const userId = req.session.user.id;
     const { portfolioName } = req.body;
-    console.log(userId, portfolioName);
+    // console.log(userId, portfolioName);
     // get payload: USE getPayloadWithValidFieldsOnly HERE
     if (userId && portfolioName) {
       await Portfolio.create({ name: portfolioName, user_id: userId });
@@ -121,34 +121,36 @@ const handleLeaderBoardData = async (req, res) => {
       portfolio.get({ plain: true })
     );
 
-    console.log("Plain portfolios data:", portfoliosData);
-
-    const reducer = (value, nextValue) => value + nextValue;
-
     // transform data object to include: portfolio name, total year end return (add all company stock returns), and username
     const portfolios = portfoliosData.map((portfolio) => {
+      const stockReturnArray = portfolio.companies.map((company) => {
+        // calculate each company's year end return
+        const stockReturn =
+          company.janPrice * company.portfolioCompany.units * company.gainLoss -
+          company.janPrice * company.portfolioCompany.units;
+
+        return stockReturn;
+      });
+
+      const stockReturns = stockReturnArray.length
+        ? stockReturnArray.reduce((acc, curr) => {
+            return acc + curr;
+          })
+        : 0;
+
       return {
         portfolioName: portfolio.name,
         user: portfolio.user.username,
-        stockReturns: portfolio.companies.map((company) => {
-          // calculate each company's year end return
-          const stockReturn =
-            company.janPrice *
-              company.portfolioCompany.units *
-              company.gainLoss -
-            company.janPrice * company.portfolioCompany.units;
-
-          return stockReturn;
-        }),
+        yearEndReturn: stockReturns,
       };
-      // reduce() stockReturns into yearEndReturns using reducer fn above
     });
 
     // sort portfolios in descending order by yearEndReturn
+    const sortedPortfolios = portfolios
+      .sort((a, b) => b.yearEndReturn - a.yearEndReturn)
+      .slice(0, 5);
 
-    console.log("Portfolios:", portfolios);
-
-    return res.json({ success: true, data: portfolios });
+    return res.json({ success: true, data: sortedPortfolios });
   } catch (error) {
     logError("Leaderboard data", error.message);
     return res.status(500).json({

@@ -115,31 +115,34 @@ const handleDashboardData = async (req, res) => {
 
     // map plain data to get transformed portfolios data object
     const userPortfolios = userPortfoliosData.map((portfolio) => {
+      const companiesArray = portfolio.companies.map((company) => {
+        // calculate company's year end return
+        const stockReturn =
+          company.janPrice * company.portfolioCompany.units * company.gainLoss -
+          company.janPrice * company.portfolioCompany.units;
+
+        return {
+          symbol: company.symbol,
+          stockReturn,
+        };
+      });
+
+      const portfolioValue = companiesArray.reduce((acc, curr) => {
+        return acc + curr.stockReturn;
+      }, 0);
+
       return {
         portfolioName: portfolio.name,
-        companies: portfolio.companies.map((company) => {
-          // calculate company's year end return
-          const stockReturn =
-            company.janPrice *
-              company.portfolioCompany.units *
-              company.gainLoss -
-            company.janPrice * company.portfolioCompany.units;
-
-          return {
-            id: company.id,
-            name: company.name,
-            symbol: company.symbol,
-            stockReturn,
-          };
-        }),
+        companies: companiesArray,
+        portfolioValue,
       };
     });
 
-    // console.log("handleDashboardData:", userPortfolios[0].companies);
+    const sortedUserPortfolios = userPortfolios
+      .sort((a, b) => b.portfolioValue - a.portfolioValue)
+      .slice(0, 1);
 
-    // loop through portfolios to sum each portfolio's stockReturns values
-
-    return res.json({ success: true, data: userPortfolios });
+    return res.json({ success: true, data: sortedUserPortfolios });
   } catch (error) {
     logError("User portfolio dashboard data", error.message);
     return res.status(500).json({

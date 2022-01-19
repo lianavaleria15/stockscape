@@ -30,11 +30,11 @@ const getPortfolioLabels = (portfolios) => {
   });
 };
 
-// const getPortfolioReturnValues = (portfolios) => {
-//   return portfolios.map((portfolio) => {
-//     return portfolio.yearEndReturn;
-//   });
-// };
+const getPortfolioReturnValues = (portfolios) => {
+  return portfolios.map((portfolio) => {
+    return portfolio.yearEndReturn;
+  });
+};
 
 const renderLeaderboardGraph = ({ data }) => {
   console.log("renderLeaderboardGraph fn, data:", data);
@@ -46,7 +46,7 @@ const renderLeaderboardGraph = ({ data }) => {
       datasets: [
         {
           label: "Return Value",
-          data: [20100.56, 40000.0, 53400.27, 100.89],
+          data: getPortfolioReturnValues(data),
           //   data: getPortfolioReturnValues(data),
           backgroundColor: [
             "#95f9e3ff",
@@ -83,6 +83,7 @@ const renderLeaderboardGraph = ({ data }) => {
 
 // make POST request to our api in order to get the user portfolio data
 const getAllocationChartData = async () => {
+  console.log("getAllocation chart data fn hit");
   const id = allocationChartCanvas.attr("id");
 
   const userAllocationChartResponse = await fetch(
