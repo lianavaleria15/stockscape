@@ -69,21 +69,25 @@ const renderStockInfoModal = async (event) => {
 };
 
 //event listener on company modal
-const addCompanyToPortfolio = (event) => {
+const addCompanyToPortfolio = async (event) => {
   event.preventDefault();
 
   const numberShares = $("#number-shares").val();
 
-  const portfolioName = $("#portfolio-name option:selected").val();
-
   const portfolioId = $("#portfolio-name option:selected").attr("id");
 
-  const companyName = $("#company-name").text();
-
-  // //store new portfolio data
-  // const newPortfolioToBasket = { companyName, numberShares };
-
-  console.log(numberShares);
+  // // make POST request to /auth/login
+  const response = await fetch("/api/portfolio-company", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      portfolio_id: portfolioId,
+      units: numberShares,
+      company_id: 1,
+    }),
+  });
 
   $("#company-card-modal").on("hide.bs.modal", () => {
     console.log("closing modal");
