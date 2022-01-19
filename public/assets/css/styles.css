@@ -31,6 +31,12 @@ body {
   height: auto;
 }
 
+.how-to-play-stockscape {
+  width: 20%;
+  height: auto;
+  min-width: 20%;
+}
+
 .rules {
   background-color: rgb(255, 250, 250);
   margin: 5%;
