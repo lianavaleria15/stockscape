@@ -76,6 +76,8 @@ const addCompanyToPortfolio = async (event) => {
 
   const portfolioId = $("#portfolio-name option:selected").attr("id");
 
+  // how do I get company ID - currently hard coded to 1
+
   // // make POST request to /auth/login
   const response = await fetch("/api/portfolio-company", {
     method: "POST",
