@@ -109,14 +109,49 @@ const handleLeaderBoardData = async (req, res) => {
 
     // get all portfolios(for name) + company(for stockReturns) + users(for username)
     const portfoliosFromDB = await Portfolio.findAll({
-      include: [{ model: Company, through: PortfolioCompany }, { model: User }],
+      include: [
+        {
+          model: Company,
+          through: PortfolioCompany,
+          attributes: ["janPrice", "decPrice", "gainLoss"],
+        },
+        { model: User, attributes: ["username"] },
+      ],
     });
 
-    console.log(portfoliosFromDB);
-
     // map to get plain data
+    const portfoliosData = portfoliosFromDB.map((portfolio) =>
+      portfolio.get({ plain: true })
+    );
 
-    return res.json({ success: true, data: leaderboardData });
+    console.log("Plain portfolios data:", portfoliosData);
+
+    const reducer = (value, nextValue) => value + nextValue;
+
+    // transform data object to include: portfolio name, total year end return (add all company stock returns), and username
+    const portfolios = portfoliosData.map((portfolio) => {
+      return {
+        portfolioName: portfolio.name,
+        user: portfolio.user.username,
+        stockReturns: portfolio.companies.map((company) => {
+          // calculate each company's year end return
+          const stockReturn =
+            company.janPrice *
+              company.portfolioCompany.units *
+              company.gainLoss -
+            company.janPrice * company.portfolioCompany.units;
+
+          return stockReturn;
+        }),
+      };
+      // reduce() stockReturns into yearEndReturns using reducer fn above
+    });
+
+    // sort portfolios in descending order by yearEndReturn
+
+    console.log("Portfolios:", portfolios);
+
+    return res.json({ success: true, data: portfolios });
   } catch (error) {
     logError("Leaderboard data", error.message);
     return res.status(500).json({

@@ -4,6 +4,8 @@ const leaderboardGraphCanvas = $("[name='leaderboard-graph-canvas']");
 const allocationChartCanvas = $("[name='allocation-chart-canvas']");
 
 const getLeaderboardGraphData = async () => {
+  const id = leaderboardGraphCanvas.attr("id");
+
   const leaderboardGraphResponse = await fetch("api/portfolios/leaderboard", {
     method: "POST",
     headers: {
@@ -22,19 +24,19 @@ const getLeaderboardGraphData = async () => {
   }
 };
 
+const getPortfolioLabels = (portfolios) => {
+  return portfolios.map((portfolio) => {
+    return portfolio.portfolioName;
+  });
+};
+
 const renderLeaderboardGraph = ({ data }) => {
   console.log("renderLeaderboardGraph fn, data:", data);
 
   const leaderboardChartOptions = {
     type: "bar",
     data: {
-      // pull usernames owning the top 10 highest yearEndReturn companies, sort highest to lowest
-      labels: [
-        "My Portfolio, kayleriegerpatton",
-        "Retirement Investments, tigerbath",
-        "YOLO Savings, conorKELLY",
-        "Play it Safe Stocks, lianavaleria15",
-      ],
+      labels: getPortfolioLabels(data),
       datasets: [
         {
           label: "Return Value",
@@ -69,7 +71,7 @@ const renderLeaderboardGraph = ({ data }) => {
   };
 
   const leaderboardChart = new Chart(
-    leaderboardCanvas,
+    leaderboardGraphCanvas,
     leaderboardChartOptions
   );
 };
@@ -164,4 +166,4 @@ const renderAllocationChart = ({ data }) => {
 };
 
 $(window).on("load", getAllocationChartData);
-$(window).on("load", renderLeaderboardGraph);
+$(window).on("load", getLeaderboardGraphData);
