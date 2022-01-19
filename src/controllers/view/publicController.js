@@ -56,7 +56,7 @@ const renderAboutUs = (req, res) => {
 // /companies
 const renderCompanies = async (req, res) => {
   try {
-    const { loggedIn } = req.session;
+    const { loggedIn, user } = req.session;
 
     const companyData = await Company.findAll();
 
@@ -64,8 +64,16 @@ const renderCompanies = async (req, res) => {
       return company.get({ plain: true });
     });
 
+    const portfolioData = await Portfolio.findAll({
+      where: { user_id: user.id },
+    });
+
+    const portfolios = portfolioData.map((portfolio) => {
+      return portfolio.get({ plain: true });
+    });
+
     // pass companies data & loggedIn to render private/public navbar
-    res.render("companies", { companies, loggedIn });
+    res.render("companies", { companies, loggedIn, portfolios });
   } catch (error) {
     logError("Render companies", error.message);
     return res
