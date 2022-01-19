@@ -26,8 +26,8 @@ body {
 }
 
 .btn-secondary {
-  background-color: var(--mid-accent);
-  border-color: var(--mid-accent);
+  background-color: var(--subtle-accent);
+  border-color: var(--subtle-accent);
 }
 
 .bg-dark {
