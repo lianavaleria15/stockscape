@@ -1,12 +1,13 @@
-<header>
+
+<body id="homePage" class="d-flex flex-column min-vh-100">
+  <header>
    {{#if req.session.loggedIn}}
   {{> private-navbar}}
   {{else}}
   {{> public-navbar}}
   {{/if}}
 </header>
-<main>
-    <div class="card mx-auto mt-5 " style="min-width: 18rem; max-width: 75%">
+<main class="card mx-auto mt-5 " style="min-width: 18rem; max-width: 75%">
   <div class="card-body bg-light">
     <h1 class="card-title text-center">Stockscape</h5>
     <p class="card-text text-center" >2021 was the year that everyone became an expert in Stocks, Cryptocurrencies and every other asset class in the market. Consider yourself an expert? Join StockScape today!</p>
@@ -15,11 +16,9 @@
     <a href="/sign-up" class="btn btn-primary mx-1">Sign Up</a>
     </div>
   </div>
-</div>
 </main>
-
 <!-- Footer -->
-<footer class="page-footer font-small pt-4">
+<footer class="page-footer mt-auto font-small pt-4">
 
   <!-- Footer Elements -->
   <div class="container">
@@ -34,3 +33,6 @@
   
 
 </footer>
+</body>
+
+
