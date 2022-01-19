@@ -101,6 +101,16 @@ const companyData = [
     company_summary:
       "J.P. Morgan is a global leader in financial services, offering solutions to the world's most important corporations, governments and institutions in more than 100 countries. As announced in early 2018, JPMorgan Chase will deploy $1.75 billion in philanthropic capital around the world by 2023.",
   },
+  {
+    name: "Johnson & Johnson",
+    symbol: "JNJ",
+    janPrice: 162.38,
+    decPrice: 158.64,
+    gainLoss: -3.74,
+    sector: "Healthcare",
+    company_summary:
+      "Johnson & Johnson researches and develops, manufactures, and sells a range of products in the health care field worldwide. It operates through three segments: Consumer Health, Pharmaceutical, and Medical Devices. The Consumer Health segment offers baby care products under the JOHNSON'S and AVEENO Baby brands; oral care products under the LISTERINE brand; skin health/beauty products under the AVEENO, CLEAN & CLEAR, DR. CI:LABO, NEUTROGENA, and OGX brands; acetaminophen products under the TYLENOL brand; cold, flu, and allergy products under the SUDAFED brand; allergy products under the BENADRYL and ZYRTEC brands; ibuprofen products under the MOTRIN IB brand; smoking cessation products under the NICORETTE brand; and acid reflux products under the PEPCID brand",
+  },
 ];
 
 const seedCompanies = () => Company.bulkCreate(companyData);
