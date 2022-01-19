@@ -78,6 +78,12 @@ const addCompanyToPortfolio = async (event) => {
 
   // how do I get company ID - currently hard coded to 1
 
+  // get the portfolioId and make a request to the back end
+  // get the amount of shares
+  // check to see if the user has enough money
+  // if yes, make the fetch request
+  // if not, render error message
+
   // // make POST request to /auth/login
   const response = await fetch("/api/portfolio-company", {
     method: "POST",
