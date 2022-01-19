@@ -37,8 +37,6 @@ const getPortfolioReturnValues = (portfolios) => {
 };
 
 const renderLeaderboardGraph = ({ data }) => {
-  console.log("renderLeaderboardGraph fn, data:", data);
-
   const leaderboardChartOptions = {
     type: "bar",
     data: {
@@ -62,17 +60,6 @@ const renderLeaderboardGraph = ({ data }) => {
         },
       ],
     },
-    // options: {
-    //   plugins: {
-    //     title: {
-    //       display: true,
-    //       text: `${portfolio.portfolioName} Stock Allocations`,
-    //       font: {
-    //         size: 25,
-    //       },
-    //     },
-    //   },
-    // },
   };
 
   const leaderboardChart = new Chart(
@@ -83,7 +70,6 @@ const renderLeaderboardGraph = ({ data }) => {
 
 // make POST request to our api in order to get the user portfolio data
 const getAllocationChartData = async () => {
-  console.log("getAllocation chart data fn hit");
   const id = allocationChartCanvas.attr("id");
 
   const userAllocationChartResponse = await fetch(
@@ -110,11 +96,8 @@ const getAllocationChartData = async () => {
 
 // pass api data object to this function
 const renderAllocationChart = ({ data }) => {
-  console.log("renderAllocationChart fn, data:", data);
-
-  //   find portfolio with highest summed stockReturns value(maybe do this in controller instead?)
-
-  const portfolio = data[0];
+  console.log(data);
+  //   const portfolio = data[0];
 
   const getCompanySymbols = (companies) => {
     return companies.map((company) => {
@@ -132,11 +115,11 @@ const renderAllocationChart = ({ data }) => {
     type: "doughnut",
     data: {
       // pull company symbols from user -> portfolio -> company in db
-      labels: getCompanySymbols(portfolio.companies),
+      labels: getCompanySymbols(data),
       datasets: [
         {
           label: "Return Value",
-          data: getCompanyStockReturns(portfolio.companies),
+          data: getCompanyStockReturns(data),
           backgroundColor: [
             "#95f9e3ff",
             "#69ebd0ff",
@@ -155,7 +138,7 @@ const renderAllocationChart = ({ data }) => {
       plugins: {
         title: {
           display: true,
-          text: `${portfolio.portfolioName} Stock Allocations`,
+          text: `${data.portfolioName} Stock Allocations`,
           font: {
             size: 25,
           },
