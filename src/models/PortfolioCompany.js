@@ -28,8 +28,9 @@ const schema = {
     allowNull: true,
   },
   units: { type: DataTypes.INTEGER, allowNull: false },
+
   //this needs to be populated via the companies model (frontend)
-  unit_cost: { type: DataTypes.INTEGER, allowNull: false },
+  unit_cost: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
 };
 
 const options = {
