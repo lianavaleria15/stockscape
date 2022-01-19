@@ -45,7 +45,6 @@ const renderLeaderboardGraph = ({ data }) => {
         {
           label: "Return Value",
           data: getPortfolioReturnValues(data),
-          //   data: getPortfolioReturnValues(data),
           backgroundColor: [
             "#95f9e3ff",
             "#69ebd0ff",
@@ -94,32 +93,31 @@ const getAllocationChartData = async () => {
   }
 };
 
+const getCompanySymbols = (companies) => {
+  return companies.map((company) => {
+    return company.symbol;
+  });
+};
+
+const getCompanyStockReturns = (companies) => {
+  return companies.map((company) => {
+    return company.stockReturn;
+  });
+};
+
 // pass api data object to this function
 const renderAllocationChart = ({ data }) => {
-  console.log(data);
-  //   const portfolio = data[0];
-
-  const getCompanySymbols = (companies) => {
-    return companies.map((company) => {
-      return company.symbol;
-    });
-  };
-
-  const getCompanyStockReturns = (companies) => {
-    return companies.map((company) => {
-      return company.stockReturn;
-    });
-  };
+  const portfolio = data[0];
 
   const allocationChartOptions = {
     type: "doughnut",
     data: {
       // pull company symbols from user -> portfolio -> company in db
-      labels: getCompanySymbols(data),
+      labels: getCompanySymbols(portfolio.companies),
       datasets: [
         {
           label: "Return Value",
-          data: getCompanyStockReturns(data),
+          data: getCompanyStockReturns(portfolio.companies),
           backgroundColor: [
             "#95f9e3ff",
             "#69ebd0ff",
@@ -138,7 +136,7 @@ const renderAllocationChart = ({ data }) => {
       plugins: {
         title: {
           display: true,
-          text: `${data.portfolioName} Stock Allocations`,
+          text: `${portfolio.portfolioName} Stock Allocations`,
           font: {
             size: 25,
           },
