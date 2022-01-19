@@ -25,6 +25,7 @@ const schema = {
   },
 };
 
+//
 const options = {
   sequelize,
   timestamps: false,
