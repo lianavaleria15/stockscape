@@ -26,6 +26,12 @@ body {
   padding-bottom: 10px;
 }
 
+.rules {
+  background-color: rgb(255, 250, 250);
+  margin: 5%;
+  padding: 5%;
+}
+
 .error {
   color: var(--error-red);
 }
