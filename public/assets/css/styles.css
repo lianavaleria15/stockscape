@@ -12,12 +12,18 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--darkest);
+}
+
 #homePage {
   background-image: url(../images/aboutusheroimage.jpg);
 }
 
-body {
-  background-color: var(--darkest);
+.stocky {
+  width: 50%;
+  height: auto;
+  padding-bottom: 10px;
 }
 
 .error {
