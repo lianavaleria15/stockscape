@@ -14,6 +14,27 @@ const isUsernameUnique = (username) => {
   });
 };
 
+// /api/users/:id
+const getUser = async (req, res) => {
+  try {
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
+    console.log(req.params);
+
+    // const data = await User.findByPk(req.params.id, {});
+
+    // if (data) {
+    //   return res.json({ success: true, data });
+    // }
+
+    return res.status(404).json({ success: false, error });
+  } catch (error) {
+    logError("GET All Users", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
+};
+
 const updateUser = async (req, res) => {
   try {
     // get payload: USE getPayloadWithValidFieldsOnly HERE

@@ -20,7 +20,7 @@ const handleLogout = async () => {
   }
 };
 
-const viewEditProfile = (event) => {
+const viewProfile = (event) => {
   event.preventDefault();
 
   // get user id from session
@@ -32,4 +32,4 @@ const viewEditProfile = (event) => {
 
 // EVENT LISTENERS
 logoutBtn.on("click", handleLogout);
-viewProfileBtn.on("click", viewEditProfile);
+viewProfileBtn.on("click", viewProfile);

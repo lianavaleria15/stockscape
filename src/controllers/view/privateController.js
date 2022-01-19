@@ -1,12 +1,55 @@
 const { User, Portfolio, Company, PortfolioCompany } = require("../../models");
 const { logError } = require("../../helpers/utils");
 
+// Sequelize is required to access operators
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 const renderDashboard = async (req, res) => {
   try {
     // get logged in user's id
     const { id } = req.session.user;
+    const portfoliosFromDB = await Portfolio.findAll({
+      where: {
+        user_id: id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+        {
+          model: Company,
+          through: PortfolioCompany,
+        },
+      ],
+    });
 
-    return res.render("dashboard", { id });
+    const portfolios = portfoliosFromDB.map((portfolio) =>
+      portfolio.get({ plain: true })
+    );
+
+    const portfoliosMap = portfolios.map((portfolio) => {
+      return {
+        portfolioName: portfolio.name,
+        companies: portfolio.companies.map((company) => {
+          const stockReturn = company.decPrice * company.portfolioCompany.units;
+
+          return {
+            id: company.id,
+            name: company.name,
+            symbol: company.symbol,
+            stockReturn,
+          };
+        }),
+      };
+    });
+
+    console.log(portfoliosMap[0].companies);
+
+    return res.render("dashboard", { id, portfolios });
   } catch (error) {
     logError("Render dashboard", error.message);
     return res
@@ -20,8 +63,6 @@ const renderEditMyProfile = async (req, res) => {
     // get logged in user's id
     const { id } = req.session.user;
 
-    // get user, portfolio, and company info from db
-
     // for fave company list
     const companiesFromDB = await Company.findAll();
     // get the user's portfolio
@@ -29,16 +70,11 @@ const renderEditMyProfile = async (req, res) => {
       include: [{ model: Portfolio }],
     });
 
-    // get plain data
-    // const userProfileData = userProfile.get({ plain: true });
     const companies = companiesFromDB.map((company) =>
       company.get({ plain: true })
     );
-    // const userPortfolio = userPortfolioData.map((portfolio) =>
-    //   portfolio.get({ plain: true })
-    // );
+
     const userPortfolio = userPortfolioData.get({ plain: true });
-    console.log("USER PORTFOLIO", userPortfolio);
 
     return res.render("edit-profile", {
       user: userPortfolio,
@@ -50,6 +86,26 @@ const renderEditMyProfile = async (req, res) => {
     return res
       .status(500)
       .json({ success: false, error: "Failed to render edit profile." });
+  }
+};
+
+const renderViewUserProfile = async (req, res) => {
+  try {
+    // get user id
+    const userId = req.params.id;
+
+    const userFromDB = await User.findByPk(userId);
+    const companyFromDB = await Company.findByPk(userFromDB.favourite_company);
+
+    const user = userFromDB.get({ plain: true });
+    const favourite_company = companyFromDB.get({ plain: true });
+
+    return res.render("user-profile", { user, favourite_company });
+  } catch (error) {
+    logError("Render edit profile", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to render user profile." });
   }
 };
 
@@ -80,9 +136,46 @@ const renderCreateMyPortfolio = async (req, res) => {
   }
 };
 
+const renderUserList = async (req, res) => {
+  try {
+    const { id } = req.session.user;
+
+    const userFromDB = await User.findAll({
+      where: {
+        id: {
+          [Op.ne]: id,
+        },
+      },
+    });
+    const companiesFromDB = await Company.findAll();
+
+    const user = userFromDB.map((user) => user.get({ plain: true }));
+    const favourite_company = companiesFromDB.map((companies) =>
+      companies.get({ plain: true })
+    );
+
+    // CK Issue = this is causing the userID to change to match the favourite ID instead of matching userID's favourite company with a company in the database
+    // const userFavCompany = user.map((user) => {
+    //   let favCompanyList = favourite_company.find(
+    //     (element) => element.id === user.favourite_company
+    //   );
+    //   return { ...user, ...favCompanyList };
+    // });
+
+    res.render("view-users", { user, favourite_company });
+  } catch (error) {
+    logError("Render companies", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to render all users." });
+  }
+};
+
 module.exports = {
   renderDashboard,
   renderCreateMyPortfolio,
   renderEditMyPortfolio,
   renderEditMyProfile,
+  renderUserList,
+  renderViewUserProfile,
 };

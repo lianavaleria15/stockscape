@@ -8,15 +8,12 @@ const {
 // /api/portfolios
 const addPortfolio = async (req, res) => {
   try {
-    const { company, units } = req.body;
-
+    const userId = req.session.user.id;
+    const { portfolioName } = req.body;
+    console.log(userId, portfolioName);
     // get payload: USE getPayloadWithValidFieldsOnly HERE
-    if (company && units) {
-      await Portfolio.create({
-        company,
-        units,
-        user_id: req.session.user.id,
-      });
+    if (userId && portfolioName) {
+      await Portfolio.create({ name: portfolioName, user_id: userId });
 
       return res.json({
         success: true,
