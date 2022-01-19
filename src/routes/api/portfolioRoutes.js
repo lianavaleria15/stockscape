@@ -4,6 +4,7 @@ const {
   addPortfolio,
   updatePortfolio,
   deletePortfolio,
+  handleLeaderBoardData,
 } = require("../../controllers/api/portfolios");
 
 const router = Router();
@@ -12,5 +13,6 @@ const router = Router();
 router.post("/", addPortfolio);
 router.put("/:id", updatePortfolio);
 router.delete("/:id", deletePortfolio);
+router.post("/leaderboard", handleLeaderBoardData);
 
 module.exports = router;
