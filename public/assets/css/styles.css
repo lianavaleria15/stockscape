@@ -26,6 +26,11 @@ body {
   padding-bottom: 10px;
 }
 
+.rules-logo {
+  width: 50%;
+  height: auto;
+}
+
 .rules {
   background-color: rgb(255, 250, 250);
   margin: 5%;
@@ -62,7 +67,7 @@ body {
   background-color: var(--dark);
 }
 
-.jumbotron {
+#jumbotron {
   background-image: url("../images/aboutusheroimage.jpg");
   background-size: cover;
   padding: 10px;
