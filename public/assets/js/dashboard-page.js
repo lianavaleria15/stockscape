@@ -75,9 +75,9 @@ const renderAllocationChart = ({ data }) => {
   //   find portfolio with highest summed stockReturns value(maybe do this in controller instead)
   // map through portfolios; for each portfolio, return the sum of the items with specific index number within companies array and the stock symbol
 
-  const getCompanyNames = (companies) => {
+  const getCompanySymbols = (companies) => {
     return companies.map((company) => {
-      return company.name;
+      return company.symbol;
     });
   };
 
@@ -91,13 +91,11 @@ const renderAllocationChart = ({ data }) => {
     type: "doughnut",
     data: {
       // pull company symbols from user -> portfolio -> company in db
-      labels: getCompanyNames(portfolio.companies),
+      labels: getCompanySymbols(portfolio.companies),
       datasets: [
         {
           label: "Return Value",
-          // pull from user -> portfolio in db
           data: getCompanyStockReturns(portfolio.companies),
-          // set these to the theme colors
           backgroundColor: [
             "#95f9e3ff",
             "#69ebd0ff",
@@ -109,16 +107,18 @@ const renderAllocationChart = ({ data }) => {
           borderWidth: 1,
           borderColor: "#777",
           hoverBorderWidth: 2,
-          // hoverBorderColor: "#000",
         },
       ],
     },
     options: {
-      // TITLE IS NOT DISPLAYING
-      title: {
-        display: true,
-        text: `${portfolio.portfolioName} Stock Allocations`,
-        fontSize: 25,
+      plugins: {
+        title: {
+          display: true,
+          text: `${portfolio.portfolioName} Stock Allocations`,
+          font: {
+            size: 25,
+          },
+        },
       },
     },
   };
