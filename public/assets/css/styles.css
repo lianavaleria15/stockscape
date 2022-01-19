@@ -29,7 +29,19 @@ body {
 .rules {
   background-color: rgb(255, 250, 250);
   margin: 5%;
-  padding: 5%;
+  padding: 3%;
+}
+
+.simpsons-div {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.simpsons {
+  width: 70%;
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
 .error {
