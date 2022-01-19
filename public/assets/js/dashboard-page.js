@@ -30,6 +30,12 @@ const getPortfolioLabels = (portfolios) => {
   });
 };
 
+// const getPortfolioReturnValues = (portfolios) => {
+//   return portfolios.map((portfolio) => {
+//     return portfolio.yearEndReturn;
+//   });
+// };
+
 const renderLeaderboardGraph = ({ data }) => {
   console.log("renderLeaderboardGraph fn, data:", data);
 
@@ -40,9 +46,8 @@ const renderLeaderboardGraph = ({ data }) => {
       datasets: [
         {
           label: "Return Value",
-          // pull from user -> portfolio in db, sort highest to lowest
           data: [20100.56, 40000.0, 53400.27, 100.89],
-
+          //   data: getPortfolioReturnValues(data),
           backgroundColor: [
             "#95f9e3ff",
             "#69ebd0ff",
