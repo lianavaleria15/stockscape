@@ -5,6 +5,33 @@ const {
   getPayloadWithValidFieldsOnly,
 } = require("../../helpers/utils");
 
+const getPortfolioById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const portfolioFromDb = await Portfolio.findByPk(id);
+
+    if (!portfolioFromDb) {
+      logError("Failed to get portfolio.", "Portfolio does not exist");
+      return res
+        .status(404)
+        .json({ success: false, error: "Failed to get Portfolio." });
+    }
+
+    const portfolio = portfolioFromDb.get({ plain: true });
+
+    return res.json({
+      success: true,
+      data: portfolio,
+    });
+  } catch (error) {
+    logError("Failed to get Portfolio.", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to get Portfolio." });
+  }
+};
+
 // /api/portfolios
 const addPortfolio = async (req, res) => {
   try {
@@ -37,33 +64,33 @@ const addPortfolio = async (req, res) => {
 // /api/portfolios/:id
 const updatePortfolio = async (req, res) => {
   try {
-    // get payload: USE getPayloadWithValidFieldsOnly HERE
-    const { company, units, id } = req.body;
-    const { userId } = req.session.user;
+    const { id } = req.params;
+    const { units, unit_cost } = req.body;
+    console.log(id, units, unit_cost);
 
-    // check for portfolio in db
-    const investmentPortfolioId = await Portfolio.findByPk(id);
-    if (investmentPortfolioId) {
-      await Portfolio.update(
-        { company, units, user_id: userId },
-        {
-          where: {
-            id,
-          },
-        }
-      );
+    const portfolioData = await Portfolio.findByPk(id);
 
-      return res.json({
-        success: true,
-        data: `Updated investment portfolio ${id}.`,
-      });
-    }
-    return res.status(404).json({
-      success: false,
-      error: `Investment portfolio with id ${id} doesn't exist.`,
+    const portfolio = portfolioData.get({ plain: true });
+    console.log(portfolio);
+
+    const remainingBudget = portfolio.remaining_budget - units * unit_cost;
+    console.log(remainingBudget);
+
+    await Portfolio.update(
+      { remaining_budget: remainingBudget },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    return res.json({
+      success: true,
+      data: `Updated Portfolio ${id}.`,
     });
   } catch (error) {
-    logError("PUT investment profile", error.message);
+    logError("PUT Portfolio", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response." });
@@ -166,4 +193,5 @@ module.exports = {
   updatePortfolio,
   deletePortfolio,
   handleLeaderBoardData,
+  getPortfolioById,
 };

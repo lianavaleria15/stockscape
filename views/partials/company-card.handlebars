@@ -1,9 +1,9 @@
 <div class="card m-3" style="width: 18rem;">
-  <div class="card-body">
+  <div class="card-body d-flex flex-column text-center">
     <h5 class="card-title">{{name}}</h5>
     <h6>{{symbol}}</h6>
     <p>January 2021 share price: <span>${{janPrice}}</span></p>
-    <button class="btn btn-primary" id={{id}} name="">View more</button>
+    <button class="btn mt-auto btn-primary team-card" id={{id}} name="view-company">View more</button>
     {{>company-card-modal}}
   </div>
 </div>

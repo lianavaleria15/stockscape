@@ -2,19 +2,20 @@
   {{> private-navbar}}
 </header>
 <main>
-  <div class="input-group flex-column d-flex flex-wrap mx-4 mt-3 mb-5">
-  <h1 class="h1 text-center mb-2" style="color: white;">Users</h1>
+  <div class="input-group flex-column d-flex align-items-center flex-wrap mx-4 mt-3 mb-5">
+  <h1 class="h1 text-center mb-2" style="color: white;"><i class="fas fa-user"></i> Users</h1>
   <form class="d-flex" id="username-search-form">
-        <input class="form-control me-2" type="search" placeholder="Search" id="username" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" id="username-search">Search</button>
+        <input class="form-inline me-2" type="search" placeholder="Search" id="username" aria-label="Search">
+        <button class="btn team-card btn-outline-light" type="submit" id="username-search">Search</button>
   </form>
 </div>
-  <div id="users-container" class="d-flex flex-column flex-wrap justify-content-center mx-4 mt-3 mb-5">
+  <div id="users-container" class="d-flex flex-wrap justify-content-around mx-4 mt-3 mb-5">
   {{#each user}}
   {{> user-card parent=../this}}
   {{/each}}
   </div>
 </main>
+<footer>{{> footer}}</footer>
     {{! Bootstrap JS }}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

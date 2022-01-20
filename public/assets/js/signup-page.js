@@ -9,12 +9,12 @@ const getErrorsSignUp = ({
   confirmPassword,
   firstName,
   lastName,
+  username,
 }) => {
   const errors = {};
 
   if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    const error = (errors.email = "Invalid email address.");
-    console.log(error);
+    errors.email = "Invalid email address.";
   }
 
   if (
@@ -23,33 +23,47 @@ const getErrorsSignUp = ({
       password
     )
   ) {
-    const error = (errors.password =
-      "Invalid password. Must be 8-64 characters and include at least one letter, number, and special character.");
-    console.log(error);
+    errors.password =
+      "Invalid password. Must be 8-64 characters and include at least one letter, number, and special character.";
   }
 
   if (!confirmPassword || password !== confirmPassword) {
-    const error = (errors.confirmPassword = "Passwords do not match.");
-    console.log(error);
+    errors.confirmPassword = "Passwords do not match.";
   }
 
-  if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
-    const error = (errors.username =
-      "Inalid username. Must be 8-30 alphanumeric characters.");
-    console.log(error);
+  if (!username || !/^[A-Za-z0-9]{8,30}$/.test(username)) {
+    errors.username = "Invalid username. Must be 8-30 alphanumeric characters.";
   }
 
   if (!firstName) {
-    const error = (errors.firstName = "First name is required.");
-    console.log(error);
+    errors.firstName = "First name is required.";
   }
 
   if (!lastName) {
-    const error = (errors.lastName = "Last name is required.");
-    console.log(error);
+    errors.lastName = "Last name is required.";
   }
 
   return errors;
+};
+
+const renderErrorMessages = (errors) => {
+  const fields = [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "username",
+    "confirmPassword",
+  ];
+  fields.forEach((field) => {
+    const errorDiv = $(`#${field}-error`);
+
+    if (errors[field]) {
+      errorDiv.text(errors[field]);
+    } else {
+      errorDiv.text("");
+    }
+  });
 };
 
 const handleSignup = async (event) => {
@@ -75,7 +89,7 @@ const handleSignup = async (event) => {
 
   renderErrorMessages(errors);
 
-  if (password === confirmPassword) {
+  if (!Object.keys(errors).length) {
     // make post request to /auth/sign-up
     const response = await fetch("/auth/sign-up", {
       method: "POST",
