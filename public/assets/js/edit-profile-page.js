@@ -7,12 +7,10 @@ const getErrorsEditProfile = ({ username, bio }) => {
   if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
     const error = (errors.username =
       "Invalid username. Must be 8-30 alphanumberic characters.");
-    console.log(error);
   }
 
   if (bio.length > 2000) {
     const error = (errors.bio = "Bio must be fewer than 2,000 characters.");
-    console.log(error);
   }
 
   return errors;

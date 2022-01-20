@@ -27,12 +27,10 @@ const getErrorsLogIn = ({ username, password }) => {
 
   if (!password) {
     const error = (errors.password = "Invalid password.");
-    console.log(error);
   }
 
   if (!username) {
     const error = (errors.username = "Invalid username.");
-    console.log(error);
   }
 
   return errors;

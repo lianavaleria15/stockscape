@@ -93,7 +93,6 @@ const addCompanyToPortfolio = async (event) => {
     const remaining_budget = parseInt(data.remaining_budget);
 
     if (remaining_budget < totalSpend) {
-      console.log("no money left");
     } else {
       const postResponse = await fetch("/api/portfolio-company", {
         method: "POST",
@@ -108,7 +107,6 @@ const addCompanyToPortfolio = async (event) => {
       });
 
       const { success } = await postResponse.json();
-      console.log(success);
 
       if (success) {
         const putResponse = await fetch(`/api/portfolios/${portfolioId}`, {
@@ -123,16 +121,11 @@ const addCompanyToPortfolio = async (event) => {
         });
 
         const { data } = await putResponse.json();
-        console.log(data);
       }
     }
   }
 
   // // make POST request to /auth/login
-
-  // $("#company-card-modal").on("hide.bs.modal", () => {
-  //   console.log("closing modal");
-  // });
 };
 
 //event on view more btn
