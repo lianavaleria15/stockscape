@@ -113,6 +113,10 @@ body {
   color: #555;
 }
 
+.companies-modal-header {
+  background-color: var(--darkest);
+}
+
 .page-footer {
   background-color: var(--darkest);
 }
