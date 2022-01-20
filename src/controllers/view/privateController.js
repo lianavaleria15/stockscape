@@ -9,7 +9,6 @@ const renderDashboard = async (req, res) => {
   try {
     // get logged in user's id
     const { id } = req.session.user;
-
     const portfoliosFromDB = await Portfolio.findAll({
       where: {
         user_id: id,
@@ -47,8 +46,6 @@ const renderDashboard = async (req, res) => {
         }),
       };
     });
-
-    console.log(portfoliosMap[0].companies);
 
     return res.render("dashboard", { id, portfolios });
   } catch (error) {
