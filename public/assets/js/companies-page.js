@@ -4,7 +4,7 @@ const companiesContainer = $("#companies-container");
 const constructPortfolioOptions = (portfolios) => {
   return portfolios
     .map((portfolio) => {
-      return `<option id="${portfolio.id}" value="${portfolio.name}">${portfolio.name}</option>`;
+      return `<option id="${portfolio.id}" value="${portfolio.name}">${portfolio.name} || $${portfolio.remaining_budget}</option>`;
     })
     .join("");
 };
