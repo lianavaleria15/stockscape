@@ -2,6 +2,7 @@
 const stockAllocationCanvas = $(".stock-allocation-chart");
 const leaderboardGraphCanvas = $("[name='leaderboard-graph-canvas']");
 const allocationChartCanvas = $("[name='allocation-chart-canvas']");
+const noDataPanel = $("#no-data");
 
 const getLeaderboardGraphData = async () => {
   const id = leaderboardGraphCanvas.attr("id");
@@ -67,6 +68,14 @@ const renderLeaderboardGraph = ({ data }) => {
   );
 };
 
+const renderNoDataPanel = () => {
+  const element = `<div class="alert alert-primary text-center mt-5 mx-2" role="alert">
+    <div>You haven't invested in any companies.</div> 
+    <div><a href="/companies" class="btn btn-link">Invest Now</a></div>
+    </div>`;
+  noDataPanel.append(element);
+};
+
 // make POST request to our api in order to get the user portfolio data
 const getAllocationChartData = async () => {
   const id = allocationChartCanvas.attr("id");
@@ -83,13 +92,21 @@ const getAllocationChartData = async () => {
   );
 
   const allocationChartData = await userAllocationChartResponse.json();
+  console.log(allocationChartData);
 
   if (allocationChartData.error === "Failed to get user dashboard data.") {
     // * render some error if user dashboard data doesn't return?
   }
 
   if (allocationChartData.success) {
-    renderAllocationChart(allocationChartData);
+    if (
+      allocationChartData.data[0] &&
+      allocationChartData.data[0].companies.length
+    ) {
+      renderAllocationChart(allocationChartData);
+    } else {
+      renderNoDataPanel();
+    }
   }
 };
 

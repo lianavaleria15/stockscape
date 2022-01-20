@@ -46,6 +46,7 @@ const renderDashboard = async (req, res) => {
         }),
       };
     });
+    console.log(portfolios);
 
     return res.render("dashboard", { id, portfolios });
   } catch (error) {
