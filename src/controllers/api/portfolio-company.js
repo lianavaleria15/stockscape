@@ -14,6 +14,18 @@ const addPortfolioCompanyLine = async (req, res) => {
 
     // I think if the user is trying to add a company to the PortfolioCompany twice it's throwing an error - perhaps the line item needs to be unique?
     if (portfolio_id && company_id && units && unit_cost) {
+      const companyExists = await PortfolioCompany.findOne({
+        where: { company_id, portfolio_id },
+      });
+
+      if (companyExists) {
+        return res.status(401).json({
+          success: false,
+          data: `Company already in Portfolio!`,
+          companyExists: true,
+        });
+      }
+
       await PortfolioCompany.create({
         portfolio_id,
         company_id,
@@ -33,7 +45,7 @@ const addPortfolioCompanyLine = async (req, res) => {
       error: "Please provide the appropriate data entries.",
     });
   } catch (error) {
-    logError("PUT Portfolio Company", error.message);
+    logError("POST Portfolio Company", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response." });

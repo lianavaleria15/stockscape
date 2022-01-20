@@ -22,7 +22,9 @@ const constructCompanyModal = ({ company, portfolios }) => {
           <p>January 2021 share price: <span>${company.janPrice}</span></p>
           <p>${company.company_summary}</p>
         </div>
-        <form id="add-company-form">
+        <form id="${company.id}" data-sharePrice="${
+    company.janPrice
+  }" name="add-company-form">
           <div class="modal-footer d-flex justify-content-between">
             <div>
               <label for="number-shares"> Number of shares:</label>
@@ -35,7 +37,7 @@ const constructCompanyModal = ({ company, portfolios }) => {
               </select>
             </div>
             <div>
-              <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Add to
+              <button type="submit"  class="btn btn-secondary" data-bs-dismiss="modal">Add to
                 portfolio</button>
             </div>
           </div>
@@ -64,47 +66,74 @@ const renderStockInfoModal = async (event) => {
 
     companiesContainer.append(companyModal);
     $("#company-card-modal").modal("show");
-    $("#add-company-form").on("submit", addCompanyToPortfolio);
+    $("[name='add-company-form']").on("submit", addCompanyToPortfolio);
   }
 };
 
 //event listener on company modal
 const addCompanyToPortfolio = async (event) => {
   event.preventDefault();
+  const target = event.target;
+
+  const companyId = $(target).attr("id");
+
+  const sharePrice = $(target).attr("data-sharePrice");
 
   const numberShares = $("#number-shares").val();
 
   const portfolioId = $("#portfolio-name option:selected").attr("id");
 
-  // how do I get company ID - currently hard coded to 1
-
   // get the portfolioId and make a request to the back end
-  // get the amount of shares
-  // check to see if the user has enough money
-  // if yes, make the fetch request
-  // if not, render error message
+  const portfolioApiResponse = await fetch(`/api/portfolios/${portfolioId}`);
+
+  const { data } = await portfolioApiResponse.json();
+
+  if (data) {
+    const totalSpend = sharePrice * numberShares;
+    const remaining_budget = parseInt(data.remaining_budget);
+
+    if (remaining_budget < totalSpend) {
+      console.log("no money left");
+    } else {
+      const postResponse = await fetch("/api/portfolio-company", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          portfolio_id: portfolioId,
+          units: numberShares,
+          company_id: companyId,
+        }),
+      });
+
+      const { success } = await postResponse.json();
+      console.log(success);
+
+      if (success) {
+        const putResponse = await fetch(`/api/portfolios/${portfolioId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            units: numberShares,
+            unit_cost: sharePrice,
+          }),
+        });
+
+        const { data } = await putResponse.json();
+        console.log(data);
+      }
+    }
+  }
 
   // // make POST request to /auth/login
-  const response = await fetch("/api/portfolio-company", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      portfolio_id: portfolioId,
-      units: numberShares,
-      company_id: 1,
-    }),
-  });
 
-  $("#company-card-modal").on("hide.bs.modal", () => {
-    console.log("closing modal");
-  });
+  // $("#company-card-modal").on("hide.bs.modal", () => {
+  //   console.log("closing modal");
+  // });
 };
 
 //event on view more btn
 companiesContainer.on("click", renderStockInfoModal);
-
-//event on modal to add to stockbasket
-// const modalId = $("#company-card-modal").data("id");
-// $("#add-company-form").on("submit", addCompanyToPortfolio);
