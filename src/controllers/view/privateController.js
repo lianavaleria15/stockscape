@@ -63,6 +63,29 @@ const renderEditMyProfile = async (req, res) => {
 
     // for fave company list
     const companiesFromDB = await Company.findAll();
+
+    //get all user's portfolios
+    const portfoliosFromDB = await Portfolio.findAll({
+      where: {
+        user_id: id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+        {
+          model: Company,
+          through: PortfolioCompany,
+        },
+      ],
+    });
+
+    const portfolios = portfoliosFromDB.map((portfolio) =>
+      portfolio.get({ plain: true })
+    );
     // get the user's portfolio
     const userPortfolioData = await User.findByPk(id, {
       include: [{ model: Portfolio }],
@@ -78,6 +101,7 @@ const renderEditMyProfile = async (req, res) => {
       user: userPortfolio,
       loggedIn: req.session.user.loggedIn,
       companies,
+      portfolios,
     });
   } catch (error) {
     logError("Render edit profile", error.message);

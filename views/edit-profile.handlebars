@@ -53,7 +53,15 @@
 {{!-- Portfolio Section --}}
   <div id="portfolio-container" class="mx-4 my-5 p-3 rounded d-flex flex-wrap portfolio-container bg-light">
       <div id="portfolio-header" class="">
-          <h2 class="">Investment Portfolio</h2>
+        <!--option to choose portfolio to display-->
+        <label for="portfolio-name">Select a portfolio to view:</label>
+        <select name="portfolio-name" id="portfolio-name">
+          {{#each portfolios}}
+            <option id={{id}} value="{{name}}">{{name}}</option>
+          {{/each}}
+        </select>
+
+          <h2 class="">Investment Portfolio Name</h2>
           <h3 class="">Returns: ${{user.score}}</h3>
       </div>
 
