@@ -77,7 +77,7 @@ const renderEditMyProfile = async (req, res) => {
     );
 
     const userPortfolio = userPortfolioData.get({ plain: true });
-    console.log(userPortfolio.portfolios[0].companies);
+    console.log(userPortfolio);
 
     return res.render("edit-profile", {
       user: userPortfolio,
