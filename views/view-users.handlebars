@@ -9,7 +9,7 @@
         <button class="btn btn-outline-success" type="submit" id="username-search">Search</button>
   </form>
 </div>
-  <div id="users-container" class="d-flex flex-column flex-wrap justify-content-center mx-4 mt-3 mb-5">
+  <div id="users-container" class="d-flex flex-wrap justify-content-around mx-4 mt-3 mb-5">
   {{#each user}}
   {{> user-card parent=../this}}
   {{/each}}
