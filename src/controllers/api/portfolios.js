@@ -61,6 +61,33 @@ const addPortfolio = async (req, res) => {
   }
 };
 
+const addPortfolioUponSignUp = async (req, res) => {
+  try {
+    const { portfolioName, user_id } = req.body;
+
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
+    if (user_id && portfolioName) {
+      await Portfolio.create({ name: portfolioName, user_id });
+
+      return res.json({
+        success: true,
+        data: `Added new investment portfolio.`,
+      });
+    }
+
+    // missing/bad data entry in request
+    return res.status(400).json({
+      success: false,
+      error: "Please provide the appropriate data entries.",
+    });
+
+    // server error
+  } catch (error) {
+    logError("POST investment portfolio", error.message);
+    res.status(500).json({ success: false, error: "Failed to send response." });
+  }
+};
+
 // /api/portfolios/:id
 const updatePortfolio = async (req, res) => {
   try {
@@ -193,4 +220,5 @@ module.exports = {
   deletePortfolio,
   handleLeaderBoardData,
   getPortfolioById,
+  addPortfolioUponSignUp,
 };

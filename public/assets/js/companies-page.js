@@ -87,6 +87,7 @@ const addCompanyToPortfolio = async (event) => {
   const portfolioApiResponse = await fetch(`/api/portfolios/${portfolioId}`);
 
   const { data } = await portfolioApiResponse.json();
+  console.log(data);
 
   if (data) {
     const totalSpend = sharePrice * numberShares;
@@ -124,8 +125,6 @@ const addCompanyToPortfolio = async (event) => {
       }
     }
   }
-
-  // // make POST request to /auth/login
 };
 
 //event on view more btn
