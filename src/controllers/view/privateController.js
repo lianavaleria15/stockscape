@@ -64,31 +64,12 @@ const renderEditMyProfile = async (req, res) => {
     // for fave company list
     const companiesFromDB = await Company.findAll();
 
-    //get all user's portfolios
-    const portfoliosFromDB = await Portfolio.findAll({
-      where: {
-        user_id: id,
-      },
-      include: [
-        {
-          model: User,
-          attributes: {
-            exclude: ["password"],
-          },
-        },
-        {
-          model: Company,
-          through: PortfolioCompany,
-        },
-      ],
-    });
-
-    const portfolios = portfoliosFromDB.map((portfolio) =>
-      portfolio.get({ plain: true })
-    );
     // get the user's portfolio
     const userPortfolioData = await User.findByPk(id, {
-      include: [{ model: Portfolio }],
+      include: {
+        model: Portfolio,
+        include: { model: Company, through: PortfolioCompany },
+      },
     });
 
     const companies = companiesFromDB.map((company) =>
@@ -96,12 +77,13 @@ const renderEditMyProfile = async (req, res) => {
     );
 
     const userPortfolio = userPortfolioData.get({ plain: true });
+    console.log(userPortfolio.portfolios[0].companies);
 
     return res.render("edit-profile", {
       user: userPortfolio,
       loggedIn: req.session.user.loggedIn,
       companies,
-      portfolios,
+      portfolios: userPortfolio.portfolios,
     });
   } catch (error) {
     logError("Render edit profile", error.message);
