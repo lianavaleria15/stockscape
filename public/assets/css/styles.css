@@ -84,6 +84,14 @@ body {
   padding: 10px;
 }
 
+.team-card {
+  transition: transform 500ms ease;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+}
+
 .social-link {
   width: 30px;
   height: 30px;
