@@ -41,7 +41,7 @@ const updateProfile = async (event) => {
   const investorType = $("#investor-type").val();
   const faveCompany = $("#favourite-company").val();
   const bio = $("#user-bio").val();
-
+const 
   // display form field errors
   const errors = getErrorsEditProfile({ username, bio });
 
