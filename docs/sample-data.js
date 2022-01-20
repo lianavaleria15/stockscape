@@ -34,15 +34,3 @@ const allocationPieChart = new Chart(chartCanvas, {
     },
   },
 });
-
-// const handleChartTypeSelection = (event) => {
-//   const target = event.target;
-
-//   if ($(target).is("button")) {
-//     const data = $(target).attr("data-type");
-//     console.log(data);
-//     return data;
-//   }
-// };
-
-// chartChoiceDiv.on("click", handleChartTypeSelection);
