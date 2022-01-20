@@ -5,12 +5,12 @@ const getErrorsEditProfile = ({ username, bio }) => {
   const errors = {};
 
   if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
-    const error = (errors.username =
-      "Invalid username. Must be 8-30 alphanumberic characters.");
+    errors.username =
+      "Invalid username. Must be 8-30 alphanumberic characters.";
   }
 
   if (bio.length > 2000) {
-    const error = (errors.bio = "Bio must be fewer than 2,000 characters.");
+    errors.bio = "Bio must be fewer than 2,000 characters.";
   }
 
   return errors;
@@ -45,24 +45,26 @@ const updateProfile = async (event) => {
 
   renderProfileErrorMessages(errors);
 
-  // make PUT request to /api/users
-  const response = await fetch(`/api/users/${userId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username,
-      investor_type: investorType,
-      favourite_company: faveCompany,
-      bio,
-    }),
-  });
+  if (!Object.keys(errors).length) {
+    // make PUT request to /api/users
+    const response = await fetch(`/api/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        investor_type: investorType,
+        favourite_company: faveCompany,
+        bio,
+      }),
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  if (data.success) {
-    window.location.replace(`/${userId}/profile/edit`);
+    if (data.success) {
+      window.location.replace(`/${userId}/profile/edit`);
+    }
   }
 };
 

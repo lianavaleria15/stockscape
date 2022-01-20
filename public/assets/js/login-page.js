@@ -26,11 +26,11 @@ const getErrorsLogIn = ({ username, password }) => {
   const errors = {};
 
   if (!password) {
-    const error = (errors.password = "Invalid password.");
+    errors.password = "Invalid password.";
   }
 
   if (!username) {
-    const error = (errors.username = "Invalid username.");
+    errors.username = "Invalid username.";
   }
 
   return errors;
@@ -52,23 +52,25 @@ const handleLogin = async (event) => {
 
   renderErrorMessages(errors);
 
-  // make POST request to /auth/login
-  const response = await fetch("/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, password }),
-  });
+  if (!Object.keys(errors).length) {
+    // make POST request to /auth/login
+    const response = await fetch("/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  if (data.error === "Username does not exist.") {
-    doesntExistModal.modal("show");
-  }
+    if (data.error === "Username does not exist.") {
+      doesntExistModal.modal("show");
+    }
 
-  if (data.success) {
-    window.location.replace("/dashboard");
+    if (data.success) {
+      window.location.replace("/dashboard");
+    }
   }
 };
 
