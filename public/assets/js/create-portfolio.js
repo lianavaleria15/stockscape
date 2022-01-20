@@ -53,7 +53,6 @@ const getErrorsPortfolio = ({ portfolioName }) => {
 
   if (!portfolioName) {
     const error = (errors.portfolioName = "Invalid portfolio name.");
-    console.log(error);
   }
 
   return errors;
