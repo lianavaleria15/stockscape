@@ -22,6 +22,22 @@ const renderErrorMessages = (errors) => {
   });
 };
 
+const getErrorsLogIn = ({ username, password }) => {
+  const errors = {};
+
+  if (!password) {
+    const error = (errors.password = "Invalid password.");
+    console.log(error);
+  }
+
+  if (!username) {
+    const error = (errors.username = "Invalid username.");
+    console.log(error);
+  }
+
+  return errors;
+};
+
 const handleLogin = async (event) => {
   //   prevent form default
   event.preventDefault();
@@ -56,22 +72,6 @@ const handleLogin = async (event) => {
   if (data.success) {
     window.location.replace("/dashboard");
   }
-};
-
-const getErrorsLogIn = ({ username, password }) => {
-  const errors = {};
-
-  if (!password) {
-    const error = (errors.password = "Invalid password.");
-    console.log(error);
-  }
-
-  if (!username) {
-    const error = (errors.username = "Invalid username.");
-    console.log(error);
-  }
-
-  return errors;
 };
 
 loginForm.on("submit", handleLogin);

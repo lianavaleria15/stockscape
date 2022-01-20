@@ -25,6 +25,11 @@ body {
   border-color: var(--bold-accent);
 }
 
+.btn-secondary {
+  background-color: var(--subtle-accent);
+  border-color: var(--subtle-accent);
+}
+
 .bg-dark {
   background-color: var(--darkest);
 }
