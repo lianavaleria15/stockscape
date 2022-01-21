@@ -1,4 +1,4 @@
-const { User } = require("../../models");
+const { User, Portfolio } = require("../../models");
 const {
   logError,
   getPayloadWithValidFieldsOnly,
@@ -32,7 +32,12 @@ const signup = async (req, res) => {
     }
 
     // create new user record w/ payload
-    await User.create(payload);
+    const newUser = await User.create(payload);
+
+    await Portfolio.create({
+      name: `${[payload.username]}'s first Portfolio`,
+      user_id: newUser.get("id"),
+    });
 
     return res.json({ success: true, message: "Created new user." });
   } catch (error) {
