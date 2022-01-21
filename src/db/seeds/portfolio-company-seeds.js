@@ -32,7 +32,7 @@ const portfolioCompanyData = [
     unit_cost: 755.98,
   },
   {
-    units: 6000,
+    units: 125,
     company_id: 5,
     portfolio_id: 3,
     unit_cost: 1722.88,

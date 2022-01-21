@@ -9,7 +9,7 @@ const userData = [
     email: "liana@email.com",
     investor_type: 1,
     favourite_company: 3,
-    bio: "My hobbies include xyz",
+    bio: "Having some experience working in the finance industry, I use stockscape to practice my historical analysis skills on healthcare and tech companies",
   },
   {
     firstName: "Kayle",
@@ -19,7 +19,7 @@ const userData = [
     email: "kayle@email.com",
     investor_type: 2,
     favourite_company: 5,
-    bio: "My hobbies include 123",
+    bio: "Just a casual player looking to learn about how the stock market was impacted during 2021!",
   },
   {
     firstName: "Conor",
@@ -29,7 +29,7 @@ const userData = [
     email: "conor@email.com",
     investor_type: 3,
     favourite_company: 7,
-    bio: "My hobbies include ABC",
+    bio: "r/WallStreetBets is my favourite reddit thread of all time.",
   },
   {
     firstName: "Matt",

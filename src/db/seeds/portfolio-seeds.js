@@ -2,34 +2,34 @@ const { Portfolio } = require("../../models");
 
 const portfolioData = [
   {
-    name: "My Portfolio 1",
+    name: "Safe investment strategy",
     user_id: 2,
     remaining_budget: 1000000,
   },
 
   {
-    name: "Yolo Savings ",
+    name: "My YOLO Savings",
     user_id: 2,
     remaining_budget: 500000,
   },
   {
-    name: "My Portfolio 3",
+    name: "My 2021 Bet on Tech",
     user_id: 3,
     remaining_budget: 200000,
   },
 
   {
-    name: "Yolo Savings 456",
+    name: "Causal Pocket Money",
     user_id: 4,
     remaining_budget: 100000,
   },
   {
-    name: "My portfolio 6",
+    name: "Portfolio of the Year??",
     user_id: 4,
     remaining_budget: 50000,
   },
   {
-    name: "Retirement",
+    name: "Retirement Funds",
     user_id: 4,
     remaining_budget: 20,
   },
