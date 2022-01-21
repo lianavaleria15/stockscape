@@ -46,7 +46,6 @@ const renderDashboard = async (req, res) => {
         }),
       };
     });
-    console.log(portfolios);
 
     return res.render("dashboard", { id, portfolios });
   } catch (error) {
@@ -78,7 +77,6 @@ const renderEditMyProfile = async (req, res) => {
     );
 
     const userPortfolio = userPortfolioData.get({ plain: true });
-    console.log(userPortfolio.portfolios);
 
     const portfolioInfo = userPortfolio.portfolios.map((portfolio) => {
       const stockReturnArray = portfolio.companies.map((company) => {
@@ -86,7 +84,6 @@ const renderEditMyProfile = async (req, res) => {
         const stockReturn =
           company.janPrice * company.portfolioCompany.units * company.gainLoss -
           company.janPrice * company.portfolioCompany.units;
-        // console.log("stock return:", stockReturn);
         return stockReturn;
       });
 

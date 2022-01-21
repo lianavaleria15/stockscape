@@ -98,7 +98,6 @@ const getAllocationChartData = async () => {
   );
 
   const allocationChartData = await userAllocationChartResponse.json();
-  console.log(allocationChartData);
 
   if (allocationChartData.error === "Failed to get user dashboard data.") {
     // * render some error if user dashboard data doesn't return?

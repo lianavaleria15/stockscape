@@ -93,15 +93,12 @@ const updatePortfolio = async (req, res) => {
   try {
     const { id } = req.params;
     const { units, unit_cost } = req.body;
-    console.log(id, units, unit_cost);
 
     const portfolioData = await Portfolio.findByPk(id);
 
     const portfolio = portfolioData.get({ plain: true });
-    console.log(portfolio);
 
     const remainingBudget = portfolio.remaining_budget - units * unit_cost;
-    console.log(remainingBudget);
 
     await Portfolio.update(
       { remaining_budget: remainingBudget },

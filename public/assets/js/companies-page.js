@@ -58,13 +58,11 @@ const renderStockInfoModal = async (event) => {
     }
 
     const companyId = $(target).attr("id");
-    console.log(companyId);
 
     // make API request
     const response = await fetch(`/api/companies/${companyId}`);
 
     const { data } = await response.json();
-    console.log(data);
 
     const companyModal = constructCompanyModal(data);
 
@@ -86,13 +84,11 @@ const addCompanyToPortfolio = async (event) => {
   const numberShares = $("#number-shares").val();
 
   const portfolioId = $("#portfolio-name option:selected").attr("id");
-  console.log(target, companyId, sharePrice, numberShares);
 
   // get the portfolioId and make a request to the back end
   const portfolioApiResponse = await fetch(`/api/portfolios/${portfolioId}`);
 
   const { data } = await portfolioApiResponse.json();
-  console.log(data);
 
   if (data) {
     const totalSpend = sharePrice * numberShares;
