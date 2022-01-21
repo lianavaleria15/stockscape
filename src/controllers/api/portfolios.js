@@ -61,20 +61,44 @@ const addPortfolio = async (req, res) => {
   }
 };
 
+const addPortfolioUponSignUp = async (req, res) => {
+  try {
+    const { portfolioName, user_id } = req.body;
+
+    // get payload: USE getPayloadWithValidFieldsOnly HERE
+    if (user_id && portfolioName) {
+      await Portfolio.create({ name: portfolioName, user_id });
+
+      return res.json({
+        success: true,
+        data: `Added new investment portfolio.`,
+      });
+    }
+
+    // missing/bad data entry in request
+    return res.status(400).json({
+      success: false,
+      error: "Please provide the appropriate data entries.",
+    });
+
+    // server error
+  } catch (error) {
+    logError("POST investment portfolio", error.message);
+    res.status(500).json({ success: false, error: "Failed to send response." });
+  }
+};
+
 // /api/portfolios/:id
 const updatePortfolio = async (req, res) => {
   try {
     const { id } = req.params;
     const { units, unit_cost } = req.body;
-    console.log(id, units, unit_cost);
 
     const portfolioData = await Portfolio.findByPk(id);
 
     const portfolio = portfolioData.get({ plain: true });
-    console.log(portfolio);
 
     const remainingBudget = portfolio.remaining_budget - units * unit_cost;
-    console.log(remainingBudget);
 
     await Portfolio.update(
       { remaining_budget: remainingBudget },
@@ -159,11 +183,12 @@ const handleLeaderBoardData = async (req, res) => {
         return stockReturn;
       });
 
-      const stockReturns = stockReturnArray.length
-        ? stockReturnArray.reduce((acc, curr) => {
-            return acc + curr;
-          })
-        : 0;
+      const stockReturns =
+        stockReturnArray.length > 0
+          ? stockReturnArray.reduce((acc, curr) => {
+              return acc + curr;
+            })
+          : 0;
 
       return {
         portfolioName: portfolio.name,
@@ -193,4 +218,5 @@ module.exports = {
   deletePortfolio,
   handleLeaderBoardData,
   getPortfolioById,
+  addPortfolioUponSignUp,
 };

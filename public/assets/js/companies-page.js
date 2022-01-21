@@ -4,10 +4,11 @@ const companiesContainer = $("#companies-container");
 const constructPortfolioOptions = (portfolios) => {
   return portfolios
     .map((portfolio) => {
-      return `<option id="${portfolio.id}" value="${portfolio.name}">${portfolio.name} || $${portfolio.remaining_budget}</option>`;
+      return `<option id="${portfolio.id}" value="${portfolio.name} || $${portfolio.remaining_budget}">${portfolio.name} || $${portfolio.remaining_budget}</option>`;
     })
     .join("");
 };
+
 const constructCompanyModal = ({ company, portfolios }) => {
   return `<div class="modal fade" id="company-card-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,6 +48,7 @@ const constructCompanyModal = ({ company, portfolios }) => {
   </div>`;
 };
 
+// CK: 21/01/2022 - for some reason the click is cycling through the array of companies instead of making the API request for each company
 const renderStockInfoModal = async (event) => {
   const target = event.target;
 
@@ -124,8 +126,6 @@ const addCompanyToPortfolio = async (event) => {
       }
     }
   }
-
-  // // make POST request to /auth/login
 };
 
 //event on view more btn

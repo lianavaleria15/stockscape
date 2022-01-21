@@ -1,7 +1,6 @@
 // TARGET UI ELEMENTS
 // sign up form submit button
 const signupForm = $("#signup-form");
-const alreadyExistsModal = $("#already-exists-modal");
 
 const getErrorsSignUp = ({
   email,
@@ -109,7 +108,7 @@ const handleSignup = async (event) => {
 
     // display 'User already exists' modal
     if (data.error === "User already exists.") {
-      alreadyExistsModal.modal("show");
+      $("#already-exists-modal").modal("show");
     }
 
     if (data.success) {

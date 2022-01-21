@@ -1,120 +1,98 @@
 <header>
-    {{> private-navbar}}
+  {{> private-navbar}}
 </header>
 
 <main>
- <div id="profile-portfolio-container" class="d-flex">
+  <div id="profile-portfolio-container" class="d-flex">
     {{!-- Edit Profile Section --}}
-  <div id="profile-form-container" class="mx-4 my-5 form-container" style="min-width: 18rem">
-    
-    <form id="user-profile-form" class="p-3 bg-light rounded">
-      <h2 class="mb-3 text-center">Profile</h2>
-      <div class="form-group mb-4">
-        <label for="username" class="mb-1">Username</label>
-        <input
-          type="text"
-          class="form-control input-disabled"
-          id="username"
-          value={{user.username}}
-          required
-          readonly
-        /></input>
-        <div id="username-error" class="form-text error"></div>
+    <div id="profile-form-container" class="mx-4 my-5 form-container" style="min-width: 18rem">
+
+      <form id="user-profile-form" class="p-3 bg-light rounded">
+        <h2 class="mb-3 text-center">Profile</h2>
+        <div class="form-group mb-4">
+          <label for="username" class="mb-1">Username</label>
+          <input type="text" class="form-control input-disabled" id="username" value={{user.username}} required
+            readonly /></input>
+          <div id="username-error" class="form-text error"></div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="investor-type" class="mb-1">Investor Type</label>
+          <input class="form-control input-disabled" id="investor-type" rows="3" value="{{user.investor_type}}"
+            readonly></input>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="favourite-company" class="mb-1">Favourite Company</label>
+          <input class="form-control input-disabled" id="investor-type" rows="3"
+            value="{{favourite_company.name}} | {{favourite_company.symbol}}" readonly></input>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="user-bio" class="mb-1">About Me</label>
+          <textarea class="form-control input-disabled" id="user-bio" rows="3" readonly>{{user.bio}}</textarea>
+        </div>
+      </form>
+    </div>
+
+    {{!-- Portfolio Section --}}
+    <div id="portfolio-container" class="mx-4 my-5 p-3 rounded portfolio-container bg-light">
+      <div id="portfolio-header" class="text-center">
+        <h2 class="">Investment Portfolios</h2>
       </div>
 
-      <div class="form-group mb-4">
-        <label for="investor-type" class="mb-1">Investor Type</label>
-        <input class="form-control input-disabled" id="investor-type" rows="3" value="{{user.investor_type}}" readonly></input>
-      </div>
+      <div id="company-card-container" class="d-flex flex-wrap justify-content-center align-content-center">
+        <div class="card m-3 portfolio-card">
+          <div class="card-body">
+            <h3 class="card-title text-center">Yolo Stock Returns</h3>
+            <h4 class="py-3">Returns: $14,234,123.20</h4>
+            <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
+            <h6>salesforce.com, inc.</h6>
+            <p>CRM</p>
+            <h6>Tesla. Inc.</h6>
+            <p>TSLA</p>
+            <h6>Meta Platforms Inc. Class A</h6>
+            <p>FB</p>
+          </div>
+        </div>
 
-      <div class="form-group mb-4">
-        <label for="favourite-company" class="mb-1"
-          >Favourite Company</label
-        >
-      <input class="form-control input-disabled" id="investor-type" rows="3" value="{{favourite_company.name}} | {{favourite_company.symbol}}" readonly></input>
-      </div>
+        <div class="card m-3 portfolio-card">
+          <div class="card-body">
+            <h3 class="card-title text-center">Risky Business</h3>
+            <h4 class="py-3">Returns: $34,924,992.02</h4>
+            <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
+            <h6>PayPal Holdings, Inc.</h6>
+            <p>PYPL</p>
+            <h6>Texas Instruments Incorporated</h6>
+            <p>TXN</p>
+            <h6>Oracle Corporation.</h6>
+            <p>ORCL</p>
+            <h6>The Goldman Sachs Group, Inc.</h6>
+            <p>GS</p>
+            <h6>BlackRock, Inc.</h6>
+            <p>BLK</p>
+            <h6>Caterpillar Inc.</h6>
+            <p>CAT</p>
+          </div>
+        </div>
 
-      <div class="form-group mb-4">
-        <label for="user-bio" class="mb-1">About Me</label>
-        <textarea class="form-control input-disabled" id="user-bio" rows="3" readonly>{{user.bio}}</textarea>
+        <div class="card m-3 portfolio-card">
+          <div class="card-body">
+            <h3 class="card-title text-center">Healthcare Bet</h3>
+            <h4 class="py-3">Returns: $12,324,213.20</h4>
+            <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
+            <h6>The Coca-Cola Company</h6>
+            <p>KO</p>
+            <h6>Accenture plc</h6>
+            <p>ACN</p>
+            <h6>Berkshire Hathaway Inc. Class B</h6>
+            <p>BRK.B</p>
+            <h6>NVIDIA Corporation</h6>
+            <p>NVDA</p>
+          </div>
+        </div>
+
       </div>
-    </form>
+    </div>
   </div>
-
-{{!-- Portfolio Section --}}
-  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded d-flex flex-wrap portfolio-container bg-light">
-      <div id="portfolio-header" class="">
-          <h2 class="">Investment Portfolio</h2>
-          <h3 class="">Returns: ${{user.score}}</h3>
-      </div>
-
-      <div id="company-card-container" class="d-flex flex-wrap align-content-center">
-          <div class="card m-3" style="width: 18rem;">
-            <div class="card-body text-center team-card">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-      </div>
-
-      <div>
-          <button id="edit-portfolio-btn" href="/edit-portfolio" type="button" class="btn btn-primary">Edit Portfolio</button>
-      </div>
-  </div>
- </div>
 </main>
-
