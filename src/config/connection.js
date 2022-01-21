@@ -14,7 +14,8 @@ const dbOptions = {
   logging: false,
 };
 
-//fix jaws db config
-const sequelize = new Sequelize(dbName, dbUser, dbPassword, dbOptions);
+const connection = process.env.JAWSDB_URL
+  ? new Sequelize(process.env.JAWSDB_URL)
+  : new Sequelize(dbName, dbUser, dbPassword, dbOptions);
 
-module.exports = sequelize;
+module.exports = connection;

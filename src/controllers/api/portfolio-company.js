@@ -6,6 +6,7 @@ const addPortfolioCompanyLine = async (req, res) => {
   try {
     // get payload: USE getPayloadWithValidFieldsOnly HERE
     const { portfolio_id, company_id, units } = req.body;
+    console.log(portfolio_id, company_id, units);
 
     const companyFromDb = await Company.findByPk(company_id);
     const { janPrice } = companyFromDb.get({ plain: true });
