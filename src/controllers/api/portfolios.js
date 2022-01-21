@@ -186,11 +186,12 @@ const handleLeaderBoardData = async (req, res) => {
         return stockReturn;
       });
 
-      const stockReturns = stockReturnArray.length
-        ? stockReturnArray.reduce((acc, curr) => {
-            return acc + curr;
-          })
-        : 0;
+      const stockReturns =
+        stockReturnArray.length > 0
+          ? stockReturnArray.reduce((acc, curr) => {
+              return acc + curr;
+            })
+          : 0;
 
       return {
         portfolioName: portfolio.name,

@@ -51,77 +51,15 @@
   </div>
 
 {{!-- Portfolio Section --}}
-  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded d-flex flex-wrap portfolio-container bg-light">
+  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded  portfolio-container bg-light">
       <div id="portfolio-header" class="">
-          <h2 class="">Investment Portfolio</h2>
-          <h3 class="">Returns: ${{user.score}}</h3>
+          <h2 class="text-center">My Portfolios</h2>
       </div>
 
-      <div id="company-card-container" class="d-flex flex-wrap align-content-center">
-          <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-
-            <div class="card m-3" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Apple Inc.</h5>
-            <h6>APPL</h6>
-            <p>Jan 2021 Share Price: <span>$200.00</span></p>
-            <p>Units <span>123</span></p>
-            <p>Gain/Loss <span>323</span></p>
-             </div>
-            </div>
-      </div>
-
-      <div>
-          <button id="edit-portfolio-btn" href="/edit-portfolio" type="button" class="btn btn-primary">Edit Portfolio</button>
+      <div id="company-card-container" class="d-flex flex-wrap justify-content-center align-content-center">
+        {{#each portfolioInfo}}
+        {{>portfolio-companies parent=../this}}
+        {{/each}}
       </div>
   </div>
  </div>
