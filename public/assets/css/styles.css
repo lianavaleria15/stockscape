@@ -16,6 +16,45 @@ body {
   background-color: var(--darkest);
 }
 
+.error {
+  color: var(--error-red);
+}
+
+.btn-primary {
+  background-color: var(--bold-accent);
+  border-color: var(--bold-accent);
+}
+
+.btn-secondary {
+  background-color: var(--subtle-accent);
+  border-color: var(--subtle-accent);
+}
+
+.bg-dark {
+  background-color: var(--darkest);
+}
+
+.bg-purple {
+  background-color: var(--dark);
+}
+
+.input-disabled {
+  background-color: #fff !important;
+}
+
+#jumbotron {
+  background-image: url("../images/aboutusheroimage.jpg");
+  background-size: cover;
+  padding: 10px;
+}
+
+/* NAVBAR */
+.signup-link {
+  border-radius: 5px;
+  background-color: var(--dark);
+}
+
+/* HOME PAGE */
 #homePage {
   background-image: url(../images/aboutusheroimage.jpg);
 }
@@ -26,15 +65,16 @@ body {
   padding-bottom: 10px;
 }
 
-.rules-logo {
-  width: 50%;
-  height: auto;
-}
-
+/* ABOUT */
 .how-to-play-stockscape {
   width: 20%;
   height: auto;
   min-width: 20%;
+}
+
+.rules-logo {
+  width: 50%;
+  height: auto;
 }
 
 .rules {
@@ -54,35 +94,6 @@ body {
   height: auto;
   display: block;
   margin: auto;
-}
-
-.error {
-  color: var(--error-red);
-}
-
-.btn-primary {
-  background-color: var(--bold-accent);
-  border-color: var(--bold-accent);
-}
-
-.btn-secondary {
-  background-color: var(--subtle-accent);
-  border-color: var(--subtle-accent);
-}
-
-.bg-dark {
-  background-color: var(--darkest);
-}
-
-.signup-link {
-  border-radius: 5px;
-  background-color: var(--dark);
-}
-
-#jumbotron {
-  background-image: url("../images/aboutusheroimage.jpg");
-  background-size: cover;
-  padding: 10px;
 }
 
 .team-card {
@@ -113,18 +124,23 @@ body {
   color: #555;
 }
 
+/* COMPANIES */
 .companies-modal-header {
   background-color: var(--darkest);
 }
 
+/* FOOTER */
 .page-footer {
   background-color: var(--darkest);
 }
 
-.input-disabled {
-  background-color: #fff !important;
+.fa-github-square {
+  margin-top: 1.5px;
+  font-size: 1.5rem;
 }
 
+/* MEDIA QUERIES */
+/* Larger than tablet */
 @media screen and (min-width: 768px) {
   .navbar-brand.abs {
     position: absolute;
@@ -135,7 +151,7 @@ body {
   }
 }
 
-/* Tablet size and smaller */
+/* Smaller than tablet */
 @media screen and (max-width: 768px) {
   #profile-portfolio-container {
     flex-direction: column;

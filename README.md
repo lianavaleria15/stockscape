@@ -1,44 +1,57 @@
-# stockscape
+# Stockscape
 
 ## Table Of Contents
 
-- [Project Link](#project-link)
-- [Getting Started](#getting-started)
-- [Contributors](#contributors)
 - [About The Project](#about-the-project)
+  - [User Flow](#user-flow)
   - [Technologies Used](#technologies-used)
   - [Web APIs](#web-apis)
-  - [User Flow](#user-flows)
-  - [Wireframes](#wireframes)
+  - [Deployed Application](#deployed-application)
+- [Getting Started](#getting-started)
+- [Contributors](#contributors)
 - [Plans For Improvement](#plans-for-improvement)
 - [Screenshots](#screenshots)
 
-## Project Link
+## About The Project
 
-- [Click here to visit the Github repository](https://github.com/lianavaleria15/stockscape)
-- [Click here to visit deployed application]()
+[Description here]
+
+### User Flow
+
+### Technologies Used
+
+- Front End
+  - HTML & Handlebars.js
+  - Bootstrap & custom CSS
+  - JavaScript & jQuery
+  - Chart.js package
+- Back End
+  - Express.js server
+  - MySQL database & Sequelize package
+
+### Web APIs
+
+### Deployed Application
+
+- [Visit the Github repository](https://github.com/lianavaleria15/stockscape)
+- [Visit the deployed application]()
 
 ## Getting Started
 
 - Clone the Github Project into your local machine
+
+```
+
+```
+
 - Navigate into the project
 
 ## Contributors
 
 - [Conor Kelly](https://github.com/conorjkelly96)
-- [Kayle Patton](httpls://github.com/)
+- [Liana Laurentiu](https://github.com/lianavaleria15)
 - [Matthew Palmer](https://github.com/tigerbath)
-- [Liana Laurentiu](https://github.com/)
-
-## About The Project
-
-### Technologies Used
-
-### Web APIs
-
-### User Flow
-
-### Wireframes
+- [Kayle Rieger Patton](httpls://github.com/kayleriegerpatton)
 
 ## Plans For Improvement
 
