@@ -4,10 +4,11 @@ const companiesContainer = $("#companies-container");
 const constructPortfolioOptions = (portfolios) => {
   return portfolios
     .map((portfolio) => {
-      return `<option id="${portfolio.id}" value="${portfolio.name}">${portfolio.name} || $${portfolio.remaining_budget}</option>`;
+      return `<option id="${portfolio.id}" value="${portfolio.name} || $${portfolio.remaining_budget}">${portfolio.name} || $${portfolio.remaining_budget}</option>`;
     })
     .join("");
 };
+
 const constructCompanyModal = ({ company, portfolios }) => {
   return `<div class="modal fade" id="company-card-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,6 +48,7 @@ const constructCompanyModal = ({ company, portfolios }) => {
   </div>`;
 };
 
+// CK: 21/01/2022 - for some reason the click is cycling through the array of companies instead of making the API request for each company
 const renderStockInfoModal = async (event) => {
   const target = event.target;
 
@@ -56,11 +58,13 @@ const renderStockInfoModal = async (event) => {
     }
 
     const companyId = $(target).attr("id");
+    console.log(companyId);
 
     // make API request
     const response = await fetch(`/api/companies/${companyId}`);
 
     const { data } = await response.json();
+    console.log(data);
 
     const companyModal = constructCompanyModal(data);
 
@@ -82,6 +86,7 @@ const addCompanyToPortfolio = async (event) => {
   const numberShares = $("#number-shares").val();
 
   const portfolioId = $("#portfolio-name option:selected").attr("id");
+  console.log(target, companyId, sharePrice, numberShares);
 
   // get the portfolioId and make a request to the back end
   const portfolioApiResponse = await fetch(`/api/portfolios/${portfolioId}`);
