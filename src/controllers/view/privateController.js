@@ -162,7 +162,7 @@ const renderUserList = async (req, res) => {
 
     res.render("view-users", { user, favourite_company });
   } catch (error) {
-    logError("Render companies", error.message);
+    logError("Render users", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to render all users." });
