@@ -6,7 +6,6 @@ const portfolioData = [
     user_id: 2,
     remaining_budget: 1000000,
   },
-
   {
     name: "My YOLO Savings",
     user_id: 2,
@@ -17,7 +16,6 @@ const portfolioData = [
     user_id: 3,
     remaining_budget: 200000,
   },
-
   {
     name: "Causal Pocket Money",
     user_id: 4,

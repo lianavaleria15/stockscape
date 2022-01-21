@@ -32,10 +32,22 @@ const portfolioCompanyData = [
     unit_cost: 755.98,
   },
   {
-    units: 125,
+    units: 10,
     company_id: 5,
     portfolio_id: 3,
     unit_cost: 1722.88,
+  },
+  {
+    units: 7000,
+    company_id: 6,
+    portfolio_id: 3,
+    unit_cost: 263.61,
+  },
+  {
+    units: 5000,
+    company_id: 4,
+    portfolio_id: 3,
+    unit_cost: 755.98,
   },
   {
     units: 7000,
