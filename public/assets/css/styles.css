@@ -81,6 +81,10 @@ body {
   height: auto;
 }
 
+.rules-link {
+  color: var(--dark);
+}
+
 .rules {
   background-color: rgb(255, 250, 250);
   margin: 5%;
