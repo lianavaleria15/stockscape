@@ -72,9 +72,17 @@ body {
   min-width: 20%;
 }
 
+.about-us-hero {
+  background-color: #5e47f7;
+}
+
 .rules-logo {
   width: 50%;
   height: auto;
+}
+
+.rules-link {
+  color: var(--dark);
 }
 
 .rules {
