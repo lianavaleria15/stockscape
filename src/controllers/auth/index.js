@@ -35,7 +35,7 @@ const signup = async (req, res) => {
     const newUser = await User.create(payload);
 
     await Portfolio.create({
-      name: "Sample Portfolio",
+      name: `${[payload.username]}'s first Portfolio`,
       user_id: newUser.get("id"),
     });
 
