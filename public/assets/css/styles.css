@@ -129,6 +129,11 @@ body {
   background-color: var(--darkest);
 }
 
+/* USER PROFILE */
+.portfolio-card {
+  max-width: 20rem;
+}
+
 /* FOOTER */
 .page-footer {
   background-color: var(--darkest);
@@ -156,4 +161,7 @@ body {
   #profile-portfolio-container {
     flex-direction: column;
   }
+  /* .portfolio-card {
+    width: 16.5rem;
+  } */
 }

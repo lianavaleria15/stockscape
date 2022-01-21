@@ -51,14 +51,14 @@
   </div>
 
 {{!-- Portfolio Section --}}
-  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded d-flex flex-wrap portfolio-container bg-light">
+  <div id="portfolio-container" class="mx-4 my-5 p-3 rounded  portfolio-container bg-light">
       <div id="portfolio-header" class="">
           <h2 class="text-center">My Portfolios</h2>
       </div>
 
-      <div id="company-card-container" class="d-flex flex-wrap align-content-center">
-        {{#each portfolios}}
-        {{>portfolio-companies}}
+      <div id="company-card-container" class="d-flex flex-wrap justify-content-center align-content-center">
+        {{#each portfolioInfo}}
+        {{>portfolio-companies parent=../this}}
         {{/each}}
       </div>
   </div>

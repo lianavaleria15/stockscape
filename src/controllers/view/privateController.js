@@ -78,13 +78,37 @@ const renderEditMyProfile = async (req, res) => {
     );
 
     const userPortfolio = userPortfolioData.get({ plain: true });
-    console.log(userPortfolio);
+    console.log(userPortfolio.portfolios);
+
+    const portfolioInfo = userPortfolio.portfolios.map((portfolio) => {
+      const stockReturnArray = portfolio.companies.map((company) => {
+        // calculate each company's year end return
+        const stockReturn =
+          company.janPrice * company.portfolioCompany.units * company.gainLoss -
+          company.janPrice * company.portfolioCompany.units;
+        // console.log("stock return:", stockReturn);
+        return stockReturn;
+      });
+
+      const stockReturns =
+        stockReturnArray.length > 0
+          ? stockReturnArray.reduce((acc, curr) => {
+              return acc + curr;
+            })
+          : 0;
+
+      return {
+        portfolioName: portfolio.name,
+        yearEndReturn: stockReturns,
+        companies: portfolio.companies,
+      };
+    });
 
     return res.render("edit-profile", {
       user: userPortfolio,
       loggedIn: req.session.user.loggedIn,
       companies,
-      portfolios: userPortfolio.portfolios,
+      portfolioInfo,
     });
   } catch (error) {
     logError("Render edit profile", error.message);

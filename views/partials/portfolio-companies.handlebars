@@ -1,8 +1,8 @@
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-3 portfolio-card">
   <div class="card-body">
-    <h3 class="card-title">{{name}}</h3>
-    <h4>Returns: ${{user.score}}</h4>
-    <h5 class="card-subtitle">Company Stocks</h5>
+    <h3 class="card-title text-center">{{portfolioName}}</h3>
+    <h4 class="py-3">Returns: ${{yearEndReturn}}</h4>
+    <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
     {{#each companies}}
       <h6>{{name}}</h6>
       <p>{{symbol}}</p>
