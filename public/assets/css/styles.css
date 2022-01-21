@@ -43,6 +43,13 @@ body {
   background-size: cover;
   padding: 10px;
 }
+
+/* NAVBAR */
+.signup-link {
+  border-radius: 5px;
+  background-color: var(--dark);
+}
+
 /* HOME PAGE */
 #homePage {
   background-image: url(../images/aboutusheroimage.jpg);
@@ -111,11 +118,6 @@ body {
   background: #ddd;
   text-decoration: none;
   color: #555;
-}
-
-.signup-link {
-  border-radius: 5px;
-  background-color: var(--dark);
 }
 
 /* COMPANIES */
