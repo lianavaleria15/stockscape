@@ -16,6 +16,15 @@
 
 ### Technologies Used
 
+- Front End
+  - HTML & Handlebars.js
+  - Bootstrap & custom CSS
+  - JavaScript & jQuery
+  - Chart.js package
+- Back End
+  - Express.js server
+  - MySQL database & Sequelize package
+
 ### Web APIs
 
 ### User Flow
