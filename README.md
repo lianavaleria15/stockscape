@@ -31,8 +31,8 @@
 
 ### Deployed Application
 
-- [Click here to visit the Github repository](https://github.com/lianavaleria15/stockscape)
-- [Click here to visit deployed application]()
+- [Visit the Github repository](https://github.com/lianavaleria15/stockscape)
+- [Visit the deployed application]()
 
 ## Getting Started
 
