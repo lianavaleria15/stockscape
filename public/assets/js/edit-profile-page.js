@@ -4,7 +4,7 @@ const editPortfolioBtn = $("edit-portfolio-btn");
 const getErrorsEditProfile = ({ username, bio }) => {
   const errors = {};
 
-  if (!username || !/^[A-Za-z]{8,30}$/.test(username)) {
+  if (!username || !/^[A-Za-z0-9]{8,30}$/.test(username)) {
     errors.username =
       "Invalid username. Must be 8-30 alphanumberic characters.";
   }
