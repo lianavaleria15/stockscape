@@ -14,6 +14,8 @@
 
 ## About The Project
 
+[Description here]
+
 ### Technologies Used
 
 - Front End
@@ -37,6 +39,11 @@
 ## Getting Started
 
 - Clone the Github Project into your local machine
+
+```
+
+```
+
 - Navigate into the project
 
 ## Contributors
