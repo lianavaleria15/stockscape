@@ -57,16 +57,6 @@ Then i can view other users
 - [Visit the Github repository](https://github.com/lianavaleria15/stockscape)
 - [Visit the deployed application](https://stockscape.herokuapp.com)
 
-## Getting Started
-
-- Clone the Github Project into your local machine
-
-```
-
-```
-
-- Navigate into the project
-
 ## Contributors
 
 - [Conor Kelly](https://github.com/conorjkelly96)
