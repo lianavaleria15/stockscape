@@ -38,9 +38,10 @@ const constructCompanyModal = ({ company, portfolios }) => {
               </select>
             </div>
             <div>
-              <button type="submit"  class="btn btn-secondary" data-bs-dismiss="modal">Add to
+              <button type="submit"  class="btn btn-secondary">Add to
                 portfolio</button>
             </div>
+            <div id="stocks-error"></div>
           </div>
         </form>
       </div>
@@ -95,6 +96,8 @@ const addCompanyToPortfolio = async (event) => {
     const remaining_budget = parseInt(data.remaining_budget);
 
     if (remaining_budget < totalSpend) {
+      $("#stocks-error").text("");
+      $("#stocks-error").text("Not enough funds available!");
     } else {
       const postResponse = await fetch("/api/portfolio-company", {
         method: "POST",
@@ -108,7 +111,7 @@ const addCompanyToPortfolio = async (event) => {
         }),
       });
 
-      const { success } = await postResponse.json();
+      const { success, companyExists } = await postResponse.json();
 
       if (success) {
         const putResponse = await fetch(`/api/portfolios/${portfolioId}`, {
@@ -121,8 +124,13 @@ const addCompanyToPortfolio = async (event) => {
             unit_cost: sharePrice,
           }),
         });
+        $("#company-card-modal").modal("hide");
+        return;
+      }
 
-        const { data } = await putResponse.json();
+      if (companyExists) {
+        $("#stocks-error").text("");
+        $("#stocks-error").text("Company already exists in portfolio");
       }
     }
   }
