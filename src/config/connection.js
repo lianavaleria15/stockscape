@@ -15,7 +15,7 @@ const dbOptions = {
 };
 
 const connection = process.env.JAWSDB_URL
-  ? new Sequelize(JAWSDB_URL)
+  ? new Sequelize(process.env.JAWSDB_URL)
   : new Sequelize(dbName, dbUser, dbPassword, dbOptions);
 
 module.exports = connection;
