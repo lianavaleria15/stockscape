@@ -1,11 +1,11 @@
-# stockscape
+# Stockscape
 
 ## Table Of Contents
 
 - [About The Project](#about-the-project)
+  - [User Flow](#user-flow)
   - [Technologies Used](#technologies-used)
   - [Web APIs](#web-apis)
-  - [User Flow](#user-flows)
   - [Deployed Application](#deployed-application)
 - [Getting Started](#getting-started)
 - [Contributors](#contributors)
@@ -15,6 +15,8 @@
 ## About The Project
 
 [Description here]
+
+### User Flow
 
 ### Technologies Used
 
@@ -28,8 +30,6 @@
   - MySQL database & Sequelize package
 
 ### Web APIs
-
-### User Flow
 
 ### Deployed Application
 
