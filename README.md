@@ -7,29 +7,30 @@
   - [Technologies Used](#technologies-used)
   - [Web APIs](#web-apis)
   - [Deployed Application](#deployed-application)
-- [Getting Started](#getting-started)
 - [Contributors](#contributors)
 - [Plans For Improvement](#plans-for-improvement)
 - [Screenshots](#screenshots)
 
 ## About The Project
 
-Stockscape tests users’ skills as they build portfolios and compete for the highest earnings.
+Stockscape tests users’ skills as they build portfolios and compete for the highest year-end earnings.
+
+A full-stack web application, Stockscape takes inspiration from the chaos of the 2021 financial market; a time when many took interest in the stock market and how they could succeed. Users start with $1,000,000 in game funds to invest in their choice of up to 100 different company stocks. Year-end earnings are calculated instantly and displayed on the user's dashboard as a leaderboard of top Stockscape portfolios and within their portfolios list. Users can view other users' profiles and portfolios, update their public profile, and create as many investment portfolios as they wish.
 
 ### User Flow
 
-When i deploy the application
-Then i am given the option to sign up, log in, or find more information
-When i have signed up
-Then i can press play to create a portfolio
-Then i can add stocks from companies page
-Once i have added the maximum amount of stocks
-Then i will be notified of this
-When i save my portfolio
-Then i can view my portfolios performance
-Then i can view others & previous portfolios on dashboard page
-When i visit investors page
-Then i can view other users
+When I deploy the application  
+Then I am given the option to sign up, log in, or find more information  
+When I have signed up  
+Then I can press play to create a portfolio  
+Then I can add stocks from companies page  
+Once I have added the maximum amount of stocks  
+Then I will be notified  
+When I save my portfolio  
+Then I can view my portfolios performance  
+Then I can view others' & previous portfolios on dashboard page  
+When I visit investors page  
+Then I can view other users' profiles and portfolios  
 
 ### Technologies Used
 
@@ -44,13 +45,6 @@ Then i can view other users
 
   - Express.js server
   - MySQL database & Sequelize package
-
-- Comms & Collaboration
-  - Slack
-  - Github Projects
-  - Zoom
-  - Google Sheets
-  - Google Slides
 
 ### Deployed Application
 
