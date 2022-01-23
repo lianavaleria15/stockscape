@@ -13,7 +13,7 @@ const constructCompanyModal = ({ company, portfolios }) => {
   return `<div class="modal fade" id="company-card-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header bg-purple text-white">
           <h5 class="modal-title" id="company-name">${company.name}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>

@@ -1,11 +1,13 @@
 :root {
   --light-accent: #95f9e3ff;
-  --mid-accent: #69ebd0ff;
+  --mid-accent: #4fd4ba;
   --dark: #5e47f7;
+  --darker: #3321a3;
   --darkest: #241e4eff;
   --subtle-accent: #758173ff;
   --bold-accent: #cb904dff;
   --error-red: #f4442e;
+  --gain-green: #5bff5b;
 }
 
 * {
@@ -21,13 +23,31 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--bold-accent);
-  border-color: var(--bold-accent);
+  background-color: var(--mid-accent);
+  border-color: var(--mid-accent);
+  color: black;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: var(--light-accent);
+  border-color: var(--light-accent);
+  color: black;
 }
 
 .btn-secondary {
-  background-color: var(--subtle-accent);
-  border-color: var(--subtle-accent);
+  background-color: var(--dark);
+  border-color: var(--dark);
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus {
+  background-color: var(--darkest);
+  border-color: var(--darkest);
 }
 
 .bg-dark {
@@ -35,7 +55,7 @@ body {
 }
 
 .bg-purple {
-  background-color: var(--dark);
+  background-color: var(--darker);
 }
 
 .input-disabled {
