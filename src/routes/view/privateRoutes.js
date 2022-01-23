@@ -20,9 +20,6 @@ router.get("/users/:id", renderViewUserProfile);
 
 router.get("/portfolio/create", renderCreateMyPortfolio);
 
-// should this become '/:userid/portfolio/:portfolioid/edit' now that users can have more than 1 portfolio?
-router.get("/portfolio/:id/edit", renderEditMyPortfolio);
-
 router.get("/users", renderUserList);
 
 module.exports = router;

@@ -11,7 +11,7 @@
         <h2 class="mb-3 text-center">Profile</h2>
         <div class="form-group mb-4">
           <label for="username" class="mb-1">Username</label>
-          <input type="text" class="form-control input-disabled" id="username" value={{user.username}} required
+          <input type="text" class="form-control input-disabled" id="username" value="{{user.username}}" required
             readonly /></input>
           <div id="username-error" class="form-text error"></div>
         </div>
@@ -36,63 +36,21 @@
     </div>
 
     {{!-- Portfolio Section --}}
-    <div id="portfolio-container" class="mx-4 my-5 p-3 rounded portfolio-container bg-light">
+    <div id="portfolio-container" class="mx-4 my-5 p-3 rounded bg-light">
       <div id="portfolio-header" class="text-center">
         <h2 class="">Investment Portfolios</h2>
       </div>
 
-      <div id="company-card-container" class="d-flex flex-wrap justify-content-center align-content-center">
-        <div class="card m-3 portfolio-card">
-          <div class="card-body">
-            <h3 class="card-title text-center">Yolo Stock Returns</h3>
-            <h4 class="py-3">Returns: $14,234,123.20</h4>
-            <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
-            <h6>salesforce.com, inc.</h6>
-            <p>CRM</p>
-            <h6>Tesla. Inc.</h6>
-            <p>TSLA</p>
-            <h6>Meta Platforms Inc. Class A</h6>
-            <p>FB</p>
+        {{!-- Portfolio Cards --}}
+       
+        <div id="company-card-container" class="d-flex flex-wrap justify-content-center align-content-center">
+          {{#each portfoliosInfo}}
+          {{> portfolio-companies parent=../this}}
+          {{/each}}
           </div>
+        
         </div>
-
-        <div class="card m-3 portfolio-card">
-          <div class="card-body">
-            <h3 class="card-title text-center">Risky Business</h3>
-            <h4 class="py-3">Returns: $34,924,992.02</h4>
-            <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
-            <h6>PayPal Holdings, Inc.</h6>
-            <p>PYPL</p>
-            <h6>Texas Instruments Incorporated</h6>
-            <p>TXN</p>
-            <h6>Oracle Corporation.</h6>
-            <p>ORCL</p>
-            <h6>The Goldman Sachs Group, Inc.</h6>
-            <p>GS</p>
-            <h6>BlackRock, Inc.</h6>
-            <p>BLK</p>
-            <h6>Caterpillar Inc.</h6>
-            <p>CAT</p>
-          </div>
-        </div>
-
-        <div class="card m-3 portfolio-card">
-          <div class="card-body">
-            <h3 class="card-title text-center">Healthcare Bet</h3>
-            <h4 class="py-3">Returns: $12,324,213.20</h4>
-            <h5 class="card-subtitle py-3 fw-bold">Company Stocks</h5>
-            <h6>The Coca-Cola Company</h6>
-            <p>KO</p>
-            <h6>Accenture plc</h6>
-            <p>ACN</p>
-            <h6>Berkshire Hathaway Inc. Class B</h6>
-            <p>BRK.B</p>
-            <h6>NVIDIA Corporation</h6>
-            <p>NVDA</p>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
 </main>
+<footer>{{> footer}}</footer>

@@ -64,17 +64,17 @@ const renderEditMyProfile = async (req, res) => {
     // for fave company list
     const companiesFromDB = await Company.findAll();
 
-    // get the user's portfolio
+    const companies = companiesFromDB.map((company) =>
+      company.get({ plain: true })
+    );
+
+    // get the user's portfolios
     const userPortfolioData = await User.findByPk(id, {
       include: {
         model: Portfolio,
         include: { model: Company, through: PortfolioCompany },
       },
     });
-
-    const companies = companiesFromDB.map((company) =>
-      company.get({ plain: true })
-    );
 
     const userPortfolio = userPortfolioData.get({ plain: true });
 
@@ -120,34 +120,57 @@ const renderViewUserProfile = async (req, res) => {
     // get user id
     const userId = req.params.id;
 
-    const userFromDB = await User.findByPk(userId);
-    const companyFromDB = await Company.findByPk(userFromDB.favourite_company);
+    // get user info, including portfolios, companies
+    const userPortfoliosData = await User.findByPk(userId, {
+      include: {
+        model: Portfolio,
+        include: {
+          model: Company,
+          through: PortfolioCompany,
+        },
+      },
+    });
 
-    const user = userFromDB.get({ plain: true });
+    const user = userPortfoliosData.get({ plain: true });
+
+    const portfoliosInfo = user.portfolios.map((portfolio) => {
+      const stockReturnArray = portfolio.companies.map((company) => {
+        // calculate each company's year end earnings
+        const stockReturn =
+          company.janPrice * company.portfolioCompany.units * company.gainLoss -
+          company.janPrice * company.portfolioCompany.units;
+        return stockReturn;
+      });
+      // add up all of a portfolio's company stock returns
+      const yearEndReturn =
+        stockReturnArray.length > 0
+          ? stockReturnArray.reduce((acc, curr) => {
+              return acc + curr;
+            })
+          : 0;
+
+      return {
+        portfolioName: portfolio.name,
+        yearEndReturn,
+        companies: portfolio.companies,
+      };
+    });
+
+    // get companies id for fav company field
+    const companyFromDB = await Company.findByPk(user.favourite_company);
+
     const favourite_company = companyFromDB.get({ plain: true });
 
-    return res.render("user-profile", { user, favourite_company });
+    return res.render("user-profile", {
+      user,
+      favourite_company,
+      portfoliosInfo,
+    });
   } catch (error) {
-    logError("Render edit profile", error.message);
+    logError("Render public user profile", error.message);
     return res
       .status(500)
-      .json({ success: false, error: "Failed to render user profile." });
-  }
-};
-
-const renderEditMyPortfolio = async (req, res) => {
-  try {
-    // get user's investment portfolio data from db
-    // get plain data object
-    // get logged in user's id
-
-    // pass data to handlebars template
-    return res.render("edit-portfolio");
-  } catch (error) {
-    logError("Render edit portfolio", error.message);
-    return res
-      .status(500)
-      .json({ success: false, error: "Failed to render edit portfolio." });
+      .json({ success: false, error: "Failed to render public user profile." });
   }
 };
 
@@ -200,7 +223,6 @@ const renderUserList = async (req, res) => {
 module.exports = {
   renderDashboard,
   renderCreateMyPortfolio,
-  renderEditMyPortfolio,
   renderEditMyProfile,
   renderUserList,
   renderViewUserProfile,
